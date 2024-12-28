@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Lead</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 5px;
+        }
+        label {
+            display: block;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="datetime-local"],
+        select {
+            width: calc(100% - 16px);
+            padding: 5px;
+            margin-bottom: 0px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-repeat: no-repeat;
+            background-position: right 8px top 50%;
+            background-size: 16px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        /* Adjust appearance for datetime-local input */
+        input[type="datetime-local"]::-webkit-datetime-edit {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="/edit_leads/{{ lead.lead_id }}">
+        <h1>Update Lead: {{ lead.lead_id }}</h1>
+        <div class="form-group">
+            <label for="lead_name">Company Name:</label>
+            <input type="text" id="lead_name" name="lead_name" value="{{ lead.lead_name }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="c_name">Contact Name:</label>
+            <input type="text" id="c_name" name="c_name" value="{{ lead.contact_name }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" value="{{ lead.contact_phone }}">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ lead.contact_email }}">
+        </div>
+
+        <div class="form-group">
+            <label for="scheduled_time">Scheduled Time:</label>
+            <input type="datetime-local" id="scheduled_time" name="scheduled_time" value="{{ lead.scheduled_time }}">
+        </div>
+
+        <div class="form-group">
+            <label for="remarks">Remarks:</label>
+            <input type="text" id="remarks" name="remarks" value="{{ lead.remarks }}" required>
+        </div>
+
+        <div class="form-group" id="gstContainer">
+            <label for="gst">GST No.:</label>
+            <input type="text" id="gst" name="gst">
+        </div>
+
+        <input type="submit" value="Update Lead">
+    </form>
+    <script>
+        var statusSelect = document.getElementById("status");
+        var gstContainer = document.getElementById("gstContainer");
+
+        function updateGSTNoRequired() {
+            if (statusSelect.value === "DONE") {
+                gstContainer.style.display = "block";
+                document.getElementById("gst").setAttribute("required", "required");
+            } else {
+                gstContainer.style.display = "none";
+                document.getElementById("gst").removeAttribute("required");
+            }
+        }
+
+        statusSelect.addEventListener("change", function () {
+            updateGSTNoRequired();
+        });
+        updateGSTNoRequired();
+    </script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <title>Task Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Light blue background */
+            color: #000080; /* Dark blue text */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background-color: #ffffff; /* White background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+            color: #000080; /* Dark blue text */
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff; /* Blue color */
+            font-size: 32px;
+            text-transform: uppercase;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        h2 {
+            text-align: left;
+            color: #0056b3; /* Dark blue color */
+            font-size: 25px;
+        }
+
+        p {
+            text-align: left;
+            color: #000080; /* Dark blue text */
+            font-size: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #007bff; /* Blue button color */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        a.btn-secondary {
+            background-color: #0056b3; /* Dark blue button color */
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        a.btn-secondary:hover {
+            background-color: #004080; /* Even darker blue on hover */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #000080; /* Dark blue text */
+        }
+
+        th, td, tr {
+            border: 1px solid #007bff; /* Blue border */
+            padding: 5px;
+            text-align: center;
+            color: #000080; /* Dark blue text */
+            background-color: #f0f8ff; /* Light blue background for rows */
+        }
+
+        .filter-container {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .filter-input {
+            width: 100%;
+            padding: 3px;
+            background-color: #ffffff; /* White background */
+            box-sizing: border-box;
+            color: #000080; /* Dark blue text */
+            border: 1px solid #007bff; /* Blue border */
+        }
+    </style>
+</head>
+<body>              
+    <div class="container">
+        <h1>Task Dashboard</h1>
+        <h2> Hello {{ user }}</h2>
+        <p>Welcome to Task Management Dashboard</p>
+        <a href="{{ url_for('insert_task') }}" class="btn btn-primary">Insert Task</a>     
+        <a href="{{ url_for('insert_multiple_tasks') }}" class="btn btn-primary">Insert Multiple Tasks</a>     
+        <a href="{{ url_for('all_tasks') }}" class="btn btn-primary">All Tasks</a> 
+        {% if session['profile'] == 'SUPER ADMIN' %}
+            <a href="{{ url_for('all_kra') }}" class="btn btn-primary">All KRA Tasks</a> 
+        {% endif %}
+        {% if session['profile'] == 'SUPER ADMIN2' %}
+            <a href="{{ url_for('task_time_log') }}" class="btn btn-primary">Tasks Time Log</a> 
+            <a href="{{ url_for('all_time_logs') }}" class="btn btn-primary">All Time Log</a> 
+        {% endif %}
+        <a href="{{ url_for('login') }}" class="btn btn-primary">Log Out</a> 
+    </div><br>
+    <div>
+        <div class="filter-container">
+            <div class="row">
+                <div class="col">
+                    <input type="text" id="filterTaskId" class="filter-input" placeholder="Task ID">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterTaskName" class="filter-input" placeholder="Task Name">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterStartDate" class="filter-input datepicker" placeholder="Filter Start Date">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterTargetDate" class="filter-input datepicker" placeholder="Filter Target Date">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterAssignedDate" class="filter-input datepicker" placeholder="Assigned Date">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <input type="text" id="filterTAT" class="filter-input" placeholder="TAT">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterAssignedTo" class="filter-input" placeholder="Assigned To">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterAssignedBy" class="filter-input" placeholder="Assigned By">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterStatus" class="filter-input" placeholder="Status">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterRemark" class="filter-input" placeholder="Remark">
+                </div>
+            </div>
+        </div>
+        <table id="sortableTable" class="table">
+            <thead>
+                <tr>
+                    <th>Task ID</th>
+                    <th>Task Name</th>
+                    <th>Start Date</th>
+                    <th>Target Date</th>
+                    <th>TAT</th>
+                    <th>Assigned To</th>
+                    <th>Assigned By</th>
+                    <th>Assigned Date</th>
+                    <th>Status</th>
+                    <th>Remark</th>
+                    <th>Update Task</th>
+                    <th>Insert Steps</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tasks in tasks %}
+                    <tr>
+                        <td>{{ tasks[1] }}</td>
+                        <td>{{ tasks[3] }}</td>
+                        <td>{{ tasks[5]|strftime }}</td>
+                        <td>{{ tasks[6]|strftime }}</td>
+                        <td>{{ tasks[17] }}</td>
+                        <td>{{ tasks[8].split('-')[2] }}</td>
+                        <td>{{ tasks[9] }}</td>
+                        <td>{{ tasks[10]|strftime }}</td>
+                        <td>{{ tasks[16] }}</td>
+                        <td>{{ tasks[11] }}</td>
+                        <td>
+                            <a href="{{ url_for('update', t_id=tasks[1], s_id=tasks[2]) }}" class="btn btn-secondary">Update</a>
+                        </td>
+                        <td>
+                            <a href="{{ url_for('insert_step', t_id=tasks[1]) }}" class="btn btn-secondary">Insert Steps</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true
+            });
+
+            var table = $('#sortableTable').DataTable({
+                searching: true,
+                ordering: true,
+                initComplete: function () {
+                    var api = this.api();
+                    $('.filter-container .row').each(function (rowIdx) {
+                        var row = $(this);
+                        row.find('.col').each(function (colIdx) {
+                            var column = api.column(colIdx);
+                            var input = $(this).find('input');
+                            input.on('keyup change', function () {
+                                column.search($(this).val(), false, false, true).draw();
+                            });
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

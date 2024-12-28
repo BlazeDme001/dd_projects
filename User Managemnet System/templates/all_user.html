@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: auto;
+            margin: 5px auto;
+            padding: 5px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 20px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            background-color: #007bff;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 5px;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #0056b3;
+            color: white;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        .table-striped tbody tr:hover {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            padding: 5px 10px;
+            border-radius: 2px;
+            background-color: #00aeff;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.5s ease;
+            border: none;
+        }
+        .btn:hover {
+            background-color: #1bcf6c;
+        }
+        .scrollable-table {
+            max-height: 450px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>All Users</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary mb-4">Dashboard</a>
+        <a href="{{ url_for('add_user_or_app') }}" class="btn btn-primary mb-4">Add User</a>
+        <div class="row mb-4">
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="filterUserID" placeholder="Filter User ID">
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="filterName" placeholder="Filter Name">
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="filterUsername" placeholder="Filter Username">
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="filterProfile" placeholder="Filter Profile">
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="filterMobile" placeholder="Filter Mobile">
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="filterEmail" placeholder="Filter Email">
+            </div>
+        </div>
+        <div class="scrollable-table">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Serial No.</th>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Profile</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>View Details</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in user_data %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ user[0] }}</td>
+                        <td>{{ user[1] }}</td>
+                        <td>{{ user[2] }}</td>
+                        <td>{{ user[3] }}</td>
+                        <td>{{ user[4] }}</td>
+                        <td>{{ user[5] }}</td>
+                        <td><a href="{{ url_for('view_details', id=user[0]) }}" class="btn btn-warning">View Details</a></td>
+                        <td><a href="{{ url_for('update_app_user', id=user[0]) }}" class="btn btn-warning">Update</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        function filterTable() {
+            var inputUserID = document.getElementById("filterUserID").value.toUpperCase();
+            var inputName = document.getElementById("filterName").value.toUpperCase();
+            var inputUsername = document.getElementById("filterUsername").value.toUpperCase();
+            var inputProfile = document.getElementById("filterProfile").value.toUpperCase();
+            var inputMobile = document.getElementById("filterMobile").value.toUpperCase();
+            var inputEmail = document.getElementById("filterEmail").value.toUpperCase();
+
+            var table = document.querySelector("table");
+            var rows = table.getElementsByTagName("tr");
+
+            for (var i = 0; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName("td");
+                var visible = true;
+
+                if (cells.length > 0) {
+                    if (inputUserID && cells[1]) {
+                        if (cells[1].textContent.toUpperCase().indexOf(inputUserID) === -1) {
+                            visible = false;
+                        }
+                    }
+                    if (inputName && cells[2]) {
+                        if (cells[2].textContent.toUpperCase().indexOf(inputName) === -1) {
+                            visible = false;
+                        }
+                    }
+                    if (inputUsername && cells[3]) {
+                        if (cells[3].textContent.toUpperCase().indexOf(inputUsername) === -1) {
+                            visible = false;
+                        }
+                    }
+                    if (inputProfile && cells[4]) {
+                        if (cells[4].textContent.toUpperCase().indexOf(inputProfile) === -1) {
+                            visible = false;
+                        }
+                    }
+                    if (inputMobile && cells[5]) {
+                        if (cells[5].textContent.toUpperCase().indexOf(inputMobile) === -1) {
+                            visible = false;
+                        }
+                    }
+                    if (inputEmail && cells[6]) {
+                        if (cells[6].textContent.toUpperCase().indexOf(inputEmail) === -1) {
+                            visible = false;
+                        }
+                    }
+                    rows[i].style.display = visible ? "" : "none";
+                }
+            }
+        }
+        var filterInputs = document.querySelectorAll(".form-control");
+        for (var i = 0; i < filterInputs.length; i++) {
+            filterInputs[i].addEventListener("keyup", filterTable);
+        }
+    </script>
+
+</body>
+</html>

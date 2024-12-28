@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insert New Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        form {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .form-column {
+            flex: 1;
+            margin-right: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="datetime-local"],
+        select {
+            width: calc(100% - 10px);
+            padding: 8px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5H7z' fill='%23222'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px top 50%;
+            background-size: 16px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        /* Adjust appearance for datetime-local input */
+        input[type="datetime-local"]::-webkit-datetime-edit {
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Insert New Leads</h1>
+    <form method="POST" action="/insert_leads">
+        <div class="form-column">
+            <label for="lead_name">Company:</label>
+            <input type="text" id="lead_name" name="lead_name" required>
+
+            <label for="street">Address:</label>
+            <input type="text" id="street" name="street" required>
+
+            <label for="c_name">Contact Name:</label>
+            <input type="text" id="c_name" name="c_name">
+
+            <label for="phone">Primary Phone:</label>
+            <input type="text" id="phone" name="phone">
+
+            <label for="phone1">Secondary Phone:</label>
+            <input type="text" id="phone1" name="phone1">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+
+        </div>
+        <div class="form-column">
+
+            <label for="pincode">Pincode:</label>
+            <input type="text" id="pincode" name="pincode" required>
+
+            <label for="scheduled_time">Scheduled Time:</label>
+            <input type="datetime-local" id="scheduled_time" name="scheduled_time">
+
+            <label for="remarks">Remarks:</label>
+            <input type="text" id="remarks" name="remarks">
+
+            <label for="owner">Owner:</label>
+            <select id="owner" name="owner">
+                <option value="">Select</option>
+                {% for owner in get_user_data %}
+                    <option value="{{ owner[0] }}" {% if owner[0] == session['username'] %}selected{% endif %}>{{ owner[0] }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="source">Source:</label>
+            <select id="source" name="source">
+                <option value="Facebook">Facebook</option>
+                <option value="Instagram">Instagram</option>    
+                <option value="Reference">Reference</option>
+                <option value="Indiamart">Indiamart</option>
+                <option value="Others">Others</option>
+            </select>
+
+            <div id="referenceInput" style="display: none;">
+                <label for="reference">Reference:</label>
+                <input type="text" id="reference" name="reference">
+            </div>
+
+            <div id="othersInput" style="display: none;">
+                <label for="others">Others:</label>
+                <input type="text" id="others" name="others">
+            </div>
+            
+            <label for="catagory">Catagory:</label>
+            <select id="catagory" name="catagory" required>
+                <option value="">Select</option>
+                <option value="Banglow">Banglow</option>
+                <option value="Project">Project</option>    
+                <option value="Goverment">Goverment</option>
+            </select>
+        </div>
+        <input type="submit" value="Insert Leads">
+    </form>
+    
+    <script>
+        var sourceSelect = document.getElementById("source");
+        var referenceInput = document.getElementById("referenceInput");
+        var othersInput = document.getElementById("othersInput");
+
+        sourceSelect.addEventListener("change", function() {
+            referenceInput.style.display = "none";
+            othersInput.style.display = "none";
+
+            if (this.value === "Reference") {
+                referenceInput.style.display = "block";
+            } else if (this.value === "Others") {
+                othersInput.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>

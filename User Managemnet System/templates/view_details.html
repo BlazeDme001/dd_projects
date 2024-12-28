@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Application Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .details {
+            margin-bottom: 20px;
+        }
+        .details strong {
+            font-weight: bold;
+        }
+        .details p {
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn-container .btn {
+            margin-right: 10px;
+        }
+        .no-data {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+            background-color: #007bff;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if not app_data.empty %}
+            <h1>Application Details</h1>
+            <a href="{{ url_for('all_app') }}" class="btn btn-primary">View All Applications</a>
+            <div class="details">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Application ID:</strong> {{ app_data.iloc[0]['app_id'] }}</p>
+                        <p><strong>Name:</strong> {{ app_data.iloc[0]['app_name'] }}</p>
+                        <p><strong>Primary IP:</strong> {{ app_data.iloc[0]['primary_ip'] }}</p>
+                        <p><strong>Login URL:</strong> {{ app_data.iloc[0]['login_url'] }}</p>
+                        <p><strong>Primary Table:</strong> {{ app_data.iloc[0]['primary_table'] }}</p>
+                        <p><strong>Other Tables:</strong> {{ app_data.iloc[0]['other_tables'] }}</p>
+                        <p><strong>Application Status:</strong> {{ app_data.iloc[0]['app_status'] }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Uploaded to GitHub:</strong> {{ app_data.iloc[0]['is_uploaded_github'] }}</p>
+                        <p><strong>Remarks:</strong> {{ app_data.iloc[0]['remarks'] }}</p>
+                        <p><strong>Created Time:</strong> {{ app_data.iloc[0]['created_time'] }}</p>
+                        <p><strong>Created By:</strong> {{ app_data.iloc[0]['created_by'] }}</p>
+                        <p><strong>Updated Time:</strong> {{ app_data.iloc[0]['updated_time'] }}</p>
+                        <p><strong>Updated By:</strong> {{ app_data.iloc[0]['updated_by'] }}</p>
+                        <strong>Redirect to: </strong><a href="http://{{ app_data.iloc[0]['primary_ip'] ~ app_data.iloc[0]['login_url'] }}" target="_blank">URL</a>
+                    </div>
+                </div>
+                <div class="btn-container text-center">
+                    <a href="{{ url_for('update_app_user', id=app_data.iloc[0]['app_id']) }}" class="btn btn-secondary">Update</a>
+                </div>
+            </div>
+        {% elif not user_data.empty %}
+            <h1>User Details</h1>
+            <a href="{{ url_for('all_user') }}" class="btn btn-primary">View All Users</a>
+            <div class="details">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>User ID:</strong> {{ user_data.iloc[0]['user_id'] }}</p>
+                        <p><strong>Name:</strong> {{ user_data.iloc[0]['name'] }}</p>
+                        <p><strong>Username:</strong> {{ user_data.iloc[0]['username'] }}</p>
+                        <p><strong>Password:</strong> {{ user_data.iloc[0]['password'] }}</p>
+                        <p><strong>Profile:</strong> {{ user_data.iloc[0]['profile'] }}</p>
+                        <p><strong>Team:</strong> {{ user_data.iloc[0]['team'] }}</p>
+                        <p><strong>Status:</strong> {{ user_data.iloc[0]['status'] }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Mobile:</strong> {{ user_data.iloc[0]['mobile'] }}</p>
+                        <p><strong>Email:</strong> {{ user_data.iloc[0]['email'] }}</p>
+                        <p><strong>Created Time:</strong> {{ user_data.iloc[0]['created_time'] }}</p>
+                        <p><strong>Created By:</strong> {{ user_data.iloc[0]['created_by'] }}</p>
+                        <p><strong>Updated Time:</strong> {{ user_data.iloc[0]['updated_time'] }}</p>
+                        <p><strong>Updated By:</strong> {{ user_data.iloc[0]['updated_by'] }}</p>
+                    </div>
+                </div>
+                <div class="btn-container text-center">
+                    <a href="{{ url_for('update_app_user', id=user_data.iloc[0]['user_id']) }}" class="btn btn-secondary">Update</a>
+                </div>
+            </div>
+        {% else %}
+            <p class="no-data">No data available.</p>
+        {% endif %}
+        {% if not user_app_data.empty %}
+            <div>
+                <h2>Connections</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>App ID</th>
+                            <th>App Name</th>
+                            <th>Profile</th>
+                            <th>Status</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for index, row in user_app_data.iterrows() %}
+                            <tr>
+                                <td>{{ row['user_id'] }}</td>
+                                <td>{{ row['name'] }}</td>
+                                <td>{{ row['username'] }}</td>
+                                <td>{{ row['app_id'] }}</td>
+                                <td>{{ row['app_name'] }}</td>
+                                <td>{{ row['profile'] }}</td>
+                                <td>{{ row['ext_col_1'] }}</td>
+                                <td><a href="{{ row['url'] }}" target="_blank">URL</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

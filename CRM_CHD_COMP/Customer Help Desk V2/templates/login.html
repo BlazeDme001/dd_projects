@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* Background color for the entire page */
+            background-image: radial-gradient(circle, #f79898, #f1d083, #94f3da, #92d8f0, #5e5cee);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fdfdfd; /* Background color for the form container */
+            box-shadow: 0 20px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px); /* Blur effect */
+            margin-top: 50px;
+            position: relative; /* Add position relative to the container to position the image */
+        }
+        .mt-4 {
+            text-align: center;
+        }
+        .logo-image {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: radial-gradient(circle, #0e4183 25%, #aecbff 50%);
+            color: transparent;
+            background-clip: text;
+        }
+        .intro {
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            text-align: center;
+            color:#0e4183;
+            font-size: 20px;
+        }
+        .container1 {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fdfdfd; /* Background color for the form container */
+            box-shadow: 10px 30px 2px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            padding: 10px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px); /* Blur effect */
+            margin-top: 10px;
+            position: relative; /* Add position relative to the container to position the image */
+        }
+
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <! --<img src="{{ url_for('static', filename='images/DigitalDreams.png') }}" alt="Logo" width="200" class="mx-auto d-block mt-4">
+    <div class="container1">
+        <div class="intro">
+            <h1>Namaskaram</h1>
+            <p>Welcome to our customer help desk. For a seamless experience please login.</p>
+            <p>Happy to help!!</p>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Login</h2>
+        {% if error_message %}
+        <div class="alert alert-danger">{{ error_message }}</div>
+        {% endif %}
+        <form method="POST">
+            <div class="form-group">
+                <label for="identifier">Please enter WhatsApp Number or Email Address:</label>
+                <input type="text" class="form-control" id="identifier" name="identifier" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Send OTP</button>
+        </form>
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>

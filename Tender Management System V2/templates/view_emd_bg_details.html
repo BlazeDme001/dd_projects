@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View/Edit EMD/BG Details</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .collapse-section {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EMD/BG Details</h1>
+        <form id="details-form" method="POST" action="{{ url_for('view_EMD_BG_details', tender_id=details[0][1], emd_id=details[0][0]) }}">
+            {% if details %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Tender ID: {{ details[0][1] }}</h5>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <!-- Tender Location -->
+                                <!-- <tr>
+                                    <th scope="row">Tender Location</th>
+                                    <td><input type="text" class="form-control" name="loc" value="{{ loc }}" readonly></td>
+                                </tr> -->
+
+                                <!-- Status -->
+                                <tr>
+                                    <th scope="row">Status</th>
+                                    <td>
+                                        <select class="form-control" id="status" name="status" disabled>
+                                            <option value="NA" {% if tender_status == 'NA' %}selected{% endif %}>NA</option>
+                                            <option value="WIP-For EMD" {% if tender_status == 'WIP-For EMD' %}selected{% endif %}>WIP-For EMD</option>
+                                            <option value="WIP-EMD Done" {% if tender_status == 'WIP-EMD Done' %}selected{% endif %}>WIP-EMD Done</option>
+                                            <option value="EMD Cancelled" {% if tender_status == 'EMD Cancelled' %}selected{% endif %}>EMD Cancelled</option>
+                                        </select>
+                                    </td>
+                                </tr>                                
+
+                                <!-- EMD Form -->
+                                <tr>
+                                    <th scope="row">EMD Form</th>
+                                    <td>
+                                        {% set emd_form_list = details[0][3].split(',') if details[0][3] else [] %}
+                                        <div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="emd_form[]" id="emd_form_pbg" value="PBG" {% if 'PBG' in emd_form_list %}checked{% endif %} disabled>
+                                                <label class="form-check-label" for="emd_form_pbg">PBG</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="emd_form[]" id="emd_form_fd" value="FD" {% if 'FD' in emd_form_list %}checked{% endif %} disabled>
+                                                <label class="form-check-label" for="emd_form_fd">FD</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="emd_form[]" id="emd_form_dd" value="DD" {% if 'DD' in emd_form_list %}checked{% endif %} disabled>
+                                                <label class="form-check-label" for="emd_form_dd">DD</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="emd_form[]" id="emd_form_bankers_cheque" value="Bankers Cheque" {% if 'Bankers Cheque' in emd_form_list %}checked{% endif %} disabled>
+                                                <label class="form-check-label" for="emd_form_bankers_cheque">Bankers Cheque</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="emd_form[]" id="emd_form_online" value="Online" {% if 'Online' in emd_form_list %}checked{% endif %} disabled>
+                                                <label class="form-check-label" for="emd_form_online">Online</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="emd_form[]" id="emd_form_online_portal" value="Online Portal" {% if 'Online Portal' in emd_form_list %}checked{% endif %} disabled>
+                                                <label class="form-check-label" for="emd_form_online_portal">Online Portal</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                                                
+
+                                <!-- Other EMD Details -->
+                                <tr>
+                                    <th scope="row">EMD Amount</th>
+                                    <td><input type="text" class="form-control" name="emd_amount" value="{{ details[0][4] }}" readonly></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">In Favour Of</th>
+                                    <td><input type="text" class="form-control" name="in_favour_of" value="{{ details[0][5] }}" readonly></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Remarks</th>
+                                    <td><input type="text" class="form-control" name="remarks" value="{{ details[0][6] }}" readonly></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">EMD Expiry Date</th>
+                                    <td><input type="date" class="form-control" name="emd_exp_dt" value="{{ details[0][7] }}" readonly></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">EMD Status</th>
+                                    <td type="text" class="form-control" name="emd_status"> {{ details[0][9] }} </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">EMD Internal Remarks</th>
+                                    <td type="text" class="form-control" name="emd_int_rem"> {{ details[0][10] }} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Edit Button -->
+                        <div class="text-center mb-3">
+                            <button type="button" id="edit-button" class="btn btn-primary">Edit</button>
+                        </div>
+
+                        <!-- Collapsible BG Details Section -->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#bgDetailsSection">View/Add/Edit BG Details</button>
+                        <div id="bgDetailsSection" class="collapse collapse-section">
+                            <h4>BG Details</h4>
+                            {% if details[0][8] %}
+                                {% set bg_details = details[0][8] %}
+                                <!-- Existing BG details - allow editing -->
+                                {% for key, value in bg_details.items() %}
+                                    <div class="form-group">
+                                        <label for="{{ key }}">{{ key|replace('_', ' ')|capitalize }}</label>
+                                        <input type="text" class="form-control" id="{{ key }}" name="bg_details[{{ key }}]" value="{{ value }}" readonly>
+                                    </div>
+                                {% endfor %}
+                                
+                                <!-- Button to toggle edit mode -->
+                                <div class="text-center mt-3">
+                                    <button type="button" id="edit-bg-button" class="btn btn-primary">Edit BG Details</button>
+                                </div>
+                            {% else %}
+                                <!-- New BG details entry form -->
+                                <p class="text-muted text-center">No BG details available. Please add below:</p>
+                                <div class="form-group">
+                                    <label for="bank">Bank:</label>
+                                    <input type="text" class="form-control" id="bank" name="bg_details[bank]" placeholder="Enter Bank Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bg_ref_no">BG Reference Number:</label>
+                                    <input type="text" class="form-control" id="bg_ref_no" name="bg_details[bg_ref_no]" placeholder="Enter BG Reference Number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bg_issue_date">BG Issue Date:</label>
+                                    <input type="date" class="form-control" id="bg_issue_date" name="bg_details[bg_issue_date]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bg_expiry_date">BG Expiry Date:</label>
+                                    <input type="date" class="form-control" id="bg_expiry_date" name="bg_details[bg_expiry_date]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bg_amount">BG Amount:</label>
+                                    <input type="number" class="form-control" id="bg_amount" name="bg_details[bg_amount]" placeholder="Enter BG Amount">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bg_outstanding">BG Outstanding:</label>
+                                    <input type="number" class="form-control" id="bg_outstanding" name="bg_details[bg_outstanding]" placeholder="Enter Outstanding Amount">
+                                </div>
+                                <div class="form-group">
+                                    <label for="beneficiary_name">Beneficiary Name:</label>
+                                    <input type="text" class="form-control" id="beneficiary_name" name="bg_details[beneficiary_name]" placeholder="Enter Beneficiary Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bg_status">BG Status:</label>
+                                    <select class="form-control" id="bg_status" name="bg_details[bg_status]">
+                                        <option value="under_approvals">Under Approvals</option>
+                                        <option value="fdr_created">FDR Created (Must Update FDR Number)</option>
+                                        <option value="applied">Applied</option>
+                                        <option value="issued">Issued</option>
+                                        <option value="cancellation_applied">Cancellation Applied</option>
+                                        <option value="cancelled">Cancelled</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fdr_no">FDR Number:</label>
+                                    <input type="text" class="form-control" id="fdr_no" name="bg_details[fdr_no]" placeholder="Enter FDR Number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_of_closure">Date of Closure:</label>
+                                    <input type="date" class="form-control" id="date_of_closure" name="bg_details[date_of_closure]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="difference">Difference:</label>
+                                    <input type="text" class="form-control" id="difference" name="bg_details[difference]" placeholder="Enter Difference">
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-center text-muted">No details found for this Tender.</p>
+            {% endif %}
+
+            <div class="btn-container">
+                {% if session['team'] == 'Accounts' %}
+                    <button type="submit" name="action" value="approve" class="btn btn-success">Submit</button>
+                {% else %}
+                    <button type="submit" name="action" value="approve" class="btn btn-success">Approve</button>
+                {% endif %}
+                <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
+            </div>
+        </form>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('emd_list') }}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Enable/Disable Form Fields -->
+    <script>
+        document.getElementById('edit-button').addEventListener('click', function () {
+            const formInputs = document.querySelectorAll('input, select');
+            formInputs.forEach(input => {
+                if (input.hasAttribute('readonly') || input.disabled) {
+                    input.removeAttribute('readonly');
+                    input.disabled = false;
+                } else {
+                    input.setAttribute('readonly', 'readonly');
+                    input.disabled = true;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

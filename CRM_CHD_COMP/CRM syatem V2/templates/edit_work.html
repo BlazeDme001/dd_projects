@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Work Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007BFF;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #location {
+            background-color: #f9f9f9;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Edit Work Details</h2>
+    <form action="{{ url_for('edit_work_details', work_id=work.work_id) }}" method="post">
+        <h3>Account Name: {{ accounts[0].acc_name }}</h3>
+        <label for="work_name">Work Name:</label>
+        <input type="text" name="work_name" id="work_name" value="{{ work.work_name }}" required>
+        <br>
+        <label for="billing_date">Billing Date:</label>
+        <input type="date" name="billing_date" id="billing_date" value="{{ work.billing_date }}">
+        <br>
+        <label for="war_amc">Warranty/AMC:</label>
+        <select id="war_amc" name="war_amc" required>
+            <option value="None">Select if in Warranty/AMC</option>
+            <option value="Warranty" {% if work.war_amc == 'Warranty' %}selected{% endif %}>Warranty</option>
+            <option value="AMC" {% if work.war_amc == 'AMC' %}selected{% endif %}>AMC</option>
+        </select>
+        <br>
+        <div id="warrantyFields" class="hidden">
+            <label for="camc_warranty_start_date">CAMC Warranty Start Date:</label>
+            <input type="date" name="camc_warranty_start_date" id="camc_warranty_start_date" value="{{ work.camc_war_s_date }}">
+            <br>
+            <label for="camc_warranty_end_date">CAMC Warranty End Date:</label>
+            <input type="date" name="camc_warranty_end_date" id="camc_warranty_end_date" value="{{ work.camc_war_e_date }}">
+        </div>
+        <div id="amcFields" class="hidden">
+            <label for="amc_start_date">AMC Start Date:</label>
+            <input type="date" name="amc_start_date" id="amc_start_date" value="{{ work.amc_s_date }}">
+            <br>
+            <label for="amc_end_date">AMC End Date:</label>
+            <input type="date" name="amc_end_date" id="amc_end_date" value="{{ work.amc_e_date }}">
+        </div>
+        <br>
+        <label for="cost">Cost:</label>
+        <input type="text" name="cost" id="cost" value="{{ work.cost }}" required>
+        <br>
+        <label for="location">Location:</label>
+        <input type="text" name="location" id="location" value="{{ work.location }}" required>
+        <br>
+        <label for="remarks">Remarks:</label>
+        <textarea name="remarks" id="remarks" rows="4" required>{{ work.remarks }}</textarea>
+        <br>
+        <label for="work_status">Work Status:</label>
+        <select name="work_status" id="work_status" required>
+            <option value="Pending" {% if work.work_status == 'Pending' %}selected{% endif %}>Pending</option>
+            <option value="In Progress" {% if work.work_status == 'In Progress' %}selected{% endif %}>In Progress</option>
+            <option value="Completed" {% if work.work_status == 'Completed' %}selected{% endif %}>Completed</option>
+        </select>
+        <!-- <br>
+        <label for="enable_credit">Enable Credit:</label>
+        <input type="checkbox" name="enable_credit" id="enable_credit" {% if work.enable_credit == 'Yes' %}checked{% endif %}>
+        <br> -->
+        <input type="submit" value="Save">
+    </form>
+
+    <script>
+        // JavaScript to show/hide Warranty or AMC fields based on the selection
+        const warAmcSelect = document.getElementById("war_amc");
+        const warrantyFields = document.getElementById("warrantyFields");
+        const amcFields = document.getElementById("amcFields");
+
+        warAmcSelect.addEventListener("change", function() {
+            if (warAmcSelect.value === "Warranty") {
+                warrantyFields.classList.remove("hidden");
+                amcFields.classList.add("hidden");
+            } else if (warAmcSelect.value === "AMC") {
+                amcFields.classList.remove("hidden");
+                warrantyFields.classList.add("hidden");
+            } else {
+                amcFields.classList.add("hidden");
+                warrantyFields.classList.add("hidden");
+            }
+        });
+
+        // Trigger change event on page load to set correct visibility
+        warAmcSelect.dispatchEvent(new Event('change'));
+
+        // JavaScript to handle work status change for billing date requirement
+        const workStatusSelect = document.getElementById("work_status");
+        const billingDateInput = document.getElementById("billing_date");
+
+        workStatusSelect.addEventListener("change", function() {
+            if (workStatusSelect.value === "Completed") {
+                billingDateInput.setAttribute("required", "required");
+            } else {
+                billingDateInput.removeAttribute("required");
+            }
+        });
+
+        // Trigger change event on page load to set correct requirement
+        workStatusSelect.dispatchEvent(new Event('change'));
+    </script>
+</body>
+</html>

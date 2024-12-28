@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Lead</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Lead: {{ lead.lead_id }}</h1>
+    <form method="POST" action="/edit_leads/{{ lead.lead_id }}">
+        <div class="form-group">
+            <label for="lead_name">Name:</label>
+            <input type="text" id="lead_name" name="lead_name" value="{{ lead.lead_name }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="c_name">Contact Name:</label>
+            <input type="text" id="c_name" name="c_name" value="{{ lead.contact_name }}">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" value="{{ lead.contact_phone }}">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ lead.contact_email }}">
+        </div>
+
+        <div class="form-group">
+            <label for="scheduled_time">Scheduled Time:</label>
+            <input type="datetime-local" id="scheduled_time" name="scheduled_time" value="{{ lead.scheduled_time }}">
+        </div>
+
+        <div class="form-group">
+            <label for="remarks">Remarks:</label>
+            <input type="text" id="remarks" name="remarks" value="{{ lead.remarks }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="owner">Owner:</label>
+            <input type="text" id="owner" name="owner" value="{{ lead.owner }}">
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="OPEN" {% if lead.status == 'OPEN' %}selected{% endif %}>OPEN</option>
+                <option value="CLOSED-JUNK" {% if lead.status == 'CLOSED-JUNK' %}selected{% endif %}>CLOSED-JUNK</option>
+                <option value="QUALIFIED" {% if lead.status == 'QUALIFIED' %}selected{% endif %}>QUALIFIED</option>
+                <option value="CALLED" {% if lead.status == 'CALLED' %}selected{% endif %}>CALLED</option>
+                <option value="NOT CONNECTED" {% if lead.status == 'NOT CONNECTED' %}selected{% endif %}>NOT CONNECTED</option>
+                <option value="CONNECTED" {% if lead.status == 'CONNECTED' %}selected{% endif %}>CONNECTED</option>
+                <option value="NOT INTERESTED" {% if lead.status == 'NOT INTERESTED' %}selected{% endif %}>NOT INTERESTED</option>
+                <option value="INTERESTED" {% if lead.status == 'INTERESTED' %}selected{% endif %}>INTERESTED</option>
+                <option value="MEETING SCHEDULED" {% if lead.status == 'MEETING SCHEDULED' %}selected{% endif %}>MEETING SCHEDULED</option>
+                <option value="TO INSTALLATION" {% if lead.status == 'TO INSTALLATION' %}selected{% endif %}>TO INSTALLATION</option>
+                <option value="QUOTE SEND" {% if lead.status == 'QUOTE SEND' %}selected{% endif %}>QUOTE SEND</option>
+                <option value="QUOTE REVISED" {% if lead.status == 'QUOTE REVISED' %}selected{% endif %}>QUOTE REVISED</option>
+                <option value="QUOTE ACCEPTED" {% if lead.status == 'QUOTE ACCEPTED' %}selected{% endif %}>QUOTE ACCEPTED</option>
+                <option value="SO SEND" {% if lead.status == 'SO SEND' %}selected{% endif %}>SO SEND</option>
+                <option value="WIP" {% if lead.status == 'WIP' %}selected{% endif %}>WIP</option>
+                <option value="DONE" {% if lead.status == 'DONE' %}selected{% endif %}>DONE</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="source">Source:</label>
+            <input type="text" id="source" name="source" value="{{ lead.source }}">
+        </div>
+
+        <div class="form-group" id="gstContainer">
+            <label for="gst">GST No.:</label>
+            <input type="text" id="gst" name="gst">
+        </div>
+
+        <input type="submit" value="Update Lead">
+    </form>
+    <script>
+        var statusSelect = document.getElementById("status");
+        var gstContainer = document.getElementById("gstContainer");
+
+        function updateGSTNoRequired() {
+            if (statusSelect.value === "DONE") {
+                gstContainer.style.display = "block";
+                document.getElementById("gst").setAttribute("required", "required");
+            } else {
+                gstContainer.style.display = "none";
+                document.getElementById("gst").removeAttribute("required");
+            }
+        }
+
+        statusSelect.addEventListener("change", function () {
+            updateGSTNoRequired();
+        });
+        updateGSTNoRequired();
+    </script>
+</body>
+</html>

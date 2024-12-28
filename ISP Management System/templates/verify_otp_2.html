@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        form {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button, .resend {
+            background-color: #747779;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 8px;
+            width: 150px;
+            height: 40px;
+        }
+
+        button:hover, .resend:hover {
+            background-color: #474747;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: left;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <div class="container">
+        <h2>Verify OTP</h2>
+        <p>{{ session['otp'] }}</p>
+
+        <form method="post" id="mainForm" action="{{ url_for('verify_otp_2') }}">
+            <label for="otp">Enter OTP:</label>
+            <input type="text" name="otp" required>
+        </form>
+
+        <div class="button-row">
+            <button type="submit" form="mainForm" id="mainSubmit">Submit</button>
+            <form method="post" id="subForm" action="{{ url_for('resend_otp_2') }}">
+                <button type="submit" class="resend">Resend OTP</button>
+            </form>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</body>
+
+</html>

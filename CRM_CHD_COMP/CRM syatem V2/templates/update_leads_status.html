@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Update Leads Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .subcontainer {
+            max-width: 1000px;
+            margin: 10px auto;
+            background-color:MediumSeaGreen;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 10px auto;
+            background-color:LightGray;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .details {
+            margin-bottom: 20px;
+        }
+
+        .details strong {
+            font-weight: bold;
+        }
+
+        .details p {
+            margin: 10px 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .status-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            padding: 8px 16px;
+            border-radius: 5px;
+            background-color: #007bff; /* Light blue */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Adjustments for small screens */
+        @media (max-width: 576px) {
+            .container {
+                padding: 5px;
+            }
+
+            .status-form {
+                margin-top: 5px;
+            }
+        }
+
+        /* Style for form container */
+        .form-container {
+            background-color:Orange;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="subcontainer">
+        <h1>Lead Details</h1>
+        <a href="/leads" class="btn btn-primary">Go to Leads</a><br>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        {% for index, row in leads_data.iterrows() %}
+            <div class="details row">
+                <div class="col-md-4">
+                    <div class="container">
+                        <strong>Lead Details:</strong><br>
+                        <strong>Lead ID:</strong> <span>{{ row['lead_id'] }}</span><br>
+                        <strong>Company Name:</strong> <span>{{ row['lead_name'] }}</span><br>
+                        <strong>Status:</strong> <span>{{ row['status'] }}</span><br>
+                        <strong>Remarks:</strong> <span>{{ row['remarks'] }}</span><br>
+                        <strong>Owner:</strong> <span>{{ row['owner'] }}</span><br>
+                        <strong>Assign To:</strong> <span>{{ row['assign_to'] }}</span><br>
+                        <strong>Source:</strong> <span>{{ row['source'] }}</span><br>
+                        <strong>Category:</strong> <span>{{ row['catagory'] }}</span><br>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container">
+                        <strong>Address:</strong><br>
+                        <strong>Street:</strong> <span>{{ row['street'] }}</span><br>
+                        <strong>City:</strong> <span>{{ row['city'] }}</span><br>
+                        <strong>State:</strong> <span>{{ row['state'] }}</span><br>
+                        <strong>Country:</strong> <span>{{ row['country'] }}</span><br>
+                        <strong>Pincode:</strong> <span>{{ row['pincode'] }}</span><br>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container">
+                        <strong>Contact Details:</strong><br>
+                        <strong>Contact Name:</strong> <span>{{ row['contact_name'] }}</span><br>
+                        <strong>Contact Phone:</strong> <span>{{ row['contact_phone'] }}</span><br>
+                        <strong>Contact Phone 2:</strong> <span>{{ row['contact_phone_2'] }}</span><br>
+                        <strong>Contact Email:</strong> <span>{{ row['contact_email'] }}</span><br>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container">
+                        <strong>Operation Details:</strong><br>
+                        <strong>Is Quote Sent:</strong> <span>{{ row['is_quote_send'] }}</span><br>
+                        <strong>Latest Quote ID:</strong> <span>{{ row['latest_quote_id'] }}</span><br>
+                        <strong>Total Quote Sent:</strong> <span>{{ row['total_quote_send'] }}</span><br>
+                        <strong>Scheduled Time:</strong> <span>{{ row['scheduled_time'] }}</span><br>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container">
+                        <strong>Create Details:</strong><br>
+                        <strong>Added By:</strong> <span>{{ row['added_by'] }}</span><br>
+                        <strong>Created Time:</strong> <span>{{ row['created_time'] }}</span><br>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container">
+                        <strong>Update Details:</strong><br>
+                        <strong>Updated By:</strong> <span>{{ row['updated_by'] }}</span><br>
+                        <strong>Updated Time:</strong> <span>{{ row['updated_time'] }}</span><br>
+                    </div>
+                </div>
+            </div>
+            <div class="container form-container">
+                <div class="status-form">
+                    <form action="/update_leads_status/{{ row['lead_id'] }}" method="POST">
+                        <div class="details row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="status">Status:</label>
+                                    <select id="status" name="status">
+                                        <option value="OPEN" {% if row['status'] == 'OPEN' %}selected{% endif %}>OPEN</option>
+                                        <option value="CLOSED-JUNK" {% if row['status'] == 'CLOSED-JUNK' %}selected{% endif %}>CLOSED-JUNK</option>
+                                        <option value="QUALIFIED" {% if row['status'] == 'QUALIFIED' %}selected{% endif %}>QUALIFIED</option>
+                                        <option value="CALLED" {% if row['status'] == 'CALLED' %}selected{% endif %}>CALLED</option>
+                                        <option value="NOT CONNECTED" {% if row['status'] == 'NOT CONNECTED' %}selected{% endif %}>NOT CONNECTED</option>
+                                        <option value="CONNECTED" {% if row['status'] == 'CONNECTED' %}selected{% endif %}>CONNECTED</option>
+                                        <option value="NOT INTERESTED" {% if row['status'] == 'NOT INTERESTED' %}selected{% endif %}>NOT INTERESTED</option>
+                                        <option value="INTERESTED" {% if row['status'] == 'INTERESTED' %}selected{% endif %}>INTERESTED</option>
+                                        <option value="MEETING SCHEDULED" {% if row['status'] == 'MEETING SCHEDULED' %}selected{% endif %}>MEETING SCHEDULED</option>
+                                        <option value="TO INSTALLATION" {% if row['status'] == 'TO INSTALLATION' %}selected{% endif %}>TO INSTALLATION</option>
+                                        <option value="QUOTE SEND" {% if row['status'] == 'QUOTE SEND' %}selected{% endif %}>QUOTE SEND</option>
+                                        <option value="QUOTE REVISED" {% if row['status'] == 'QUOTE REVISED' %}selected{% endif %}>QUOTE REVISED</option>
+                                        <option value="QUOTE ACCEPTED" {% if row['status'] == 'QUOTE ACCEPTED' %}selected{% endif %}>QUOTE ACCEPTED</option>
+                                        <option value="SO SEND" {% if row['status'] == 'SO SEND' %}selected{% endif %}>SO SEND</option>
+                                        <option value="WIP" {% if row['status'] == 'WIP' %}selected{% endif %}>WIP</option>
+                                        <option value="DONE" {% if row['status'] == 'DONE' %}selected{% endif %}>DONE</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="remarks">Remarks:</label>
+                                    <textarea type="text" id="remarks" name="remarks" value="{{ row['remarks'] }}" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" id="quoteIDcontainer" style="display: none;">
+                                    <label for="quoteId">Quote ID:</label>
+                                    <input type="text" id="quoteId" name="quoteId">
+                                    <label for="quoteAmt">Quote Amount:</label>
+                                    <input type="text" id="quoteAmt" name="quoteAmt">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" id="gstContainer" style="display: none;">
+                                    <label for="gst">GST No.:</label>
+                                    <input type="text" id="gst" name="gst">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="owner">Owner:</label>
+                                <select id="owner" name="owner">
+                                    <option value="">Select</option>
+                                    {% for owner in get_user_data %}
+                                        <option value="{{ owner[0] }}" {% if owner[0] == row['owner'] %}selected{% endif %}>{{ owner[0] }}</option>
+                                    {% endfor %}
+                                </select>                
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+        <button class="btn btn-primary view-history-btn" data-toggle="lead-history">View History</button>
+        </div>
+        <div id="lead-history" class="details" style="display: none;">
+            <div class="container">
+                <h2>Lead History</h2>
+                <table class="table">
+                    <!-- Lead history table headers -->
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Lead Name</th>
+                            <th>Status</th>
+                            <th>Owner</th>
+                            <th>Remarks</th>
+                            <th>Updated By</th>
+                            <th>Updated Time</th>
+                            <th>Change Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for index, hist_row in lead_hist_data.iterrows() %}
+                            <!-- Lead history table rows -->
+                            <tr>
+                                <td>{{ hist_row['lead_name'] }}</td>
+                                <td>{{ hist_row['status'] }}</td>
+                                <td>{{ hist_row['owner'] }}</td>
+                                <td>{{ hist_row['remarks'] }}</td>
+                                <td>{{ hist_row['updated_by'] }}</td>
+                                <td>{{ hist_row['updated_time'] }}</td>
+                                <td>{{ hist_row['change_timestamp'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    <script>
+        // JavaScript function to show/hide GST input based on status
+        function toggleGSTInput() {
+            var statusSelect = document.getElementById("status");
+            var gstContainer = document.getElementById("gstContainer");
+            var quoteIDcontainer = document.getElementById("quoteIDcontainer");
+
+            // Check if status is "DONE"
+            if (statusSelect.value === "DONE") {
+                gstContainer.style.display = "block"; // Show GST input
+            } else {
+                gstContainer.style.display = "none"; // Hide GST input
+            }
+            if (statusSelect.value === "QUOTE SEND" || statusSelect.value === "QUOTE REVISED" || statusSelect.value === "QUOTE ACCEPTED" ) {
+                quoteIDcontainer.style.display = "block"; // Show GST input
+            } else {
+                quoteIDcontainer.style.display = "none"; // Hide GST input
+            }
+        }
+
+        // Add event listener to status dropdown
+        document.addEventListener("DOMContentLoaded", function () {
+            var statusSelect = document.getElementById("status");
+            statusSelect.addEventListener("change", toggleGSTInput);
+            toggleGSTInput(); // Initial call to ensure correct display on page load
+        });
+        function toggleLeadHistory() {
+            var leadHistory = document.getElementById('lead-history');
+            if (leadHistory.style.display === 'none') {
+                leadHistory.style.display = 'block';
+            } else {
+                leadHistory.style.display = 'none';
+            }
+        }
+
+        // Add event listeners to view history buttons
+        document.querySelectorAll('.view-history-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                toggleLeadHistory();
+            });
+        });
+    </script>
+</body>
+</html>

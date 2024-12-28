@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Update Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Alice blue background */
+            color: #000080; /* Navy blue text */
+            margin: 0;
+            padding: 0;
+        }
+    
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff; /* White background */
+            box-shadow: 0 0 25px rgba(0, 0, 139, 0.4); /* Navy blue shadow */
+            border-radius: 15px;
+        }
+    
+        h1 {
+            text-align: center;
+            color: #0073e6; /* Bright blue color */
+            font-size: 32px;
+            text-transform: uppercase;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #0073e6; /* Bright blue for labels */
+        }
+    
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+    
+        .value {
+            color: #000080; /* Navy blue for values */
+        }
+    
+        input,
+        textarea,
+        select {
+            width: calc(100% - 10px); /* Adjusted for gap */
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #000080; /* Navy blue border */
+            border-radius: 4px;
+            background-color: #f0f8ff; /* Alice blue background */
+            color: #000080; /* Navy blue text */
+        }
+    
+        a.btn-primary {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 5px 10px;
+            background-color: #0073e6; /* Bright blue button */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        button,
+        a.btn-secondary {
+            background-color: #ff5733; /* Orange button */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        button:hover,
+        a.btn-primary:hover,
+        a.btn-secondary:hover {
+            background-color: #00509e; /* Darker blue on hover */
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="container">
+        <h1>Update Task</h1>
+        <a href="{{ url_for('main') }}" class="btn btn-primary">Main</a>&nbsp;
+        <a href="{{ url_for('all_tasks') }}" class="btn btn-primary">All Tasks</a>
+        <form method="post" action="{{ url_for('update', t_id=t_id, s_id=s_id) }}">
+            <div class="details">
+                <label for="t_id">Task ID:</label>
+                <span class="value">{{ t_id }}</span>
+            </div>
+            <div class="details">
+                <label for="t_name">Task Name:</label>
+                <span class="value">{{ t_name }}</span>
+            </div>
+            <div class="details">
+                <label for="start_dt">Start Date:</label>
+                <span class="value">{{ start_dt }}</span>
+            </div>
+            <div class="details">
+                <label for="ex_end_dt">Expected End Date:</label>
+                <span class="value">{{ ex_end_dt }}</span>
+            </div>
+            <div class="details">
+                <label for="assign_to"> Assign To:</label>
+                <span class="value">{{ assign_to.split('-')[2] }}</span>
+            </div>
+            <div class="details">
+                <label for="assign_by">Assign By:</label>
+                <span class="value">{{ assign_by }}</span>
+            </div>
+            <div class="details">
+                <label for="assign_dt">Assign Date:</label>
+                <span class="value">{{ assign_dt }}</span>
+            </div>
+            <div class="details">
+                <label for="status">Status:</label>
+                <span class="value">{{ status }}</span>
+            </div>
+            <div class="textarea">
+                <label for="remark">Remark:</label>
+                <input type="text" id="remark" name="remark" value='{{ remark }}' required>
+            </div>
+            <div class="details">
+                <label for="status">Update Status:</label>
+                <select id="status" name="status">
+                    <option value="" disabled hidden>Select a status</option>
+                    <option value="Open" {% if status == 'Open' %}selected{% endif %}>Open</option>
+                    <option value="WIP" {% if status == 'WIP' %}selected{% endif %}>WIP</option>
+                    <option value="Hold" {% if status == 'Hold' %}selected{% endif %}>Hold</option>
+                    <option value="Done" {% if status == 'Done' %}selected{% endif %}>Done</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit">Update Task</button>
+        </form>
+    </div>
+</body>
+</html>

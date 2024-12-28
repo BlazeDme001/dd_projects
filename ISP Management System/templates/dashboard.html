@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        div {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        strong {
+            color: #2c3e50;
+        }
+
+        div > div {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <h2>User Dashboard</h2>
+    {% if data %}
+    <div>
+        {% for row in data %}
+        <div>
+            <strong>Cust ID:</strong> {{ row[1] }}<br>
+            <strong>Name:</strong> {{ row[2] }}<br>
+            <strong>Mobile:</strong> {{ row[3] }}<br>
+            <strong>Email:</strong> {{ row[4] }}<br>
+            <strong>Flat Number:</strong> {{ row[5] }}<br>
+            <strong>Tower Number:</strong> {{ row[6] }}<br>
+            <strong>Apartment Name:</strong> {{ row[7] }}<br>
+            <strong>Payment Amount: </strong>{{ amount }}<br>
+            <a href=''>Click here to pay</a><br>
+            {% if row[1] != 'C-1' %}
+                <a href="{{ url_for('document_upload') }}"  class="btn btn-secondary">Click here to Document Upload</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>No data available</p>
+    {% endif %}
+    {% include 'footer.html' %}
+</body>
+</html>

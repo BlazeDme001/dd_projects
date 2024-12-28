@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User / Add Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            background-color: #007bff;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+        }
+        .form-column {
+            float: left;
+            width: 48%;
+            margin-right: 2%;
+        }
+        .form-column:last-child {
+            margin-right: 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: calc(100% - 10px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        .hidden {
+            display: none;
+        }
+        .checkboxes div {
+            display: inline-block;
+            margin-right: 10px; /* Adjust as needed for spacing */
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+        .btn {
+            padding: 5px 10px;
+            border-radius: 2px;
+            background-color: #00aeff;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.5s ease;
+            border: none;
+        }
+        .btn:hover {
+            background-color: #1bcf6c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add User / Add Application</h1>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Dashboard</a>
+        {% if error %}
+            <div class="error">
+                <strong>Error: </strong>{{ error }}
+                <p>Please fill out the form again.</p>
+            </div>
+        {% endif %}
+        <form action="/add_user_or_app" method="POST">
+            <label for="type">Type:</label>
+            <select id="type" name="type" onchange="toggleForm()">
+                <option value="">Select</option>
+                <option value="user">User</option>
+                <option value="app">Application</option>
+            </select>
+            <div id="userFields" class="hidden">
+                <div class="form-column">
+                    <input type="hidden" name="type" id="type_ver" value="user">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <label for="status">Status:</label>
+                    <select id="status" name="status">
+                        <option value="ACTIVE" >ACTIVE</option>
+                        <option value="INACTIVE" >INACTIVE</option>
+                    </select>
+                </div>
+                <div class="form-column">
+                    <label for="profile">Profile:</label>
+                    <!-- <input type="text" id="profile" name="profile" required> -->
+                    <select id="profile" name="profile" >
+                        <option value="" >SELECT</option>
+                        {% for profile in profile_list %}
+                            <option value="{{ profile }}" >{{ profile }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="team">Team:</label>
+                    <input type="text" id="team" name="team" required>
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" required>
+                    <label for="mobile">Mobile:</label>
+                    <input type="text" id="mobile" name="mobile" required>
+                </div>
+                <label>Select Apps:</label>
+                <div class="checkboxes">
+                    {% for app in apps %}
+                    <div>
+                        <input type="checkbox" id="app_{{ app[0] }}" name="appSelect" value="{{ app[0] }}@@{{ app[1] }}"><strong>{{ app[1] }}</strong>
+                        <select id="profile_{{ app[0] }}" name="profiles[]">
+                            {% for profile in profile_list %}
+                                <option value="{{ profile }}&&{{ app[0] }}" >{{ profile }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div id="appFields" class="hidden">
+                <div class="form-column">
+                    <label for="appName">Application Name:</label>
+                    <input type="text" id="appName" name="appName" required>
+                    <label for="primaryIP">Primary IP:</label>
+                    <input type="text" id="primaryIP" name="primaryIP" required>
+                    <label for="loginURL">Login URL:</label>
+                    <input type="text" id="loginURL" name="loginURL" required>
+                    <label for="primaryTable">Primary Table:</label>
+                    <input type="text" id="primaryTable" name="primaryTable" required>
+                </div>
+                <div class="form-column">
+                    <label for="otherTables">Other Tables:</label>
+                    <input type="text" id="otherTables" name="otherTables" required>
+                    <label for="appStatus">Application Status:</label>
+                    <select id="appStatus" name="appStatus">
+                        <option value="ACTIVE" >ACTIVE</option>
+                        <option value="INACTIVE" >INACTIVE</option>
+                    </select>
+                    <label for="uploadedGitHub">Uploaded to GitHub:</label>
+                    <select id="uploadedGitHub" name="uploadedGitHub">
+                        <option value="NO" >NO</option>
+                        <option value="YES" >YES</option>
+                    </select>
+                    <label for="remarks">Remarks:</label>
+                    <input type="text" id="remarks" name="remarks">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function toggleForm() {
+            var type = document.getElementById("type").value;
+            var userFields = document.getElementById("userFields");
+            var appFields = document.getElementById("appFields");
+            if (type === "user") {
+                userFields.classList.remove("hidden");
+                appFields.classList.add("hidden");
+                setRequired(true, "user");
+                setRequired(false, "app");
+            } else if (type === "app") {
+                userFields.classList.add("hidden");
+                appFields.classList.remove("hidden");
+                setRequired(false, "user");
+                setRequired(true, "app");
+            } else {
+                userFields.classList.add("hidden");
+                appFields.classList.add("hidden");
+                setRequired(false, "user");
+                setRequired(false, "app");
+            }
+        }
+
+        function setRequired(isRequired, type) {
+            var fields = document.querySelectorAll(`#${type}Fields input[type="text"], #${type}Fields input[type="password"]`);
+            fields.forEach(function(field) {
+                field.required = isRequired;
+            });
+        }
+
+    </script>
+</body>
+</html>

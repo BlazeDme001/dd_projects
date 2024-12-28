@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Work Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: radial-gradient(circle, #f79898, #f1d083, #94f3da, #92d8f0, #5e5cee);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            color: #007BFF;
+            font-weight: bolder;
+            text-shadow: black;
+            text-decoration-line: inherit;
+        }
+
+        p {
+            color: red;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(253, 253, 253, 0.9);
+            box-shadow: 0 20px 100px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <! --<img src="{{ url_for('static', filename='images/DigitalDreams.png') }}" alt="Logo" width="200" class="mx-auto d-block mt-4">
+    <div class="container">
+        <form method="post" action="{{ url_for('work_form') }}" onsubmit="return validateForm()" id="work-form">
+            <h1 class="mt-4">Work Registration Form</h1>
+            <p>Below All Fields Are Mandatory*</p>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required value="{{ session.get('user_name', '') }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="mob_no">Mobile Number:</label>
+                <input type="tel" id="mob_no" name="mob_no" required value="{{ p_h_mob }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required value="{{ p_h_email }}" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label for="is_in_warranty">Is in Warranty:</label>
+                <select id="is_in_warranty" name="is_in_warranty" required>
+                    <option value="" disabled selected>Select Warranty Status</option>
+                    <option value="yes" {% if session.get('user_is_in_warranty', '') == 'yes' %}selected{% endif %}>Yes</option>
+                    <option value="no" {% if session.get('user_is_in_warranty', '') == 'no' %}selected{% endif %}>No</option>
+                    <option value="not_sure" {% if session.get('user_is_in_warranty', '') == 'not_sure' %}selected{% endif %}>Not Sure</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" placeholder="Enter Your Location" required value="{{ session.get('user_location', '') }}">
+            </div>
+            
+            <div class="form-group">
+                <label for="work_type">Work Type:</label>
+                <select id="work_type" name="work_type" required>
+                    <option value="" disabled selected>Select Work Type</option>
+                    <option value="a" {% if session.get('user_work_type', '') == 'a' %}selected{% endif %}>Option A</option>
+                    <option value="b" {% if session.get('user_work_type', '') == 'b' %}selected{% endif %}>Option B</option>
+                    <option value="c" {% if session.get('user_work_type', '') == 'c' %}selected{% endif %}>Option C</option>
+                    <option value="d" {% if session.get('user_work_type', '') == 'd' %}selected{% endif %}>Option D</option>
+                    <option value="e" {% if session.get('user_work_type', '') == 'e' %}selected{% endif %}>Option E</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="remarks">Remarks:</label>
+                <textarea id="remarks" name="remarks" rows="4" cols="50" placeholder="Remarks" required>{{ session.get('user_remarks', '') }}</textarea>
+            </div>
+            <button type="submit" id="submit-btn" class="btn btn-primary" {% if quote %}style="display: none;"{% endif %}>Submit</button>
+            {% if quote %}
+            <button type="button" id="force-submit-btn" class="btn btn-danger" style="display: block;" onclick="forceSubmit()">Force Submit</button>
+            {% endif %}
+
+        </form>
+    </div>
+    {% include 'footer.html' %}
+    <script>
+
+        function forceSubmit() {
+            // Set a hidden field to indicate forced submission
+            var hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "forced_submit";
+            hiddenInput.value = "true";
+            var form = document.querySelector("form");
+            if (form) {
+                form.appendChild(hiddenInput);
+             }
+
+            // Trigger the form submission
+            form.submit();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insert Work Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Select CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" rel="stylesheet" />
+    <!-- Select2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Insert Work Details</h1>
+        <form method="POST" action="/insert_work_details">
+            <div class="form-group">
+                <label for="acc_id">Account:</label>
+                <select id="acc_id" name="acc_id" class="selectpicker form-control" data-live-search="true">
+                    {% for account in accounts %}
+                        <option value="{{ account.acc_id }} - {{ account.acc_name }}" data-acc_name="{{ account.acc_name }}">{{ account.acc_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="work_name">Work Name:</label>
+                <!-- Use a textarea for multiline input -->
+                <textarea type="text" id="work_name" name="work_name" class="form-control"  rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="billing_date">Billing Date:</label>
+                <input type="date" id="billing_date" name="billing_date" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="camc_warranty_start_date">CAMC/Warranty Start Date:</label>
+                <input type="date" id="camc_warranty_start_date" name="camc_warranty_start_date" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="camc_warranty_end_date">CAMC/Warranty End Date:</label>
+                <input type="date" id="camc_warranty_end_date" name="camc_warranty_end_date" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="amc_start_date">AMC Start Date:</label>
+                <input type="date" id="amc_start_date" name="amc_start_date" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="amc_end_date">AMC End Date:</label>
+                <input type="date" id="amc_end_date" name="amc_end_date" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="cost">Cost:</label>
+                <input type="number" id="cost" name="cost" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="remarks">Remarks:</label>
+                <textarea id="remarks" name="remarks" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="enable_credit">Enable Credit:</label>
+                <select id="enable_credit" name="enable_credit" class="form-control">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="work_status">Work Status:</label>
+                <select id="work_status" name="work_status" class="form-control">
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Pending">Pending</option>
+                </select>
+            </div>
+
+            <input type="submit" value="Insert Work Details" class="btn btn-primary">
+        </form>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+
+    <!-- Initialize Select2 and Bootstrap Select -->
+    <script>
+        $(document).ready(function () {
+            $("#acc_id").selectpicker();
+        });
+    </script>
+</body>
+</html>

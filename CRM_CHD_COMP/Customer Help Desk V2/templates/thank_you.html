@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thank You</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* Background color for the entire page */
+            background-image: radial-gradient(circle, #f7cad0, #f9ead2, #abedd9, #a2d9f2, #9aa8f0);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent container with a light background color */
+            box-shadow: 0 20px 100px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px); /* Blur effect */
+            margin-top: 50px;
+        }
+        .mt-4 {
+            text-align: center;
+        }
+        .otp {
+            font-size: 20px;
+            color: #2e3c9a;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <! --<img src="{{ url_for('static', filename='images/DigitalDreams.png') }}" alt="Logo" width="200" class="mx-auto d-block mt-4">
+    <div class="container">
+        <h1 class="mt-4">Thank You</h1>
+        <br></br>
+        <h3>Complaint ID: {{ comp_id }}</h3>
+        <p>Your Complaint has been registered successfully. Your Complaint ID is {{ comp_id }}</p>
+        <p>One of our engineers will be assigned shortly.</p>
+        <p>In case of an emergency please connect Neeraj Kanwar</p>
+        <p>Mobile: 7347008010</p>
+        <p>Email: installation@shreenathgroup.in</p>
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 10px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        p {
+            color: #13644c;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .btn {
+            background-color: #747779;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #474747;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="container">
+        <h2>Welcome, {{ session['name'] }}</h2>
+        <p>User ID: {{ session['user_id'] }}</p>
+
+        <div class="btn-container">
+            <a href="{{ url_for('products') }}" class="btn">All Products</a>
+            <a href="{{ url_for('insert_product') }}" class="btn">Insert Products</a>
+            <a href="{{ url_for('isp_details') }}" class="btn">All ISP</a>
+            <a href="{{ url_for('insert_isp') }}" class="btn">Insert ISP</a>
+            <a href="{{ url_for('pending_verification') }}" class="btn">Pending Verification</a>
+            <a href="{{ url_for('pending_prod') }}" class="btn">Pending Product Allocation</a>
+        </div>
+    </div>
+</body>
+</html>

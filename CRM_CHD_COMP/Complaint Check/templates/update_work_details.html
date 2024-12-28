@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Work Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: #333;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="checkbox"] {
+            margin-top: 10px;
+        }
+        select {
+            height: 40px;
+        }
+        input[type="submit"] {
+            background-color: #5dce46;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #4f7ad6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Work Details - Complaint ID: {{ complaint.comp_id }}</h1>
+    <form method="POST">
+        <label for="in_warranty">In Warranty:</label>
+        <select name="in_warranty">
+            <option value="yes" {% if complaint.in_warranty == '1' %}selected{% endif %}>Yes</option>
+            <option value="no" {% if complaint.in_warranty == '0' %}selected{% endif %}>No</option>
+        </select>
+
+        <label for="in_amc">In AMC:</label>
+        <select name="in_amc">
+            <option value="yes" {% if complaint.in_amc == '1' %}selected{% endif %}>Yes</option>
+            <option value="no" {% if complaint.in_amc == '0' %}selected{% endif %}>No</option>
+        </select>
+
+        <label for="assign_to">Assign To:</label>
+        <select name="assign_to">
+            {% for assignee in assign_to %}
+                <option value="{{ assignee }}" {% if assignee == complaint.assign_to %}selected{% endif %}>
+                    {{ assignee }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label for="complaint_status">Complaint Status:</label>
+        <select name="complaint_status">
+            <option value="Open" {% if complaint.complaint_status == 'Open' %}selected{% endif %}>Open</option>
+            <option value="WIP - Called" {% if complaint.complaint_status == 'WIP - Called' %}selected{% endif %}>Called</option>
+            <option value="WIP - Call Failled" {% if complaint.complaint_status == 'WIP - Call Failled' %}selected{% endif %}>Call Failled</option>
+            <option value="WIP - Assigned" {% if complaint.complaint_status == 'WIP - Assigned' %}selected{% endif %}>Assigned</option>
+            <option value="Cancelld - By Customer" {% if complaint.complaint_status == 'Cancelld - By Customer' %}selected{% endif %}>Cancelld - By Customer</option>
+            <option value="Cancelld - By Us" {% if complaint.complaint_status == 'Cancelld - By Us' %}selected{% endif %}>Cancelld - By Us</option>
+            <option value="Closed - Work Done" {% if complaint.complaint_status == 'Closed - Work Done' %}selected{% endif %}>Work Done</option>
+            <option value="Closed - Work Not Done" {% if complaint.complaint_status == 'Closed - Work Not Done' %}selected{% endif %}>Work Not Done</option>
+        </select>
+
+        <label for="complaint_remarks">Complaint Remarks:</label>
+        <textarea name="complaint_remarks">{{ complaint.complaint_remarks }}</textarea>
+
+        <label for="complaint_review_by">Complaint Review By:</label>
+        <input type="text" name="complaint_review_by" value="{{ complaint.complaint_review_by }}">
+
+        <label for="work_rating">Work Rating:</label>
+        <input type="number" name="work_rating" min="1" max="10" value="{{ complaint.work_rating }}">
+
+        <label for="is_reopen">Reopen:</label>
+        <select name="is_reopen">
+            <option value="YES" {% if complaint.is_reopen == 'YES' %}selected{% endif %}>Yes</option>
+            <option value="NO" {% if complaint.is_reopen == 'NO' %}selected{% endif %}>No</option>
+        </select>
+
+        <input type="submit" value="Update Details">
+    </form>
+</body>
+</html>

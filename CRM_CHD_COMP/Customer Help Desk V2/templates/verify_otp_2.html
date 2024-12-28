@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* Background color for the entire page */
+            background-image: radial-gradient(circle, #f79898, #f1d083, #94f3da, #92d8f0, #5e5cee);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fdfdfd; /* Background color for the form container */
+            box-shadow: 0 20px 100px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px); /* Blur effect */
+            margin-top: 50px;
+            position: relative; /* Add position relative to the container to position the image */
+        }
+        .mt-4 {
+            text-align: center;
+        }
+        .logo-image {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <! --<img src="{{ url_for('static', filename='images/DigitalDreams.png') }}" alt="Logo" width="200" class="mx-auto d-block mt-4">
+    <div class="container text-left">
+        <h1>Verify OTP</h1>
+        {% if '@' in session['identifier'] %}
+            <p>OTP send to mail</p>
+        {% else %}
+            <p>OTP send to phone</p>
+        {% endif %}
+        {% if error_message %}
+            <div class="alert alert-danger">{{ error_message }}</div>
+        {% endif %}
+        <form method="POST">
+            <div class="form-group">
+                <label for="otp">OTP:</label>
+                <input type="text" class="form-control" id="otp" name="otp" placeholder="Enter OTP Here" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Verify OTP</button>
+        </form>
+        <div class="text-left">
+            <form method="POST" action="{{ url_for('resend_otp_2') }}">
+                <button type="submit" class="btn btn-secondary">Resend OTP</button>
+            </form>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>

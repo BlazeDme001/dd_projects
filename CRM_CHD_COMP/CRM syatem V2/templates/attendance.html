@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <script>
+        function getLocation(action) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        document.getElementById(action + "_long").value = position.coords.longitude;
+                        document.getElementById(action + "_lat").value = position.coords.latitude;
+                        console.log("Longitude: " + position.coords.longitude + ", Latitude: " + position.coords.latitude);
+                        document.getElementById(action + "_form").submit();
+                    },
+                    function(error) {
+                        console.error("Error Code: " + error.code + " - " + error.message);
+                        alert("Error getting location: " + error.message);
+                    }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Attendance</h1>
+    <form id="check_in_form" action="/attendance" method="post">
+        <input type="hidden" name="check_in" value="1">
+        <input type="hidden" name="check_in_long" id="check_in_long">
+        <input type="hidden" name="check_in_lat" id="check_in_lat">
+        <button type="button" onclick="getLocation('check_in')">Check In</button>
+    </form>
+    <form id="check_out_form" action="/attendance" method="post">
+        <input type="hidden" name="check_out" value="1">
+        <input type="hidden" name="check_out_long" id="check_out_long">
+        <input type="hidden" name="check_out_lat" id="check_out_lat">
+        <button type="button" onclick="getLocation('check_out')">Check Out</button>
+    </form>
+</body>
+</html>

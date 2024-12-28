@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Work</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Style the table and its headers */
+        table.dataTable {
+            background-color: #f7f7f7; /* Set your background color here */
+            font-size: 14px; /* Adjust font size as needed */
+        }
+        table.dataTable thead th {
+            background-color: #343a40; /* Header background color */
+            color: #fff; /* Header text color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid my-5">
+        <div class="page-header">
+            <h1>All Work</h1>
+        </div>
+        <div style="text-align: left;">
+            <a href="/insert_work_details" class="btn btn-primary">Insert Work Details</a>
+            <a href="/accounts" class="btn btn-primary">Go to Accounts</a>
+            <a href="/contacts" class="btn btn-primary">Go to Contacts</a>
+        </div>
+        <div class="container-fluid my-2">
+            <h4>Filters:</h4>
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterWorkID" placeholder="Work ID">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterWorkName" placeholder="Work Name">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterContactID" placeholder="Contact ID">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterAccountID" placeholder="Account ID">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterBillingDate" placeholder="Billing Date">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterCAMCWarrantyStart" placeholder="CAMC Warranty Start Date">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterCAMCWarrantyEnd" placeholder="CAMC Warranty End Date">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterAMCStartDate" placeholder="AMC Start Date">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterAMCEndDate" placeholder="AMC End Date">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterWorkStatus" placeholder="Work Status">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterCost" placeholder="Cost">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="filterLocation" placeholder="Location">
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table id="workTable" class="table table-striped table-bordered table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Work ID</th>
+                        <th>Work Name</th>
+                        <th>Contact ID</th>
+                        <th>Account ID</th>
+                        <th>Billing Date</th>
+                        <th>CAMC Warranty Start Date</th>
+                        <th>CAMC Warranty End Date</th>
+                        <th>AMC Start Date</th>
+                        <th>AMC End Date</th>
+                        <th>Work Status</th>
+                        <th>Cost</th>
+                        <th>Location</th>
+                        <th>Edit</th>
+                        {% if session['profile'] == 'SUPER ADMIN' %}
+                            <th>Delete</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for work in work_data %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ work.work_id }}</td>
+                        <td>{{ work.work_name }}</td>
+                        <td>{{ work.cont_id }}</td>
+                        <td>{{ work.acc_id }}</td>
+                        <td>{{ work.billing_date }}</td>
+                        <td>{{ work.camc_war_s_date }}</td>
+                        <td>{{ work.camc_war_e_date }}</td>
+                        <td>{{ work.amc_s_date }}</td>
+                        <td>{{ work.amc_e_date }}</td>
+                        <td>{{ work.work_status }}</td>
+                        <td>{{ work.cost }}</td>
+                        <td>{{ work.location }}</td>
+                        <td><a href="/edit_work_details/{{ work.work_id }}" class="btn btn-primary">Edit</a></td>
+                        {% if session['profile'] == 'SUPER ADMIN' %}
+                            <td><a href="#" class="btn btn-danger" onclick="confirmDelete('Work', '{{ work.work_id }}');">Delete</a></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Add DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <!-- Add Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Add Date Range Picker JS -->
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.js"></script>
+    <!-- Add Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <!-- Initialize DataTables with Filters -->
+    <script>
+        $(document).ready(function () {
+            var table = $('#workTable').DataTable();
+
+            // Apply filters for non-date fields
+            $('#filterWorkID').on('keyup', function () {
+                table.column(1).search(this.value).draw();
+            });
+            $('#filterWorkName').on('keyup', function () {
+                table.column(2).search(this.value).draw();
+            });
+            $('#filterContactID').on('keyup', function () {
+                table.column(3).search(this.value).draw();
+            });
+            $('#filterAccountID').on('keyup', function () {
+                table.column(4).search(this.value).draw();
+            });
+            $('#filterWorkStatus').on('keyup', function () {
+                table.column(10).search(this.value).draw();
+            });
+            $('#filterCost').on('keyup', function () {
+                table.column(11).search(this.value).draw();
+            });
+            $('#filterLocation').on('keyup', function () {
+                table.column(12).search(this.value).draw();
+            });
+            $('#filterBillingDate').on('keyup', function () {
+                var dateRange = this.value.split(" - ");
+                table.column(5).search(dateRange[0]).draw();
+            });
+            $('#filterCAMCWarrantyStart').on('keyup', function () {
+                var dateRange = this.value.split(" - ");
+                table.column(6).search(dateRange[0]).draw();
+            });
+            $('#filterCAMCWarrantyEnd').on('keyup', function () {
+                var dateRange = this.value.split(" - ");
+                table.column(7).search(dateRange[0]).draw();
+            });
+            $('#filterAMCStartDate').on('keyup', function () {
+                var dateRange = this.value.split(" - ");
+                table.column(8).search(dateRange[0]).draw();
+            });
+            $('#filterAMCEndDate').on('keyup', function () {
+                var dateRange = this.value.split(" - ");
+                table.column(9).search(dateRange[0]).draw();
+            });
+        });
+    </script>
+    <script>
+        function confirmDelete(tableName, itemId) {
+            if (confirm('Are you sure you want to delete this item?')) {
+                $.ajax({
+                    url: '/delete/' + tableName + '/' + itemId,
+                    type: 'DELETE',
+                    success: function(result) {
+                        // On success, reload the page or remove the row from the table
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error case
+                        alert('Error deleting item: ' + xhr.responseText);
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

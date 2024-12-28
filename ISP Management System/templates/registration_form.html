@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            text-align: center;
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .error-msg {
+            text-align: center;
+            margin: 0%;
+            padding: 0%;
+            color: rgb(207, 1, 1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            grid-column: span 2; /* Make the button span two columns */
+            background-color: #747779;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #474747;
+        }
+    </style>
+    <script>
+        function updatePlans() {
+            var ispDropdown = document.getElementById("isp");
+            var selectedIsp = ispDropdown.options[ispDropdown.selectedIndex].value;
+
+            var plansDropdown = document.getElementById("plans");
+            plansDropdown.innerHTML = "";
+
+            // Use the correct column names in your JavaScript code
+            var ispPlansData = JSON.parse('{{ isp_plans_data_list|tojson|safe }}');
+
+            // Filter plans based on the selected ISP
+            var filteredPlans = ispPlansData.filter(plan => plan.isp_id == selectedIsp);
+
+            filteredPlans.forEach(plan => {
+                var option = document.createElement("option");
+                option.value = plan.id;
+                option.text = plan.name;
+                plansDropdown.add(option);
+            });
+            
+        }
+        
+        function getPlanData() {
+            var plansDropdown = document.getElementById("plans");
+            var selectedPlan = plansDropdown.options[plansDropdown.selectedIndex].value;
+
+            var planDetails = document.getElementById("planDetails");
+            var planName = document.getElementById("planName");
+            var planAmount = document.getElementById("planAmount");
+            var planSpeed = document.getElementById("planSpeed");
+            var planDuration = document.getElementById("planDuration");
+
+            // Use the correct column names in your JavaScript code
+            var ispPlansData = JSON.parse('{{ isp_plans_data_list|tojson|safe }}');
+
+            var selectedPlanDet = ispPlansData.find(plan => plan.id == selectedPlan);
+
+            if (selectedPlanDet) {
+            // Display plan details
+                planDetails.style.display = "block";
+                planName.textContent = "Plan Name: " + selectedPlanDet.name;
+                planAmount.textContent = "Amount: " + selectedPlanDet.amnt;
+                planSpeed.textContent = "Net Speed: " + selectedPlanDet.net_spped;
+                planDuration.textContent = "Duration: " + selectedPlanDet.duration;
+                planfeatures.textContent = "Details: " + selectedPlanDet.ext_col_1;
+            } else {
+                // Hide plan details if no plan is selected
+                planDetails.style.display = "none";
+            }
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ispDropdown = document.getElementById("isp");
+            ispDropdown.addEventListener("change", updatePlans);
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            var plansDropdown = document.getElementById("plans");
+            plansDropdown.addEventListener("change", getPlanData);
+        });
+    </script>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <h2>Registration Form</h2>
+    <form method="post" action="{{ url_for('registration_form') }}">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ session['user_name'] }}" readonly required>
+
+        <label for="ph">Mobile Number:</label>
+        <input type="text" id="ph" name="ph" value="{{ session['user_mob_no'] }}" readonly required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ session['user_email'] }}" readonly required>
+
+        <label for="flat_no">Flat Number:</label>
+        <input type="text" id="flat_no" name="flat_no" required>
+
+        <label for="tower_no">Tower Number:</label>
+        <input type="text" id="tower_no" name="tower_no" required>
+
+        <label for="apartment_name">Apartment Name:</label>
+        <select id="apartment_name" name="apartment_name" required>
+            <option value="">Select</option>
+            <option value="Nirvana Heights">Nirvana Heights</option>
+            <option value="Nirvana Square One">Nirvana Square One</option>
+        </select>
+
+        <label for="isp">ISP:</label>
+        <select id="isp" name="isp" required>
+            <option value="">Select</option>
+            {% for key,value in isp_data.items() %}
+            <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="plans">ISP Plans:</label>
+        <select id="plans" name="plans" required>
+            <option value="">Select</option>
+        </select>
+
+        <div id="planDetails" style="display: none; margin-top: 10px; padding: 10px; background-color: #f9f9f9; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: left;">
+            <h3 style="color: #28527c; margin-bottom: 5px;">Selected Plan Details:</h3>
+            <div style="margin-bottom: 5px;">
+                <strong id="planName" style="color: #333;">Plan Name:</strong>
+                <span id="planNameValue"></span>
+            </div>
+            <div style="margin-bottom: 5px;">
+                <strong id="planAmount" style="color: #333;">Amount:</strong>
+                <span id="planAmountValue"></span>
+            </div>
+            <div style="margin-bottom: 5px;">
+                <strong id="planSpeed" style="color: #333;">Net Speed:</strong>
+                <span id="planSpeedValue"></span>
+            </div>
+            <div style="margin-bottom: 5px;">
+                <strong id="planDuration" style="color: #333;">Duration:</strong>
+                <span id="planDurationValue"></span>
+            </div>
+            <div style="margin-bottom: 5px;">
+                <strong id="planfeatures" style="color: #333;">Details:</strong>
+                <span id="planfeaturesValue"></span>
+            </div>
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+    {% include 'footer.html' %}
+</body>
+</html>

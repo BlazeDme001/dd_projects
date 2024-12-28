@@ -1,0 +1,80 @@
+<!-- update_product.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        body {
+            margin: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h2 {
+            color: #2b2f33;
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 40px;
+        }
+
+        .container {
+            width: 80%; /* Adjust the width as needed */
+            margin: auto;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-column {
+            column-count: 2;
+            column-gap: 20px;
+        }
+
+        #errorMsg1, #errorMsg2, #errorMsg3 {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="container">
+        <h2>Update Product</h2>
+        <form method="POST" action="{{ url_for('update_product', prod_id=prod_id) }}">
+            <div class="form-group">
+                <label for="name">Product Name:</label>
+                <input type="text" class="form-control" name="name" value="{{ product_data[0] }}" readonly required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" class="form-control" name="description" value="{{ product_data[1] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="serial_no">Serial Number:</label>
+                <input type="text" class="form-control" name="serial_no" value="{{ product_data[2] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="mac_no">MAC Number:</label>
+                <input type="text" class="form-control" name="mac_no" value="{{ product_data[3] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="type">Product Type:</label>
+                <input type="text" class="form-control" name="type" value="{{ product_data[4] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="sub_type">Product Sub Type:</label>
+                <input type="text" class="form-control" name="sub_type" value="{{ product_data[5] }}" required>
+            </div>
+            <button type="submit" class="btn btn-secondary">Update Product</button>
+        </form>
+    </div>
+</body>
+</html>

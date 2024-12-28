@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            margin-top: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        button {
+            width: 100%;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Update User</h1>
+        <form action="{{ url_for('update_user', user_id=user[0]) }}" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" value="{{ user[1] }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile_no">Mobile No:</label>
+                <input type="text" name="mobile_no" value="{{ user[2] }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email_id">Email ID:</label>
+                <input type="email" name="email_id" value="{{ user[3] }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="dept">Department:</label>
+                <input type="text" name="dept" value="{{ user[4] }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="profile">Profile:</label>
+                <select name="profile" class="form-control" required>
+                    <option value="user" {% if user[5] == 'user' %}selected{% endif %}>User</option>
+                    <option value="admin" {% if user[5] == 'admin' %}selected{% endif %}>Admin</option>
+                    <option value="super_admin" {% if user[5] == 'super_admin' %}selected{% endif %}>Super Admin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select name="status" class="form-control" required>
+                    <option value="ACTIVE" {% if user[6] == 'ACTIVE' %}selected{% endif %}>ACTIVE</option>
+                    <option value="DEACTIVE" {% if user[6] == 'DEACTIVE' %}selected{% endif %}>DEACTIVE</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update User</button>
+        </form>
+
+        <!-- Flash Messages -->
+        <!-- {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-danger mt-3">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %} -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

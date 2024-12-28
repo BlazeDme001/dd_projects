@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Update KRA Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #000080; /* Navy blue text */
+            margin: 0;
+            padding: 0;
+        }
+    
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff; /* White background */
+            box-shadow: 0 0 25px rgba(0, 0, 139, 0.4); /* Navy blue shadow */
+            border-radius: 15px;
+        }
+    
+        h1 {
+            text-align: center;
+            color: #0073e6; /* Bright blue color */
+            font-size: 32px;
+            text-transform: uppercase;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #0073e6; /* Bright blue for labels */
+        }
+    
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+    
+        .value {
+            color: #000080; /* Navy blue for values */
+        }
+    
+        input,
+        textarea,
+        select {
+            width: calc(100% - 10px); /* Adjusted for gap */
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #0073e6; /* Bright blue border */
+            border-radius: 4px;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #000080; /* Navy blue text */
+        }
+    
+        a.btn-primary {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 5px 10px;
+            background-color: #0073e6; /* Bright blue button */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        button,
+        a.btn-secondary {
+            background-color: #00509e; /* Darker blue button */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        button:hover,
+        a.btn-primary:hover,
+        a.btn-secondary:hover {
+            background-color: #003366; /* Darkest blue on hover */
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="container">
+        <h1>Update KRA Task</h1>
+        <a href="{{ url_for('main') }}" class="btn btn-primary">Main</a>&nbsp;
+        <a href="{{ url_for('all_kra') }}" class="btn btn-primary">All KRA Tasks</a>
+        <form method="post" action="{{ url_for('update_kra', id=task[0]) }}">
+            <div class="details">
+                <label for="t_id">Task ID:</label>
+                <span class="value">{{ task[0] }}</span>
+            </div>
+            <div class="details">
+                <label for="t_name">Task Name:</label>
+                <span class="value">{{ task[1] }}</span>
+            </div>
+            <div class="details">
+                <label for="assign_to"> Assign To:</label>
+                <span class="value">{{ task[2].split('-')[2] }}</span>
+            </div>
+            <div class="details">
+                <label for="created_date">Created Date:</label>
+                <span class="value">{{ task[6] }}</span>
+            </div>
+            <div class="details">
+                <label for="status">Status:</label>
+                <span class="value">{{ task[8] }}</span>
+            </div>
+            <div class="textarea">
+                <label for="priority">Priority:</label>
+                <select id="priority" name="priority" required>
+                    <option value="" disabled hidden>Select a status</option>
+                    <option value="High" {% if task[7] == 'High' %}selected{% endif %}>High</option>
+                    <option value="Medium" {% if task[7] == 'Medium' %}selected{% endif %}>Medium</option>
+                    <option value="Low" {% if task[7] == 'Low' %}selected{% endif %}>Low</option>
+                </select>
+            </div>
+            <div class="textarea">
+                <label for="type">Type:</label>
+                <select id="type" name="type" required>
+                    <option value="" disabled hidden>Select a status</option>
+                    <option value="daily" {% if task[5] == 'daily' %}selected{% endif %}>Daily</option>
+                    <option value="weekly" {% if task[5] == 'weekly' %}selected{% endif %}>Weekly</option>
+                    <option value="monthly" {% if task[5] == 'monthly' %}selected{% endif %}>Monthly</option>
+                </select>
+            </div>
+            <div class="textarea">
+                <label for="freq">Frequency:</label>
+                <select id="freq" name="freq" required>
+                    <option value="" disabled hidden>Select a status</option>
+                </select>
+            </div>
+            <div class="textarea">
+                <label for="end_dt_freq">Expected TAT (Days):</label>
+                <input type="text" id="end_dt_freq" name="end_dt_freq" value='{{ task[4] }}' required>
+            </div>
+            <div class="textarea">
+                <label for="remark">Remark:</label>
+                <input type="text" id="remark" name="remark" value='{{ task[9] }}' required>
+            </div>
+            <div class="details">
+                <label for="status">Update Status:</label>
+                <select id="status" name="status" required>
+                    <option value="" disabled hidden>Select a status</option>
+                    <option value="ACTIVE" {% if task[8] == 'ACTIVE' %}selected{% endif %}>ACTIVE</option>
+                    <option value="DEACTIVE" {% if task[8] == 'DEACTIVE' %}selected{% endif %}>DEACTIVE</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit">Update Task</button>
+        </form>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var kraTypeSelect = document.getElementById('type');
+        var frequencySelect = document.getElementById('freq');
+        kraTypeSelect.addEventListener('change', function () {
+            var selectedKraType = kraTypeSelect.value;
+
+            // Clear previous options
+            frequencySelect.innerHTML = '<option value="" selected disabled hidden>Select Frequency</option>';
+
+            // Add new options based on the selected KRA type
+            if (selectedKraType === 'daily') {
+                // For daily, set frequency to 0
+                frequencySelect.innerHTML += '<option value="0" selected>0</option>';
+            } else if (selectedKraType === 'weekly') {
+                // For weekly, set frequency options from 0 to 6
+                for (var i = 0; i <= 6; i++) {
+                    frequencySelect.innerHTML += '<option value="' + i + '">' + i + '</option>';
+                }
+            } else if (selectedKraType === 'monthly') {
+                // For monthly, set frequency options from 0 to 31
+                for (var i = 0; i <= 31; i++) {
+                    frequencySelect.innerHTML += '<option value="' + i + '">' + i + '</option>';
+                }
+            }
+        });
+    });
+</script>
+</html>

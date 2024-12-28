@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Insert Task Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Light blue background */
+            color: #000080; /* Dark blue text */
+            margin: 0;
+            padding: 0;
+        }
+    
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff; /* White background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+    
+        h1 {
+            text-align: center;
+            color: #007bff; /* Blue color */
+            font-size: 32px;
+            text-transform: uppercase;
+        }
+    
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #000080; /* Dark blue text */
+        }
+    
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #007bff; /* Blue border */
+            border-radius: 4px;
+            background-color: #e0f7fa; /* Light blue background */
+            color: #000080; /* Dark blue text */
+        }
+    
+        button, a.btn-primary, a.btn-secondary {
+            display: inline-block; /* Display buttons inline */
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue button color */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        button:hover, a.btn-primary:hover, a.btn-secondary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Insert Task Data</h1>
+        <a href="{{ url_for('main') }}" class="btn btn-primary">Main</a>&nbsp;
+        <a href="{{ url_for('all_tasks') }}" class="btn btn-secondary">All Tasks</a> 
+
+        <form method="post" action="/insert_task">
+            <label for="type">Task Type:</label>
+            <select id="type" name="type" required>
+                <option value="" selected disabled hidden>Select Task Type</option>
+                <option value="task">Task</option>
+                <option value="kra">KRA</option>
+            </select>
+
+            <label for="warning_1">Please note for KRA type 'Yearly' the task will automaticly assign on 1st day of frequency month </label>
+            
+            <label for="kra_type">KRA Type:</label>
+            <select id="kra_type" name="kra_type">
+                <option value="" selected disabled hidden>Select KRA Type</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="quterly">Quterly</option>
+                <option value="helfyearly">Helf Yearly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+
+            <label for="frequency">Frequency:</label>
+            <select id="frequency" name="frequency">
+                <option value="" selected disabled hidden>Select Frequency</option>
+            </select>
+
+            <label for="kra_exp_tat">TAT (Days):</label>
+            <input type="number" id="kra_exp_tat" name="kra_exp_tat" required>
+
+            <label for="recurring">Recurring:</label>
+            <input type="number" id="recurring" name="recurring" required>
+
+            <label for="t_name">Task Description:</label>
+            <input type="text" id="t_name" name="t_name" required>
+
+            <label for="ex_end_dt">Target End Date:</label>
+            <input type="datetime-local" id="ex_end_dt" name="ex_end_dt" required>
+
+            <label for="assign_to">Assigned To:</label>
+            <select id="assign_to" name="assign_to" required>
+                <option value="" selected disabled hidden>Select Assigned To</option>
+                {% for id, name in user_dict.items() %}
+                    <option value="{{ id }}">{{ name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="priority">Priority:</label>
+            <select id="priority" name="priority" required>
+                <option value="" selected disabled hidden>Select Priority</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+
+            <label for="remark">Remark:</label>
+            <textarea id="remark" name="remark" rows="4"></textarea>
+
+            <button type="submit">Insert Task</button>
+        </form>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var typeSelect = document.getElementById('type');
+        var kraTypeSelect = document.getElementById('kra_type');
+        var frequencySelect = document.getElementById('frequency');
+        var kraExpTatInput = document.getElementById('kra_exp_tat');
+        var recurringInput = document.getElementById('recurring');
+        var exEndDtInput = document.getElementById('ex_end_dt');
+
+        var kraTypeLabel = document.querySelector('label[for="kra_type"]');
+        var frequencyLabel = document.querySelector('label[for="frequency"]');
+        var kraExpTatLabel = document.querySelector('label[for="kra_exp_tat"]');
+        var recurringLabel = document.querySelector('label[for="recurring"]');
+        var exEndDtLabel = document.querySelector('label[for="ex_end_dt"]');
+        var warning_1 = document.querySelector('label[for="warning_1"]');
+
+        // Function to hide an element
+        function hideElement(element) {
+            element.style.display = 'none';
+        }
+
+        // Function to show an element
+        function showElement(element) {
+            element.style.display = 'block';
+        }
+
+        // Function to set or remove the 'required' attribute
+        function setRequired(element, isRequired) {
+            if (isRequired) {
+                element.setAttribute('required', '');
+            } else {
+                element.removeAttribute('required');
+            }
+        }
+
+        // Initial state
+        hideElement(kraTypeSelect);
+        hideElement(frequencySelect);
+        hideElement(kraExpTatInput);
+        hideElement(recurringInput);
+        hideElement(kraTypeLabel);
+        hideElement(frequencyLabel);
+        hideElement(kraExpTatLabel);
+        hideElement(recurringLabel);
+        hideElement(exEndDtLabel);
+        hideElement(exEndDtInput);
+        hideElement(warning_1);
+
+        typeSelect.addEventListener('change', function () {
+            var selectedType = typeSelect.value;
+
+            // Reset the visibility of all elements
+            showElement(kraTypeSelect);
+            showElement(frequencySelect);
+            showElement(kraTypeLabel);
+            showElement(recurringInput);
+            showElement(frequencyLabel);
+            showElement(kraExpTatLabel);
+            showElement(kraExpTatInput);
+            showElement(recurringLabel);
+            showElement(exEndDtLabel);
+            showElement(exEndDtInput);
+            showElement(warning_1);
+
+            // Adjust visibility and required attribute based on the selected type
+            if (selectedType === 'task') {
+                hideElement(kraTypeLabel);
+                hideElement(kraTypeSelect);
+                hideElement(frequencyLabel);
+                hideElement(frequencySelect);
+                hideElement(kraExpTatLabel);
+                hideElement(kraExpTatInput);
+                hideElement(recurringLabel);
+                hideElement(recurringInput);
+                hideElement(warning_1);
+
+                setRequired(kraTypeSelect, false);
+                setRequired(frequencySelect, false);
+                setRequired(kraExpTatInput, false);
+                setRequired(recurringInput, false);
+                setRequired(exEndDtInput, true);
+            } else if (selectedType === 'kra') {
+                hideElement(exEndDtLabel);
+                hideElement(exEndDtInput);
+
+                setRequired(kraTypeSelect, true);
+                setRequired(frequencySelect, true);
+                setRequired(kraExpTatInput, true);
+                setRequired(recurringInput, true);
+                setRequired(exEndDtInput, false);
+            }
+        });
+
+        kraTypeSelect.addEventListener('change', function () {
+            var selectedKraType = kraTypeSelect.value;
+
+            // Clear previous options
+            frequencySelect.innerHTML = '<option value="" selected disabled hidden>Select Frequency</option>';
+
+            // Add new options based on the selected KRA type
+            if (selectedKraType === 'daily') {
+                // For daily, set frequency to 0
+                frequencySelect.innerHTML += '<option value="0" selected>0</option>';
+            } else if (selectedKraType === 'weekly') {
+                // For weekly, set frequency options from 0 to 6
+                for (var i = 0; i <= 6; i++) {
+                    frequencySelect.innerHTML += '<option value="' + i + '">' + i + '</option>';
+                }
+            } else if (selectedKraType === 'monthly') {
+                // For monthly, set frequency options from 1 to 31
+                for (var i = 1; i <= 31; i++) {
+                    frequencySelect.innerHTML += '<option value="' + i + '">' + i + '</option>';
+                }
+            } else if (selectedKraType === 'yearly') {
+                // For monthly, set frequency options from 1 to 12
+                for (var i = 1; i <= 12; i++) {
+                    frequencySelect.innerHTML += '<option value="' + i + '">' + i + '</option>';
+                }
+            } else if (selectedKraType === 'quterly') {
+                // For monthly, set frequency options from 1 to 12
+                for (var i = 1; i <= 4; i++) {
+                    frequencySelect.innerHTML += '<option value="' + i + '">' + i + '</option>';
+                }
+            } else if (selectedKraType === 'helfyearly') {
+                // For monthly, set frequency options from 1 to 12
+                for (var i = 1; i <= 6; i++) {
+                    frequencySelect.innerHTML += '<option value="' + i + '">' + i + '</option>';
+                }
+            }
+        });
+    });
+</script>
+</html>

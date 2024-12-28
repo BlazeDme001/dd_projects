@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <title>All KRA Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Alice blue background */
+            color: #000080; /* Navy blue text */
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #0073e6; /* Bright blue color */
+            font-size: 32px;
+            text-transform: uppercase;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    
+        h2 {
+            text-align: left;
+            color: #00509e; /* Darker blue color */
+            font-size: 20px;
+        }
+    
+        p {
+            text-align: left;
+            color: #000080; /* Navy blue text */
+            font-size: 14px; /* Slightly larger for readability */
+        }
+    
+        .btn {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #0073e6; /* Bright blue button color */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        .btn:hover {
+            background-color: #00509e; /* Darker blue on hover */
+        }
+    
+        a.btn-secondary {
+            background-color: #ff5733; /* Orange color */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 12px;
+        }
+    
+        a.btn-secondary:hover {
+            background-color: #cc4626; /* Darker orange on hover */
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #000080; /* Navy blue text */
+        }
+    
+        th, td, tr {
+            border: 1px solid #000080; /* Navy blue border */
+            padding: 5px;
+            text-align: center;
+            color: #000080; /* Navy blue text */
+            background-color: #e6f2ff; /* Light blue background */
+            font-size: 12px;
+        }
+    
+        .filter-container {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 12px;
+        }
+    
+        .filter-input {
+            width: 100%;
+            padding: 3px;
+            background-color: #fff; /* White background */
+            box-sizing: border-box;
+            color: #000080; /* Navy blue text */
+            font-size: 12px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div>
+        <h1>All KRA Task</h1>
+        <a href="{{ url_for('main') }}" class="btn btn-primary">Main</a>     
+        <a href="{{ url_for('insert_task') }}" class="btn btn-primary">Insert Task</a>     
+        <a href="{{ url_for('login') }}" class="btn btn-primary">Log Out</a> 
+        <div class="filter-container">
+            <div class="row">
+                <div class="col">
+                    <input type="text" id="filterTaskId" class="filter-input" placeholder="Task ID">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterTaskName" class="filter-input" placeholder="Task Name">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterAssignedTo" class="filter-input" placeholder="Assigned To">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterfrequency" class="filter-input" placeholder="Frequency">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterExpTat" class="filter-input" placeholder="Expected TAT">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <input type="text" id="filterKra" class="filter-input" placeholder="KRA">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterCreatedDate" class="filter-input datepicker" placeholder="Created Date">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterPriority" class="filter-input" placeholder="Priority">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterStatus" class="filter-input" placeholder="Status">
+                </div>
+                <div class="col">
+                    <input type="text" id="filterRemark" class="filter-input" placeholder="Remark">
+                </div>
+            </div>
+        </div>
+        <table id="sortableTable" class="table">
+            <thead>
+                <tr>
+                    <th>Serial No</th>
+                    <th>Task ID</th>
+                    <th>Task Name</th>
+                    <th>Assigned To</th>
+                    <th>Frequency</th>
+                    <th>Exp TAT</th>
+                    <th>Type</th>
+                    <th>Created Date</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Remark</th>
+                    <th>Update Task</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tasks in tasks %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ tasks[0] }}</td>
+                        <td>{{ tasks[1] }}</td>
+                        <td>{{ tasks[2].split('-')[2] }}</td>
+                        <td>{{ tasks[3] }}</td>
+                        <td>{{ tasks[4] }}</td>
+                        <td>{{ tasks[5] }}</td>
+                        <td>{{ tasks[6]|strftime }}</td>
+                        <td>{{ tasks[7] }}</td>
+                        <td>{{ tasks[8] }}</td>
+                        <td>{{ tasks[9] }}</td>
+                        <td>
+                            <a href="{{ url_for('update_kra', id=tasks[0]) }}" class="btn btn-secondary">Update</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true
+            });
+    
+            var table = $('#sortableTable').DataTable({
+                searching: true,
+                ordering: true,
+                initComplete: function () {
+                    var api = this.api();
+                    
+                    // Task ID
+                    $('#filterTaskId').on('keyup change', function () {
+                        api.column(1).search($(this).val(), false, false, true).draw();
+                    });
+    
+                    // Task Name
+                    $('#filterTaskName').on('keyup change', function () {
+                        api.column(2).search($(this).val(), false, false, true).draw();
+                    });
+    
+                    // Assigned To
+                    $('#filterAssignedTo').on('keyup change', function () {
+                        api.column(3).search($(this).val(), false, false, true).draw();
+                    });
+    
+                    // Frequency
+                    $('#filterfrequency').on('keyup change', function () {
+                        api.column(4).search($(this).val(), false, false, true).draw();
+                    });
+    
+                    // Expected TAT
+                    $('#filterExpTat').on('keyup change', function () {
+                        api.column(5).search($(this).val(), false, false, true).draw();
+                    });
+    
+                    // KRA
+                    $('#filterKra').on('keyup change', function () {
+                        api.column(6).search($(this).val(), false, false, true).draw();
+                    });
+
+    
+                    // Created Date
+                    $('#filterCreatedDate').on('keyup change', function () {
+                        var dateValue = $(this).val();
+                        if (dateValue) {
+                            // Search the Created Date column with a range of dates from the start of the selected date to the end of the selected date
+                            api.column(7).search(dateValue, true, false, true).draw();
+                        } else {
+                            // Clear the filter if no date is selected
+                            api.column(7).search('').draw();
+                        }
+                    });
+
+                    // Priority
+                    $('#filterPriority').on('keyup change', function () {
+                        api.column(8).search($(this).val(), false, false, true).draw();
+                    });
+    
+                    // Status
+                    $('#filterStatus').on('keyup change', function () {
+                        api.column(9).search($(this).val(), false, false, true).draw();
+                    });
+    
+                    // Remark
+                    $('#filterRemark').on('keyup change', function () {
+                        api.column(10).search($(this).val(), false, false, true).draw();
+                    });
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

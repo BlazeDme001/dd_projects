@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: radial-gradient(circle, #f79898, #f1d083, #94f3da, #92d8f0, #5e5cee);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(253, 253, 253, 0.9);
+            box-shadow: 0 20px 100px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+        }
+        .mt-4 {
+            text-align: center;
+        }
+        #warranty_warning {
+            display: none;
+            padding: 10px;
+            border: 2px solid #dc3545;
+            background-color: #f8d7da;
+            margin-bottom: 20px;
+        }
+        #warranty_warning h5 {
+            margin: 0;
+            color: #dc3545;
+            font-weight: bold;
+        }
+        #submit-btn {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <!-- <img src="{{ url_for('static', filename='images/DigitalDreams.png') }}" alt="Logo" width="200" class="mx-auto d-block mt-4"> -->
+    <div class="container">
+        <h1 class="mt-4">Customer Complaint Form</h1>
+        <form method="POST" action="{{ url_for('user_form') }}" onsubmit="disableButton()">
+            <div class="form-group">
+                <label for="product_name">Product Name:</label>
+                <select class="form-control" id="product_name" name="product_name" onchange="toggleFields()">
+                    <option value="none">Select</option>
+                    <option value="N_R">Not showing here</option>
+                    {% for product in products %}
+                        <option value="{{ product }}">{{ product }}</option>
+                        <!-- <option value="{{ product }}">{{ product.replace(product.split('-')[0]+'-', '') }}</option> -->
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" id="warranty_warning">
+                <h5>Your selected product is not in warranty.</h5>
+                {% if ex_work %}
+                    <p>Please select a service:</p>
+                    {% for work in ex_work %}
+                        <label class="radio-inline">
+                            <input type="radio" name="selected_work" value="{{ work[0] }} - {{ work[2] }}">
+                            {{ work[1] }} - Rs.{{ work[2] }} ({{ work[3] }})
+                        </label><br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <!-- Additional fields for "Not showing here" option -->
+            <div id="additionalFields" style="display: none;">
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" class="form-control" placeholder="Enter Your Location">
+                </div>
+                <div class="form-group">
+                    <label for="product_name_txt">Work Name:</label>
+                    <input type="text" id="product_name_txt" name="product_name_txt" class="form-control" placeholder="Enter Your work Name">
+                </div>
+                <div class="form-group">
+                    <label for="is_in_warranty">Is in Warranty:</label>
+                    <select id="is_in_warranty" name="is_in_warranty" class="form-control">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                        <option value="not_sure">Not Sure</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="work_type">Work Type:</label>
+                    <select id="work_type" name="work_type" class="form-control">
+                        <option value="CCTV Camera">CCTV Camera</option>
+                        <option value="Networking">Networking</option>
+                        <option value="Access Point/Controller">Access-Point / Access-Controller</option>
+                        <option value="Attendence Software Issue">Attendence Software Issue</option>
+                        <option value="Turnstile">Turnstile</option>
+                        <option value="Intrusion Alarm System">Intrusion Alarm System</option>
+                        <option value="Other Issue">Other Issue</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Query/Complaint textarea for other product selections -->
+            <div class="form-group">
+                <label for="query_complaint">Query/Complaint:</label>
+                <textarea class="form-control" id="query_complaint" name="query_complaint" rows="4" required></textarea>
+            </div>
+            <!-- Submit button -->
+            <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    {% include 'footer.html' %}
+    <script>
+        function toggleFields() {
+            var productDropdown = document.getElementById("product_name");
+            var additionalFields = document.getElementById("additionalFields");
+            var locationField = document.getElementById("location");
+            var productNameTxtField = document.getElementById("product_name_txt");
+            var isInWarrantyField = document.getElementById("is_in_warranty");
+            var workTypeField = document.getElementById("work_type");
+            var queryComplaint = document.getElementById("query_complaint");
+
+            if (productDropdown.value === "N_R") {
+                // "Not showing here" option selected, show additional fields and make them required
+                additionalFields.style.display = "block";
+                locationField.required = true;
+                productNameTxtField.required = true;
+                isInWarrantyField.required = true;
+                workTypeField.required = true;
+            } else {
+                // Any other option selected, hide additional fields and make them not required
+                additionalFields.style.display = "none";
+                locationField.required = false;
+                productNameTxtField.required = false;
+                isInWarrantyField.required = false;
+                workTypeField.required = false;
+            }
+        }
+
+        function disableButton() {
+            var submitBtn = document.getElementById("submit-btn");
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Submitting...";
+        }
+
+        document.getElementById('product_name').addEventListener('change', function() {
+            var selectedProduct = this.value;
+            var warrantyWarningDiv = document.getElementById('warranty_warning');
+            var selectedWorkField = document.querySelector('input[name="selected_work"]');
+
+            if (selectedProduct.includes('(Not in warranty)')) {
+                warrantyWarningDiv.style.display = 'block';
+                if (selectedWorkField) {
+                    selectedWorkField.setAttribute("required", "required");
+                }
+            } else {
+                warrantyWarningDiv.style.display = 'none';
+                if (selectedWorkField) {
+                    selectedWorkField.removeAttribute("required");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Complaints</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        select,
+        input[type="text"],
+        input[type="datetime-local"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            transition: border-color 0.3s;
+            font-size: 14px;
+        }
+
+        select:focus,
+        input[type="text"]:focus,
+        input[type="datetime-local"]:focus,
+        textarea:focus {
+            border-color: #007BFF;
+        }
+
+        button[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        #complaint_details {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        #complaint_details.show {
+            display: block;
+        }
+
+        h2, h3 {
+            color: #007BFF;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pending Complaints</h1>
+    <a href="/all_complaint">All Complaints</a>
+    {% if session['profile'] in ('admin', 'super_admin') %}
+        <a href="/manager">Manage Users</a>
+    {% endif %}
+    <form id="complaint_form" method="POST">
+        <input type="hidden" name="form_type" value="complaint">
+        <label for="complaint_id">Select Complaint ID:</label>
+        <select id="complaint_id" name="comp_id">
+            <option value="" selected disabled>Select an option</option>
+            {% for complaint in complaints %}
+                <option value="{{ complaint.comp_id }}">{{ complaint.comp_id }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Apply</button>
+    </form>
+
+    <div id="complaint_details" class="show">
+        {% if selected_complaint %}
+        <h2>Complaint Details - Complaint ID: {{ selected_complaint.comp_id }}</h2>
+        <table>
+            <tr><th>Customer Name:</th><td>{{ selected_complaint.c_name }}</td></tr>
+            <tr><th>Mobile Number:</th><td>{{ selected_complaint.mobile_no }}</td></tr>
+            <tr><th>Email ID:</th><td>{{ selected_complaint.email_id }}</td></tr>
+            <tr><th>Complaint:</th><td>{{ selected_complaint.complaint }}</td></tr>
+            <tr><th>In Warranty:</th><td>{{ selected_complaint.in_warranty }}</td></tr>
+            <tr><th>In AMC:</th><td>{{ selected_complaint.in_amc }}</td></tr>
+            <tr><th>Complaint Status:</th><td>{{ selected_complaint.complaint_status }}</td></tr>
+            <tr><th>Complaint Remarks:</th><td>{{ selected_complaint.complaint_remarks }}</td></tr>
+            <tr><th>Assign To:</th><td>{{ selected_complaint.assign_to }}</td></tr>
+            <tr><th>Assign Date:</th><td>{{ selected_complaint.assign_date }}</td></tr>
+            <tr><th>Complaint Type:</th><td>{{ selected_complaint.ext_col_1 }}</td></tr>
+        </table>
+        <h3>Update Work Status and Assign To</h3>
+        <form id="update_form" method="POST" onsubmit="disableButton()">
+            <input type="hidden" name="form_type" value="update">
+            <input type="hidden" name="comp_id_1" value="{{ selected_complaint.comp_id }}">
+            <label for="complaint_status">Complaint Status:</label>
+            <select name="complaint_status">
+                <option value="Open">Open</option>
+                <!-- <option value="WIP - Called">Called</option> -->
+                <option value="WIP - Call Failled (1)">Call Failled (1)</option>
+                <option value="WIP - Call Failled (2)">Call Failled (2)</option>
+                <option value="WIP - Call Failled (3)">Call Failled (3)</option>
+                <option value="WIP - Assigned">Assigned</option>
+                <option value="WIP - Visit Schedule">Visit Schedule</option>
+                <option value="Cancelld - By Customer">Cancelld - By Customer</option>
+                <option value="Cancelld - By Us">Cancelld - By Us</option>
+                <option value="Closed - Work Done">Work Done</option>
+                <option value="Closed - Work Not Done">Work Not Done</option>
+            </select><br>
+            <div>
+                <label for="assign_to">Assign To:</label>
+                <select id="assign_to" name="assign_to" required>
+                    {% for assign in assign_list %}
+                        <option value="{{ assign[1] }}">{{ assign[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="schedule_date" style="display: none;">Schedule Date:</label>
+                <input type="datetime-local" id="schedule_date" name="schedule_date" style="display: none;">
+            </div>
+            <div>
+                <label for="Remarks">Remarks:</label>
+                <textarea type="text"  id="remarks" name="remarks" rows="3" required></textarea>
+            </div>
+            <input type="submit" value="Update">
+        </form>
+        {% endif %}
+    </div>
+    <script>
+        function disableButton() {
+            var submitBtn = document.querySelector('input[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.value = "Submitting...";
+        }
+
+        function handleComplaintStatusChange() {
+            var complaintStatusSelect = document.querySelector('select[name="complaint_status"]');
+            var scheduleDateLabel = document.querySelector('label[for="schedule_date"]');
+            var scheduleDateInput = document.querySelector('input[name="schedule_date"]');
+            
+            // Check if the selected value is 'WIP - Visit Schedule'
+            if (complaintStatusSelect.value === 'WIP - Visit Schedule') {
+                // Show the Schedule Date field
+                scheduleDateLabel.style.display = 'block';
+                scheduleDateInput.style.display = 'block';
+                scheduleDateInput.setAttribute('required', 'required');
+            } else {
+                // Hide and remove the required attribute
+                scheduleDateLabel.style.display = 'none';
+                scheduleDateInput.style.display = 'none';
+                scheduleDateInput.removeAttribute('required');
+            }
+        }
+
+        // Add an event listener to the Complaint Status select
+        document.querySelector('select[name="complaint_status"]').addEventListener('change', handleComplaintStatusChange);
+    </script>
+</body>
+</html>

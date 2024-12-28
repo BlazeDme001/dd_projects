@@ -1,0 +1,149 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js">
+        </script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <title>All Time Logs</title>
+        <style>
+
+            body {
+                font-family: 'Times New Roman', Times, serif;
+                background-color: #aba1a1df;
+                color: #000000;
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+            }
+    
+            .container {
+                max-width: 100%;
+                padding: 10px;
+                background-color: #777676d5;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+                /* border-radius: 15px; */
+                margin: 0 auto;
+                
+            }
+    
+            h1 {
+                text-align: center;
+                color: #ff5833ef;
+                font-size: 40px;
+                text-transform: uppercase;
+                font-weight: bolder;
+                font-stretch: extra-expanded;
+                font-family: 'Times New Roman', Times, serif;
+            }
+    
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                color: rgb(255, 255, 255);
+            }
+    
+            th, td, tr {
+                border: 1px solid #ccc;
+                padding: 5px;
+                text-align: center;
+                color: rgb(202, 202, 202);
+                /* background-color: #565555d9; */
+                background-color: rgba(49, 48, 48, 0.782);
+                
+            }
+    
+    
+            a.btn-primary, a.btn-secondary {
+            display: inline-block; /* Display buttons inline */
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff5733;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            a.btn-primary:hover, a.btn-secondary:hover {
+            background-color: #444;
+        }
+    
+            input {
+                width: 65%;
+                padding: 7px;
+                margin-bottom: 0%;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                color: #000000;
+            }
+    
+            .search-container {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+             
+            }
+    
+            .search-input {
+                margin-left: auto;
+                padding-bottom: 8px;
+            }
+        </style>
+                
+    </head>
+    <body>
+        <div class="container">
+            <h1>All Time Logs</h1>
+            <a href="{{ url_for('main') }}" class="btn btn-primary">Main</a><br><br>
+    
+            <form method="get" action="{{ url_for('all_tasks') }}"></form>
+    
+            <table id="time-log-table" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Task ID</th>
+                        <th>Task Name</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Time Spent (hours)</th>
+                        <th>What You Did</th>
+                        <th>Approval</th>
+                        <th>Stage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for log in time_logs %}
+                    <tr>
+                        <td>{{ log[1] }}</td>                    
+                        <td>{{ log[2] }}</td>                    
+                        <td>{{ log[4] }}</td>
+                        <td>{{ log[5] }}</td>
+                        <td>{{ log[9] }}</td>
+                        <td>{{ log[8] }}</td>
+                        <td>{{ log[6] }}</td>
+                        <td>{{ log[7] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <script>
+            $(document).ready( function () {
+                $('#time-log-table').DataTable({
+                    "paging": true,
+                    "searching": true,
+                    "ordering": true,
+                    "order": [[0, "asc"]],
+                    "columnDefs": [
+                        { "targets": [0, 1, 2, 3, 4, 5, 6], "searchable": true },
+                    ]
+                });
+            });
+        </script>
+    </body>
+    </html>
+    

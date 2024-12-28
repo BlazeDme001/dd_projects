@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #343a40;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    {% if app_details %}
+    <h1>Update App</h1>
+    <form action="/update_app_user/{{ app_details['app_id'][0] }}" method="POST">
+        <h2>App ID: {{ app_details['app_id'][0] }}</h2>
+        <h2>App Name: {{ app_details['app_name'][0] }}</h2>
+
+            <label for="primary_ip">Primary IP:</label>
+            <input type="text" id="primary_ip" name="primary_ip" value="{{ app_details['primary_ip'][0] }}" required><br>
+
+            <label for="login_url">Login URL:</label>
+            <input type="text" id="login_url" name="login_url" value="{{ app_details['login_url'][0] }}" required><br>
+
+            <label for="primary_table">Primary Table:</label>
+            <input type="text" id="primary_table" name="primary_table" value="{{ app_details['primary_table'][0] }}" required><br>
+            
+            <label for="other_tables">Other Tables:</label>
+            <textarea id="other_tables" name="other_tables">{{ app_details['other_tables'][0] }}</textarea><br>
+            
+            <label for="app_status">App Status:</label>
+            <select id="app_status" name="app_status" required>
+                <option value="ACTIVE" {% if app_details['app_status'][0] == 'ACTIVE' %}selected{% endif %}>Active</option>
+                <option value="INACTIVE" {% if app_details['app_status'][0] == 'INACTIVE' %}selected{% endif %}>Inactive</option>
+            </select><br>
+            
+            <label for="is_uploaded_github">Uploaded to GitHub:</label>
+            <select id="is_uploaded_github" name="is_uploaded_github" required>
+                <option value="YES" {% if app_details['is_uploaded_github'][0] == 'YES' %}selected{% endif %}>Yes</option>
+                <option value="NO" {% if app_details['is_uploaded_github'][0] == 'NO' %}selected{% endif %}>No</option>
+            </select><br>
+
+            <label for="remarks">Remarks:</label>
+            <textarea id="remarks" name="remarks">{{ app_details['remarks'][0] }}</textarea><br>
+            
+            <input type="submit" value="Update">
+        </form>
+    {% elif user_details %}
+    <h1>Update User</h1>
+        <form action="/update_app_user/{{ user_details['user_id'][0] }}" method="POST">
+            <h2>User ID: {{ user_details['user_id'][0] }}</h2>
+            <h2>User Name: {{ user_details['name'][0] }}</h2>
+
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" value="{{ user_details['password'][0] }}" required><br>
+
+            <label for="profile">Profile:</label>
+            <select id="profile" name="profile" required>
+                <option value="SUPER ADMIN" {% if user_details['profile'][0] == 'SUPER ADMIN' %}selected{% endif %}>SUPER ADMIN</option>
+                <option value="ADMIN" {% if user_details['profile'][0] == 'ADMIN' %}selected{% endif %}>ADMIN</option>
+                <option value="USER" {% if user_details['profile'][0] == 'USER' %}selected{% endif %}>USER</option>
+            </select><br>
+            <label for="team">Team:</label>
+            <input type="text" id="team" name="team" value="{{ user_details['team'][0] }}" required><br>
+
+            <label for="status">User Status:</label>
+            <select id="status" name="status" required>
+                <option value="ACTIVE" {% if user_details['status'][0] == 'ACTIVE' %}selected{% endif %}>Active</option>
+                <option value="INACTIVE" {% if user_details['status'][0] == 'INACTIVE' %}selected{% endif %}>Inactive</option>
+            </select><br>
+
+            <label for="mobile">Mobile:</label>
+            <input type="text" id="mobile" name="mobile" value="{{ user_details['mobile'][0] }}"><br>
+            
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" value="{{ user_details['email'][0] }}"><br>
+            
+            <label for="selected_apps">Select Apps:</label><br>
+            {% for app in all_app_data %}
+                <input type="checkbox" id="app_{{ app[0] }}" name="selected_apps[]" value="{{ app[0] }}" {% if app[0] in user_app_data|map(attribute=0) and user_app_data|selectattr(0, 'equalto', app[0])|map(attribute=3)|list|first == 'ACTIVE' %} checked {% endif %}>
+                <label for="app_{{ app[0] }}">{{ app[1] }}</label>
+                <select id="profile_{{ app[0] }}" name="profiles[]">
+                    {% for user_app in user_app_data %}
+                        {% if user_app[0] == app[0] %}
+                            {% for profile in profiles %}
+                                <option value="{{ profile }}&&{{ app[0] }}" {% if user_app[2] == profile %} selected {% endif %}>{{ profile }}</option>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    {% for profile in profiles %}
+                        <option value="{{ profile }}&&{{ app[0] }}" >{{ profile }}</option>
+                    {% endfor %}
+                </select><br>
+            {% endfor %}
+            <input type="submit" value="Update">
+        </form>
+    {% endif %}
+</body>
+</html>

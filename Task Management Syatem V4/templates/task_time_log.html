@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Task Time Log</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #111;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff5733;
+            font-size: 32px;
+            text-transform: uppercase;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, textarea, select {
+            width: 560px;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #666;
+            color: #fff;
+        }
+
+        a.btn-primary, a.btn-secondary {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff5733;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        a.btn-primary:hover, a.btn-secondary:hover {
+            background-color: #444;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff5733;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Task Time Log</h1>
+        <a href="{{ url_for('main') }}" class="btn btn-primary">Main</a>&nbsp;
+        <a href="{{ url_for('all_time_logs') }}" class="btn btn-secondary">All Time Log</a>
+
+        <form method="POST" action="{{ url_for('task_time_log') }}">
+            <div>
+                <label for="t_id">Select Task ID:</label>
+                <select id="t_id" name="t_id">
+                    {% for t in t_ids %}
+                    <option value="" selected disabled hidden>Select Task ID</option>
+                        <option value="{{ t[0] }}">{{ t[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label for="task_name">Task Name:</label>
+                <input type="text" id="task_name" name="task_name" readonly>
+            </div>
+            
+            <div>
+                <label for="s_name">Select Step Name:</label>
+                <select id="s_name" name="s_name">
+                    <option value="" selected disabled hidden>Select Step Name</option>
+                </select>
+            </div>
+           
+            <div>
+                <label for="start_time">Start Time:</label>
+                <input type="datetime-local" name="start_time" id="start_time" required>
+            </div>
+            <div>
+                <label for="end_time">End Time:</label>
+                <input type="datetime-local" name="end_time" id="end_time" required>
+            </div>
+            <div>
+                <label for="stage">Stage</label>
+                <input type="text" name="stage" id="stage" required>
+            </div>
+            <div>
+                <label for="what_you_did">What You Did</label>
+                <textarea id="what_you_did" name="what_you_did" rows="4" required></textarea>
+            </div>
+            <br>
+            <button type="submit">Insert Task Time Log</button>
+        </form>
+    </div>
+    <!-- <script>
+        const taskDropdown = document.getElementById('t_id');
+        const taskNameInput = document.getElementById('task_name');
+        const sIdInput = document.getElementById('s_id');
+    
+        taskDropdown.addEventListener('change', function () {
+            const selectedTaskId = taskDropdown.value;
+            if (selectedTaskId) {
+                fetch(`/get_task_data/${selectedTaskId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        taskNameInput.value = data.task_name;
+                        sIdInput.value = data.s_id;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                taskNameInput.value = '';
+                sIdInput.value = '';
+            }
+        });
+    </script> -->
+<script>
+const taskDropdown = document.getElementById('t_id');
+const taskNameInput = document.getElementById('task_name');
+const sNameDropdown = document.getElementById('s_name'); 
+
+taskDropdown.addEventListener('change', function () {
+    const selectedTaskId = taskDropdown.value;
+    if (selectedTaskId) {
+        fetch(`/get_task_data/${selectedTaskId}`)
+            .then(response => response.json())
+            .then(data => {
+                taskNameInput.value = data.task_name;
+                return fetch(`/get_step_names/${selectedTaskId}`);
+            })
+            .then(response => response.json())
+            .then(data => {
+                sNameDropdown.innerHTML = "";
+                data.step_names.forEach(stepName => {
+                    const option = document.createElement("option");
+                    option.value = stepName;
+                    option.text = stepName;
+                    sNameDropdown.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    } else {
+        taskNameInput.value = '';
+        sNameDropdown.innerHTML = '<option value="" selected disabled hidden>Select Step Name</option>';
+    }
+});
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* CSS styling for the details page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f8f8;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .complaint-details {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .complaint-details table {
+            width: 100%;
+        }
+        .complaint-details th {
+            font-weight: bold;
+            width: 30%;
+            color: #555;
+        }
+        .complaint-details td {
+            color: #333;
+        }
+        .complaint-details hr {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+        .back-link, .view-history {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a, .view-history button {
+            text-decoration: none;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .back-link a:hover, .view-history button:hover {
+            background-color: #359ba8;
+        }
+        .complaint-history {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Complaint Details</h1>
+    <div class="complaint-details">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Complaint ID:</th>
+                    <td>{{ complaint.comp_id }}</td>
+                </tr>
+                <tr>
+                    <th>Customer ID:</th>
+                    <td>{{ complaint.c_id }}</td>
+                </tr>
+                <tr>
+                    <th>Customer Name:</th>
+                    <td>{{ complaint.c_name }}</td>
+                </tr>
+                <tr>
+                    <th>Mobile Number:</th>
+                    <td>{{ complaint.mobile_no }}</td>
+                </tr>
+                <tr>
+                    <th>Email ID:</th>
+                    <td>{{ complaint.email_id }}</td>
+                </tr>
+                <tr>
+                    <th>Product ID:</th>
+                    <td>{{ complaint.p_id }}</td>
+                </tr>
+                <tr>
+                    <th>Product Name:</th>
+                    <td>{{ complaint.p_name }}</td>
+                </tr>
+                <tr>
+                    <th>In Warranty:</th>
+                    <td>{{ complaint.in_warranty }}</td>
+                </tr>
+                <tr>
+                    <th>In AMC:</th>
+                    <td>{{ complaint.in_amc }}</td>
+                </tr>
+                <tr>
+                    <th>Customer Type:</th>
+                    <td>{{ complaint.ext_col_1 }}</td>
+                </tr>
+                <tr>
+                    <th>Assign To:</th>
+                    <td>{{ complaint.assign_to }}</td>
+                </tr>
+                <tr>
+                    <th>Assign Date:</th>
+                    <td>{{ complaint.assign_date }}</td>
+                </tr>
+                <tr>
+                    <th>Complaint:</th>
+                    <td>{{ complaint.complaint }}</td>
+                </tr>
+                <tr>
+                    <th>Complaint Status:</th>
+                    <td>{{ complaint.complaint_status }}</td>
+                </tr>
+                <tr>
+                    <th>Complaint Remarks:</th>
+                    <td>{{ complaint.complaint_remarks }}</td>
+                </tr>
+                <tr>
+                    <th>Complaint Closed:</th>
+                    <td>{{ complaint.closed_time }}</td>
+                </tr>
+                <tr>
+                    <th>Complaint Review By:</th>
+                    <td>{{ complaint.complaint_review_by }}</td>
+                </tr>
+                <tr>
+                    <th>Work Rating:</th>
+                    <td>{{ complaint.work_rating }}</td>
+                </tr>
+                <tr>
+                    <th>Engineer Rating:</th>
+                    <td>{{ complaint.engineer_rating }}</td>
+                </tr>
+                <tr>
+                    <th>Is Reopen:</th>
+                    <td>{{ complaint.is_reopen }}</td>
+                </tr>
+                <tr>
+                    <th>Reopen Date:</th>
+                    <td>{{ complaint.reopen_date }}</td>
+                </tr>
+                <tr>
+                    <th>Reopen Times:</th>
+                    <td>{{ complaint.reopen_times }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="view-history">
+        <button onclick="toggleHistory()">View History</button>
+    </div>
+    
+    <div class="complaint-history" id="complaintHistory">
+        <h2>Complaint History</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Complaint ID</th>
+                    <th>Assign To</th>
+                    <th>Assign Date</th>
+                    <th>Complaint</th>
+                    <th>Complaint Status</th>
+                    <th>Complaint Remarks</th>
+                    <th>Updated By</th>
+                    <th>Updated Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for _, history in hist.iterrows() %}
+                <tr>
+                    <td>{{ history.comp_id }}</td>
+                    <td>{{ history.assign_to }}</td>
+                    <td>{{ history.assign_date }}</td>
+                    <td>{{ history.complaint }}</td>
+                    <td>{{ history.complaint_status }}</td>
+                    <td>{{ history.complaint_remarks }}</td>
+                    <td>{{ history.ext_col_2 }}</td>
+                    <td>{{ history.change_timestamp }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    {%if type != 'field'%}
+        <div class="back-link">
+            <a href="/all_complaint">Back to All Complaints</a>
+        </div>
+        {% if session['username'] == 'RamitC' %}
+            <div class="back-link">
+                <strong>This button is for testing purpose only</strong>
+                <a href="/update_work_details/{{ complaint.comp_id }}">Update Complaint</a>
+            </div>
+        {% endif %}
+    {%endif%}
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleHistory() {
+            var historySection = document.getElementById('complaintHistory');
+            if (historySection.style.display === 'none' || historySection.style.display === '') {
+                historySection.style.display = 'block';
+            } else {
+                historySection.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

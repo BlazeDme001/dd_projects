@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: radial-gradient(circle, #f79898, #f1d083, #94f3da, #92d8f0, #5e5cee);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fdfdfd;
+            box-shadow: 0 20px 100px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            margin-top: 50px;
+        }
+        .mt-4 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="container">
+        <h1>Welcome {{ session['user_name'] }}</h1>
+        <p>Welcome to our complaint registration system.</p>
+        <p>Click on the button below to register a new complaint:</p>
+        <a href="{{ url_for('user_form') }}" class="btn btn-primary">Click here to register a complaint</a>
+        <a href="{{ url_for('list_of_complaints') }}" class="btn btn-primary">Click here to view complaint</a>
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>

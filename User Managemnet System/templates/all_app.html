@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Applications</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: auto;
+      margin: 5px auto;
+      padding: 5px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 20px 5px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #333;
+      background-color: #007bff;
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 5px;
+    }
+    th, td {
+      padding: 5px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #0056b3;
+      color: white;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .table-striped tbody tr:hover {
+      background-color: #f2f2f2;
+    }
+    .btn {
+      padding: 5px 10px;
+      border-radius: 2px;
+      background-color: #00aeff;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.5s ease;
+      border: none;
+    }
+    .btn:hover {
+      background-color: #1bcf6c;
+    }
+    .scrollable-table {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4">All Applications</h1>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-primary mb-4">Dashboard</a>
+    <a href="{{ url_for('add_user_or_app') }}" class="btn btn-primary mb-4">Add Application</a>
+
+    <!-- Filter inputs -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="filterAppID" placeholder="Filter by App ID">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="filterName" placeholder="Filter by Name">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="filterIP" placeholder="Filter by IP">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="filterMainTable" placeholder="Filter by Main Table">
+      </div>
+    </div>
+
+    <div class="scrollable-table">
+      <table class="table table-striped" id="appTable">
+        <thead class="thead-light">
+          <tr>
+            <th>App ID</th>
+            <th>Name</th>
+            <th>IP</th>
+            <th>Main Table</th>
+            <th>View Details</th>
+            <th>Update</th>
+            <th>Redirect</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for app in app_data %}
+            <tr>
+              <td>{{ app[1] }}</td>
+              <td>{{ app[2] }}</td>
+              <td>{{ app[3] }}</td>
+              <td>{{ app[5] }}</td>
+              <td><a href="{{ url_for('view_details', id=app[1]) }}" class="btn btn-primary">View Details</a></td>
+              <td><a href="{{ url_for('update_app_user', id=app[1]) }}" class="btn btn-primary">Update</a></td>
+              <td><a href="http://{{ app[3] ~ app[4] }}" target='_blank'>URL</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- JavaScript for filtering table -->
+  <script>
+    // Function to filter the table based on input values
+    function filterTable() {
+      var inputAppID = document.getElementById("filterAppID").value.toUpperCase();
+      var inputName = document.getElementById("filterName").value.toUpperCase();
+      var inputIP = document.getElementById("filterIP").value.toUpperCase();
+      var inputMainTable = document.getElementById("filterMainTable").value.toUpperCase();
+
+      var table = document.getElementById("appTable");
+      var rows = table.getElementsByTagName("tr");
+
+      for (var i = 1; i < rows.length; i++) {
+        var appIDCol = rows[i].getElementsByTagName("td")[0];
+        var nameCol = rows[i].getElementsByTagName("td")[1];
+        var ipCol = rows[i].getElementsByTagName("td")[2];
+        var mainTableCol = rows[i].getElementsByTagName("td")[3];
+
+        if (appIDCol && nameCol && ipCol && mainTableCol) {
+          var appIDText = appIDCol.textContent.toUpperCase();
+          var nameText = nameCol.textContent.toUpperCase();
+          var ipText = ipCol.textContent.toUpperCase();
+          var mainTableText = mainTableCol.textContent.toUpperCase();
+
+          if (appIDText.indexOf(inputAppID) > -1 &&
+              nameText.indexOf(inputName) > -1 &&
+              ipText.indexOf(inputIP) > -1 &&
+              mainTableText.indexOf(inputMainTable) > -1) {
+            rows[i].style.display = "";
+          } else {
+            rows[i].style.display = "none";
+          }
+        }
+      }
+    }
+
+    // Attach event listeners to filter inputs
+    document.getElementById("filterAppID").addEventListener("keyup", filterTable);
+    document.getElementById("filterName").addEventListener("keyup", filterTable);
+    document.getElementById("filterIP").addEventListener("keyup", filterTable);
+    document.getElementById("filterMainTable").addEventListener("keyup", filterTable);
+  </script>
+</body>
+</html>

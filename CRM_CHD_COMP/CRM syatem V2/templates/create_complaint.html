@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Complaint</title>
+    <!-- Add any CSS libraries like Bootstrap here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>TESTING ONLY</h1>
+        <h2>Create Complaint for {{ c_name }}</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label for="product_name">Product</label>
+                <select class="form-control" id="product_name" name="product_name" required>
+                    <option value="">Select a product</option>
+                    {% for product in products %}
+                        <option value="{{ product }}">{{ product }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="query_complaint">Complaint</label>
+                <textarea class="form-control" id="query_complaint" name="query_complaint" rows="3" required></textarea>
+            </div>
+
+            <!-- <div class="form-group">
+                <label for="selected_work">Additional Work (optional)</label>
+                <select class="form-control" id="selected_work" name="selected_work">
+                    <option value="">Select additional work</option>
+                    {% for work in ex_work %}
+                        <option value="{{ work[0] }}-{{ work[1] }}">{{ work[1] }} - {{ work[2] }}</option>
+                    {% endfor %}
+                </select>
+            </div> -->
+
+            <button type="submit" class="btn btn-primary">Submit Complaint</button>
+        </form>
+
+        <!-- <div class="mt-5">
+            <h4>Location</h4>
+            <ul>
+                {% for loc in loc %}
+                    <li>{{ loc }}</li>
+                {% endfor %}
+            </ul>
+        </div> -->
+    </div>
+
+    <!-- Add any JavaScript libraries like jQuery and Bootstrap JS here -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

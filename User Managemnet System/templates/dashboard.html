@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            background-image: url('https://source.unsplash.com/random/1600x900');
+            background-size: cover;
+            margin: 10;
+            padding: 10;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+            background-color: #007bff;
+            padding: 10px;
+            border-radius: 2px;
+            color: white;
+            }
+        div {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        }
+        strong {
+            color: #2c3e50;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #46c726;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>User Dashboard</h1>
+        <h2><strong>Welcome {{ session['name'] }}</strong></h2>
+        <a href="{{ url_for('all_app') }}" class="btn btn-primary">View All Applications</a>
+        <a href="{{ url_for('all_user') }}" class="btn btn-primary">View All User</a>
+        <a href="{{ url_for('add_user_or_app') }}" class="btn btn-primary">Add User and App</a>
+        <a href="{{ url_for('all_user_app_connect') }}" class="btn btn-primary">All Connection </a>
+    </div>
+</body>
+</html>

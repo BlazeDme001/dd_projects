@@ -1,0 +1,65 @@
+<!-- header.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Your common header content here -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh; /* Set the minimum height of the body to 100% of the viewport height */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        footer {
+            background-color: #56C4F8;
+            color: #0D0F0E;
+            text-align: right;
+            text-shadow: #70c8d8;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            padding: 30px;
+            margin-top: auto; /* Push the footer to the bottom */
+            position: relative;
+            display: flex; /* Add display: flex; to use flexbox */
+            justify-content: space-between; /* Align children to the start and end */
+        }
+        
+        footer img {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            max-width: 100px; /* Adjust the size as needed */
+            height: auto;
+        }
+
+        h1 {
+            margin-top: auto;
+        }
+        
+        #terms-content {
+            color: #0D0F0E;
+        }
+
+        p1 a {
+            color: #0D0F0E;
+            text-decoration: underline; /* You can customize the text decoration */
+        }
+
+        p2 {
+            color: #0D0F0E;
+            text-align: left; /* Use text-align for left alignment */
+        }
+    </style>
+</head>
+<body>
+    <footer>
+        <p2>&copy; 2024 SHREENATH ENTERPRISES.  All rights reserved.</p2>
+        <div id="terms-content">
+            <p1>By using our services, you agree to our <a href="/terms">Terms and Conditions</a>.</p1>
+        </div>
+    </footer>
+</body>
+</html>

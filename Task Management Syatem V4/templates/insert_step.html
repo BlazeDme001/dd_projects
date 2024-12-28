@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Insert Step Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Alice blue background */
+            color: #000080; /* Navy blue text */
+            margin: 0;
+            padding: 0;
+        }
+    
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff; /* White background */
+            box-shadow: 0 0 10px rgba(0, 0, 139, 0.4); /* Navy blue shadow */
+            border-radius: 15px;
+        }
+    
+        h1 {
+            text-align: center;
+            color: #0073e6; /* Bright blue color */
+            font-size: 32px;
+            text-transform: uppercase;
+        }
+    
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #0073e6; /* Bright blue for labels */
+        }
+    
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #000080; /* Navy blue border */
+            border-radius: 4px;
+            background-color: #f0f8ff; /* Alice blue background */
+            color: #000080; /* Navy blue text */
+        }
+    
+        button, a.btn-primary, a.btn-secondary {
+            display: inline-block; /* Display buttons inline */
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #0073e6; /* Bright blue button */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        button:hover, a.btn-primary:hover, a.btn-secondary:hover {
+            background-color: #00509e; /* Darker blue on hover */
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Insert Step Data</h1>
+        <a href="{{ url_for('main') }}" class="btn btn-primary">Main</a>
+        <a href="{{ url_for('all_tasks') }}" class="btn btn-secondary">All Tasks</a>
+
+
+        <form method="post" action="{{ url_for('insert_step', t_id=t_id , t_name=t_name) }}">
+            
+            <label for="t_id">Task ID:&nbsp;{{ t_id }}</label>
+
+            <label for="t_name">Task Name:&nbsp;{{ t_name }}</label>
+
+            <label for="s_id">Step ID:&nbsp;{{ s_id }}</label>
+
+            <label for="s_name">Previous Step:&nbsp;{{ s_name }}</label><br>
+
+            <label for="s_name">Step Name:</label>
+            <input type="text" id="s_name" name="s_name" required>
+
+            <div>
+                <label for="assign_to"> Assign To:</label>
+                <select id="assign_to" name="assign_to">
+                    <option value="" selected disabled hidden>Select Assigned To</option>
+                    {% for id, name in user_dict.items() %}
+                        <option value="{{ id }}">{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <label for="start_dt">Start Date:</label>
+            <input type="datetime-local" id="start_dt" name="start_dt" required>
+
+            <label for="ex_end_dt"> Expected End Date</label>
+            <input type="datetime-local" id="ex_end_dt" name="ex_end_dt" required>
+
+            <button type="submit">Insert Step</button>
+        </form>
+    </div>
+</body>
+</html>

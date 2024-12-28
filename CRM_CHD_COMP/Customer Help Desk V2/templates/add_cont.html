@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Registration Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: radial-gradient(circle, #f79898, #f1d083, #94f3da, #92d8f0, #5e5cee);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            color: #007BFF;
+            font-weight: bolder;
+            text-shadow: black;
+            text-decoration-line: inherit;
+        }
+
+        p {
+            color: red;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(253, 253, 253, 0.9);
+            box-shadow: 0 20px 100px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <! --<img src="{{ url_for('static', filename='images/DigitalDreams.png') }}" alt="Logo" width="200" class="mx-auto d-block mt-4">
+    <div class="container">
+        <form method="post" action="{{ url_for('add_cont') }}" onsubmit="return validateForm()" id="add_cont">
+            <h1 class="mt-4">Customer Registration Form</h1>
+            <p>Below Fields Are Mandatory*</p>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter Your Name" required value="{{ session.get('user_name', '') }}">
+            </div>
+            <div class="form-group">
+                <label for="mob_no">Mobile Number:</label>
+                <input type="tel" id="mob_no" name="mob_no" placeholder="{{ p_h_mob }}" required value="{{ session.get('user_mob_no', '') }}">
+                {% if quote and not '@' in quote %}
+                <div class="alert alert-info" style="white-space: pre-line; font-size: 14px; text-align: left; color: #ff0000;">{{ quote }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="{{ p_h_email }}" required value="{{ session.get('user_email', '') }}">
+                {% if quote and '@' in quote %}
+                    <div class="alert alert-info" style="white-space: pre-line; font-size: 14px; text-align: left; color: #ff0000;">{{ quote }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn btn-primary" >Submit</button>
+            <!-- <button type="submit" id="submit-btn" class="btn btn-primary" {% if quote %}style="display: none;"{% endif %}>Submit</button> -->
+            <!-- {% if quote %}
+                <button type="button" id="force-submit-btn" class="btn btn-danger" style="display: block;" onclick="forceSubmit()">Force Submit</button>
+            {% endif %} -->
+
+        </form>
+    </div>
+    {% include 'footer.html' %}
+    <script>
+
+            // Check and auto-populate input fields based on placeholders
+            var mobileInput = document.getElementById("mob_no");
+            var emailInput = document.getElementById("email");
+
+            // Check if p_h_mob and p_h_email contain "Enter"
+            if (mobileInput.placeholder !== "Enter Your Mobile") {
+                mobileInput.value = mobileInput.placeholder;
+                mobileInput.readOnly = true;
+            }
+            
+            if (emailInput.placeholder !== "Enter Your E-Mail") {
+                emailInput.value = emailInput.placeholder;
+                emailInput.readOnly = true;
+                
+        }
+
+        function validateForm() {
+            var mobileValue = mobileInput.value.replace(/\D/g, ''); // Remove non-digits
+            if (mobileValue.length !== 10) {
+                alert("Mobile number must be 10 digits.");
+                return false;
+            }
+
+            var emailValue = emailInput.value;
+            var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(emailValue)) {
+                alert("Invalid email format.");
+                return false;
+            }
+        }
+
+        // function forceSubmit() {
+        //     // Set a hidden field to indicate forced submission
+        //     var hiddenInput = document.createElement("input");
+        //     hiddenInput.type = "hidden";
+        //     hiddenInput.name = "forced_submit";
+        //     hiddenInput.value = "true";
+        //     var form = document.querySelector("form");
+        //     if (form) {
+        //         form.appendChild(hiddenInput);
+        //      }
+
+        //     // Trigger the form submission
+        //     form.submit();
+        // }
+    </script>
+</body>
+</html>

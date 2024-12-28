@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* Background color for the entire page */
+            background-image: radial-gradient(circle, #f79898, #f1d083, #94f3da, #92d8f0, #5e5cee);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            /* Background color for the form container with transparency */
+            background-color: rgba(253, 253, 253, 0.9);
+            box-shadow: 0 20px 100px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px); /* Blur effect */
+        }
+        .mt-4 {
+            text-align: center;
+        }
+        #warranty_warning {
+            display: none;
+            padding: 10px;
+            border: 2px solid #dc3545;
+            background-color: #f8d7da;
+            margin-bottom: 20px;
+        }
+        #warranty_warning h5 {
+            margin: 0;
+            color: #dc3545;
+            font-weight: bold;
+        }
+        #submit-btn {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='images/DigitalDreams.png') }}" alt="Logo" width="200" class="mx-auto d-block mt-4">
+    <div class="container">
+        <h1 class="mt-4">Customer Complaint Form</h1>
+        <form method="POST" action="{{ url_for('user_form') }}" onsubmit="disableButton()">
+            <div class="form-group">
+                <label for="customer_id">Customer ID:</label>
+                <input type="text" class="form-control" id="customer_id" name="customer_id" value="{{ c_id }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="customer_name">Customer Name:</label>
+                <input type="text" class="form-control" id="customer_name" name="customer_name" value="{{ c_name }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="product_name">Product Name:</label>
+                <select class="form-control" id="product_name" name="product_name">
+                    {% for product in products %}
+                        <option value="{{ product }}">{{ product }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" id="warranty_warning" style="display:none;">
+                <h5>Your selected product is not in warranty.</h5>
+                <p>Please select a service:</p>
+                {% for work in ex_work %}
+                    <label class="radio-inline">
+                        <input type="radio" name="selected_work" value="{{ work[0] }} - {{ work[2] }}">
+                        {{ work[1] }} - Rs.{{ work[2] }} ({{ work[3] }})
+                    </label><br>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="query_complaint">Query/Complaint:</label>
+                <textarea class="form-control" id="query_complaint" name="query_complaint" rows="4" required></textarea>
+            </div>
+            <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script>
+         function disableButton() {
+            var submitBtn = document.getElementById("submit-btn");
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Submitting...";
+        }
+        document.getElementById('product_name').addEventListener('change', function() {
+            var selectedProduct = this.value;
+            var warrantyWarningDiv = document.getElementById('warranty_warning');
+            var selectedWorkField = document.querySelector('input[name="selected_work"]');
+            if (selectedProduct.includes('(Not in warranty)')) {
+                warrantyWarningDiv.style.display = 'block';
+                selectedWorkField.setAttribute("required", "required");
+            } else {
+                warrantyWarningDiv.style.display = 'none';
+                selectedWorkField.removeAttribute("required");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!-- insert_product_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        body {
+            margin: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h2 {
+            color: #2b2f33;
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 40px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .dataTables_filter {
+            float: center;
+        }
+
+        .filter-input {
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+
+        .container {
+            width: 80%; /* Adjust the width as needed */
+        }
+
+        form {
+            width: 100%;
+            margin: auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        #errorMsg1, #errorMsg2, #errorMsg3 {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <div class="container">
+        <h2>Insert Product</h2>
+        <form method="POST" action="{{ url_for('insert_product') }}" onsubmit="return validateForm()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quentity">Quentity:</label>
+                        <input type="number" class="form-control" id="quentity" name="quentity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" name="description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type:</label>
+                        <select class="form-control" name="type" required>
+                            <option value="">Select Type</option>
+                            <option value="type1">Type 1</option>
+                            <option value="type2">Type 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="serial_no">Serial No: (For multiple use "comma,")</label>
+                        <textarea class="form-control" name="serial_no" id="serial_no" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="mac_no">MAC No: (For multiple use "comma,")</label>
+                        <textarea class="form-control" name="mac_no" id="mac_no" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="sub_type">Sub Type:</label>
+                        <select class="form-control" name="sub_type" required>
+                            <option value="">Select Sub Type</option>
+                            <option value="subtype1">Sub Type 1</option>
+                            <option value="subtype2">Sub Type 2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <p id="errorMsg1"></p>
+            <p id="errorMsg2"></p>
+            <p id="errorMsg3"></p>
+            <button type="submit" class="btn btn-secondary">Add Product</button>            
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            var macNo = $('#mac_no').val();
+            var quentity = $('#quentity').val();
+            var serialNo = $('#serial_no').val();
+
+            var macNoCommas = macNo.split(',').length - 1;
+            var serialNoCommas = serialNo.split(',').length - 1;
+
+            if (macNoCommas !== serialNoCommas || (quentity - 1) !== Number(macNoCommas) || (quentity - 1) !== Number(serialNoCommas)) {
+                $('#errorMsg1').text("*Number of MAC ID's entered and number of Serial No's entered should be the same.");
+                $('#errorMsg2').text("*Quentity should be equal to the number of MAC ID entered");
+                $('#errorMsg3').text("*Quentity should be equal to the number of Serial No. entered");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

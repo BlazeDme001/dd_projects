@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Insert Multiple Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #111;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff5733;
+            font-size: 32px;
+            text-transform: uppercase;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #777;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        button,
+        a.btn-primary,
+        a.btn-secondary {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff5733;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover,
+        a.btn-primary:hover,
+        a.btn-secondary:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Insert Multiple Tasks</h1>
+        <a href="{{ url_for('main') }}" class="btn btn-primary">Main</a>&nbsp;
+        <a href="{{ url_for('all_tasks') }}" class="btn btn-secondary">All Tasks</a>
+
+
+        <form method="post" action="/insert_multiple_tasks" onsubmit="submitForm()">
+            <input type="hidden" name="num_tasks" id="num_tasks" value="0"> <!-- Hidden field to store the number of tasks -->
+            <table id="taskTable">
+                <thead>
+                    <tr>
+                        <th>Task Description</th>
+                        <th>Target End Date</th>
+                        <th>Assigned To</th>
+                        <th>Priority</th>
+                        <th>Remark</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <button type="button" onclick="addRow()">Add Row</button>
+            <button type="submit" id="submitButton">Insert Tasks</button>
+        </form>
+    </div>
+
+
+    <script>
+        function addRow() {
+            var table = document.getElementById("taskTable").getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.rows.length);
+
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);            
+            var cell6 = newRow.insertCell(5);
+
+            cell1.innerHTML = '<input type="text" name="t_name[]" required>';
+            cell2.innerHTML = '<input type="datetime-local" name="ex_end_dt[]" required>';
+            cell3.innerHTML = '<select name="assign_to[]">{% for id, name in user_dict.items() %}<option value="{{ id }}">{{ name }}</option>{% endfor %}</select>';
+            cell4.innerHTML = '<select name="priority[]"><option value="High">High</option><option value="Medium">Medium</option><option value="Low">Low</option></select>';
+            cell5.innerHTML = '<textarea name="remark[]" rows="4"></textarea>';
+            cell6.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
+
+            // Update the number of tasks
+            document.getElementById("num_tasks").value = table.rows.length;
+        }
+        function deleteRow(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+
+            // Update the number of tasks
+            document.getElementById("num_tasks").value = document.getElementById("taskTable").getElementsByTagName('tbody')[0].rows.length;
+        }
+        function submitForm() {
+            // Disable the submit button
+            document.getElementById("submitButton").disabled = true;
+            
+            // Change the button text to "Submitting..."
+            document.getElementById("submitButton").innerHTML = "Inserting...";
+        }
+    </script>
+
+</body>
+
+</html>

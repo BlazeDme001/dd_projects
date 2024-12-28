@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assign Work</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="text-center">Assign Work</h1>
+            <p><a href="{{ url_for('insert_work_details', id=id, comp_id=comp_id) }}"><strong>Click Here to add work details</strong></a></p>
+        
+        <!-- View Work Details Section -->
+        <div id="work_details_section">
+            <h2>Work Details</h2>
+            <div id="work_details">
+                <!-- Display work details from get_work_data DataFrame -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Work ID</th>
+                            <th>Account ID</th>
+                            <th>Work Name</th>
+                            <th>Contact ID</th>
+                            <th>Billing Date</th>
+                            <th>CAMC/Warranty Start Date</th>
+                            <th>CAMC/Warranty End Date</th>
+                            <th>AMC Start Date</th>
+                            <th>AMC End Date</th>
+                            <th>Cost</th>
+                            <th>Location</th>
+                            <th>Remarks</th>
+                            <th>Work Status</th>
+                            <th>Enable Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for index, row in get_work_data.iterrows() %}
+                            <tr>
+                                <td>{{ row['work_id'] }}</td>
+                                <td>{{ row['acc_id'] }}</td>
+                                <td>{{ row['work_name'] }}</td>
+                                <td>{{ row['cont_id'] }}</td>
+                                <td>{{ row['billing_date'] }}</td>
+                                <td>{{ row['camc_war_s_date'] }}</td>
+                                <td>{{ row['camc_war_e_date'] }}</td>
+                                <td>{{ row['amc_s_date'] }}</td>
+                                <td>{{ row['amc_e_date'] }}</td>
+                                <td>{{ row['cost'] }}</td>
+                                <td>{{ row['location'] }}</td>
+                                <td>{{ row['remarks'] }}</td>
+                                <td>{{ row['work_status'] }}</td>
+                                <td>{{ row['enable_credit'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+        </div>
+
+        <!-- Assign Work Form -->
+        <form id="assign_work_form" method="POST" action="/assign_work/{{ id }}/{{ comp_id }}">
+            <div class="form-group">
+                <label for="work_id">Select Work ID:</label>
+                <select id="work_id" name="work_id" class="form-control">
+                    <option value="">Select Work ID</option>
+                    {% for index, row in get_work_data.iterrows() %}
+                        <option value="{{ row['work_id'] }}">{{ row['work_id'] }} - {{ row['work_name'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Assign Work</button>
+        </form>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

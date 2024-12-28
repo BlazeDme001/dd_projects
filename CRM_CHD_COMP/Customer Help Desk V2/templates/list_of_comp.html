@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Complaints</title>
+    <!-- Include Bootstrap CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow-x: auto;
+            display: block;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #c6e2ff;
+        }
+
+        /* Customize the Reopen button */
+        .reopen-button {
+            background-color: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .reopen-button:hover {
+            background-color: #004080;
+        }
+
+        .no-complaints {
+            text-align: center;
+            color: #6c757d;
+            margin-top: 20px;
+        }
+
+        /* Filter bar styling */
+        .filter-bar {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: auto;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <div>
+        <h2>List of Complaints</h2>
+        <a href="{{ url_for('welcome') }}" class="btn btn-primary">Main Page</a>
+
+        {% if not data.empty %}
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Comp ID</th>
+                            <th>Customer ID</th>
+                            <th>Customer Name</th>
+                            <th>Mobile Number</th>
+                            <th>Email ID</th>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>In Warranty</th>
+                            <th>Complaint</th>
+                            <th>Status</th>
+                            <th>Created Date</th>
+                            <th>Assigned To</th>
+                            <th>Assign Date</th>
+                            <th>Reopen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for _, row in data.iterrows() %}
+                            <tr>
+                                <td>{{ row.0 }}</td>
+                                <td>{{ row.1 }}</td>
+                                <td>{{ row.2 }}</td>
+                                <td>{{ row.3 }}</td>
+                                <td>{{ row.4 }}</td>
+                                <td>{{ row.5 }}</td>
+                                <td>{{ row.6 }}</td>
+                                <td>{{ row.7 }}</td>
+                                <td>{{ row.8 }}</td>
+                                <td>{{ row.9 }}</td>
+                                <td>{{ row.10 }}</td>
+                                <td>{{ row.11 }}</td>
+                                <td>{{ row.12 }}</td>
+                                <td>
+                                    <form method="post" action="{{ url_for('list_of_complaints') }}">
+                                        <input type="hidden" name="comp_id" value="{{ row.0 }}">
+                                        <button class="btn btn-primary reopen-button" type="submit">Reopen</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="no-complaints">No complaints found.</p>
+        {% endif %}
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>

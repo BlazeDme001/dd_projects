@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Light blue background */
+            color: #000000; /* Dark text */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff; /* White background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            color: #000080; /* Navy blue text color */
+        }
+
+        h1 {
+            text-align: center;
+            color: #000080; /* Dark blue color */
+            font-size: 32px;
+        }
+
+        button.btn-primary {
+            background-color: #007bff; /* Blue button color */
+            color: #fff; /* White text color for the button */
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            padding: 10px 30px; 
+        }
+
+        button.btn-primary:hover {
+            background-color: #0056b3; /* Darker blue button color on hover */
+        }
+
+        /* Style the input fields */
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #007bff; /* Blue border color */
+            border-radius: 4px;
+            background-color: #ffffff; /* White input field color */
+            color: #000000; /* Black text color for input fields */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Task Management Portal Login</h1>
+        <form method="post" action="/login">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div><br>
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
+    </div>
+</body>
+</html>

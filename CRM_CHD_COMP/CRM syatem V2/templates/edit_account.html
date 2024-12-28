@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input[type="submit"] {
+            background-color: #8394e2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #4251d4;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Account</h1>
+    <form method="POST" action="/edit_account/{{ account.acc_id }}">
+        <label for="acc_name">Account Name:</label>
+        <input type="text" id="acc_name" name="acc_name" value="{{ account.acc_name }}" required>
+
+        <label for="GST_No">GST No:</label>
+        <input type="text" id="GST_No" name="GST_No" value="{{ account.gst_no }}">
+
+        <label for="street">Street:</label>
+        <input type="text" id="street" name="street" value="{{ account.street }}">
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" value="{{ account.city }}">
+
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" value="{{ account.state }}">
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" value="{{ account.country }}">
+
+        <label for="pincode">Pincode:</label>
+        <input type="text" id="pincode" name="pincode" value="{{ account.pincode }}">
+
+        <label for="contact_name">Contact Name:</label>
+        <input type="text" id="contact_name" name="contact_name" value="{{ account.contact_name }}">
+
+        <label for="contact_phone">Contact Phone:</label>
+        <input type="text" id="contact_phone" name="contact_phone" value="{{ account.contact_phone }}">
+
+        <label for="contact_email">Contact Email:</label>
+        <input type="email" id="contact_email" name="contact_email" value="{{ account.contact_email }}">
+
+        <label for="catagory">Category:</label>
+        <input type="text" id="catagory" name="catagory" value="{{ account.catagory }}">
+
+        <label for="enable_credit">Enable Credit:</label>
+        <select id="enable_credit" name="enable_credit" class="form-control">
+            <option value="yes" {% if account.enable_credit == 'yes' %}selected{% endif %} >Yes</option>
+            <option value="no" {% if account.enable_credit == 'no' %}selected{% endif %} >No</option>
+        </select>
+
+        <input type="submit" value="Update Account">
+    </form>
+</body>
+</html>
