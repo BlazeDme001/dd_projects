@@ -59,6 +59,7 @@
                 <table class="table table-striped table-bordered">
                     <thead class="table-light">
                         <tr>
+                            <th>Sl. No.</th>
                             <th>Tender ID</th>
                             <th>EMD Required</th>
                             <th>EMD Type</th>
@@ -73,6 +74,7 @@
                     <tbody>
                         {% for tender in tenders %}
                             <tr>
+                                <td>{{ loop.index }}</td>
                                 <td>{{ tender[0] }}</td>
                                 <td>{{ tender[1] }}</td>
                                 <td>{{ tender[2] }}</td>
@@ -83,7 +85,7 @@
                                 <td>{{ tender[8] }}</td>
                                 <td>
                                     <!-- Update Button -->
-                                    <a href="{{ url_for('update_EMD_details_fin', tender_id=tender[0]) }}" class="btn btn-primary btn-sm btn-action" target="_blank">Update</a>
+                                    <!-- <a href="{{ url_for('update_EMD_details_fin', tender_id=tender[0]) }}" class="btn btn-primary btn-sm btn-action" target="_blank">Update</a> -->
                                     <!-- View Details Button -->
                                     <a href="{{ url_for('view_EMD_BG_details', tender_id=tender[0], emd_id=tender[7]) }}" class="btn btn-info btn-sm btn-action" target="_blank">View Details</a>
                                 </td>

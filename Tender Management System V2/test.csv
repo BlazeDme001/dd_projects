@@ -1,0 +1,23 @@
+,Stage,Status,Lose Reason,tender_count
+1,Inserted,Open,,823
+2,approved,,,1
+3,approved,New-Corrigendum,,16
+4,approved,Not Submitted,,239
+5,approved,Open,,143
+6,approved,Submitted,,13
+7,approved,WIP,,3
+8,approved,WIP-FOR EMD,,1
+9,approved,WIP-For EMD,,1
+10,closed,Close-Cancel,,28
+11,closed,Close-LOSE,Bider Disqualify,3
+12,closed,Close-LOSE,Financial Disqualify,2
+13,closed,Close-LOSE,Product Disqualify,1
+14,closed,New-Corrigendum,,1
+15,direct_rejected,New-Corrigendum,,32
+16,direct_rejected,,,25
+17,none,Open,,4
+18,pre_approved,,,196
+19,rejected,New-Corrigendum,,222
+20,rejected,Not Submitted,,89
+21,rejected,Open,,135
+22,rejected,,,566

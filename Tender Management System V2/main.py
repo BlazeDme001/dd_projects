@@ -15,7 +15,7 @@ import mail
 import json
 import pandas as pd
 import activity as act
-
+import send_wp as wp
 
 app = Flask(__name__)
 
@@ -256,13 +256,6 @@ def index(folder_path):
 @app.route('/open_file/<filename>/<folder_path>', methods=['GET'])
 @login_required
 def open_file(filename, folder_path):
-    # file_path = os.path.join(folder_path, filename).replace('@@', '/')
-    # print(folder_path.replace('@@', '/'))
-    # print(filename)
-    
-    # print(file_path)
-    
-    # file_path = os.path.join(folder_path).replace('@@', '/')
     file_path = os.path.join(filename).replace('@@', '/')
     # print('---------------------------------')
     return send_file(file_path, as_attachment=False)
@@ -924,10 +917,7 @@ def update_emd_details(tender_id):
     logger.info('Current user is %s', str(username))
     user_id = str(username)
     if request.method == 'POST':
-    # current_user = USERS.get(session.get('username'))  # Get the current user object
-    # logger.info('Current user is %s', str(current_user.username))
         emd_required = request.form.get('emd_required')
-        # emd_form = request.form.get('emd_form')
         form = request.form.getlist('emd_form[]')
         emd_form = ', '.join(form)
         logger.info(f'EMD form is {emd_form}')
@@ -935,9 +925,7 @@ def update_emd_details(tender_id):
         in_favour_of = request.form.get('in_favour_of')
         remarks = request.form.get('remarks').replace("\"", "").replace("'","''")
         emd_exp_dt = request.form.get('emd_exp_dt').replace("T"," ")
-
         time_stamp = datetime.datetime.now().strftime('%d-%b-%Y %H:%M:%S')
-
         try:
             bg_details = {
                 "bank": request.form.get('bank'),
@@ -962,9 +950,7 @@ def update_emd_details(tender_id):
         with paramiko.SSHClient() as ssh_client:
             ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             ssh_client.connect(NAS_HOST, NAS_PORT, NAS_USERNAME, NAS_PASSWORD)
-
             nas_tender_folder = NAS_UPLOAD_FOLDER + tender_id + '/EMD Documents'
-
             try:
                 sftp = ssh_client.open_sftp()
                 sftp.mkdir(nas_tender_folder, mode=0o755)
@@ -1008,11 +994,12 @@ def update_emd_details(tender_id):
                 file_path = os.path.join(folder_location, file)
                 attachments.append(file_path)
         if emd_required in ('Yes', 'exempted'):
-            to_add = ["raman@shreenathgroup.in","seacc31@gmail.com","ramit.shreenath@gmail.com"]
+            # to_add = ["raman@shreenathgroup.in","seacc31@gmail.com","ramit.shreenath@gmail.com"]
+            to_add = ["raman@shreenathgroup.in","ramit.shreenath@gmail.com"]
             to_cc = None
             sub = f"EMD details for {tender_id}"
             body = f"""
-            Hello Finance Team,
+            Hello Raman Sir,
 
             EMD Required: {emd_required}
             EMD Type: {emd_form}
@@ -1049,8 +1036,6 @@ def update_emd_details(tender_id):
 
         return render_template('emd_pbc.html', tender_id=tender_id, emd_required=emd_required, emd_form=emd_form, emd_amount=emd_amount,
                             in_favour_of=in_favour_of, remarks=remarks)
-    # else:
-    #     return "You are not a valid user"
 
 
 @app.route('/pending_emd_list/', methods=['GET', 'POST'])
@@ -1098,46 +1083,84 @@ def emd_list():
     return render_template('emd_list.html', tenders=tenders)
 
 
-
 @app.route('/view_EMD_BG_details/<tender_id>/<emd_id>', methods=['GET', 'POST'])
 def view_EMD_BG_details(tender_id, emd_id):
     try:
-        # Fetch EMD/BG Details
         view_query = f""" SELECT id, tender_id, emd_required, emd_form, emd_amount, in_favour_of, remarks, emd_exp_dt, bg_details,
-                    emd_status, int_remarks FROM tender.tender_emd WHERE tender_id = '{tender_id}' AND id = {int(emd_id)} ;"""
+                    emd_status, int_remarks, epbg_file_loc FROM tender.tender_emd 
+                    WHERE tender_id = '{tender_id}' AND id = {int(emd_id)} ;"""
         emd_details = db.get_data_in_list_of_tuple(view_query)
-
+        print(emd_details[0][11])
         tender_status_query = f"""select done from tender.tender_management where tender_id = '{tender_id}' ;""" 
         try:
             tender_status = db.get_data_in_list_of_tuple(tender_status_query)[0][0]
         except:
             tender_status = None
-        print(tender_status)
-
         if not emd_details:
             flash("No details found for the given Tender ID and EMD ID.", "warning")
             return redirect(url_for('emd_list'))
-
         if request.method == 'POST':
             action = request.form.get('action')
-            # Update Details Logic
-            # emd_required = request.form.get('emd_required', '').strip()
             emd_required = 'Yes'
-            emd_form = ','.join(request.form.getlist('emd_form[]'))  # Handle multi-select
-            # print(request.form.getlist('emd_form[]'))
+            emd_form = ','.join(request.form.getlist('emd_form[]'))
             emd_amount = request.form.get('emd_amount', '').strip()
             in_favour_of = request.form.get('in_favour_of', '').strip()
             remarks = request.form.get('remarks', '').strip()
             emd_exp_dt = request.form.get('emd_exp_dt', '').strip()
             new_tender_status = request.form.get('status', '').strip()
+            files = request.files.getlist('document')
+            try:
+                file_loc = emd_details[0][11]
+            except:
+                file_loc = None
+            # file_loc = upload_emd_file_to_nas(tender_id, files) if files else emd_details[0][11]
+            if files:
+            # Doc upload logic ==============================================
+                current_session = requests.Session()
+                current_session.auth = (NAS_USERNAME, NAS_PASSWORD)
 
+                nas_file_paths = []
+                with paramiko.SSHClient() as ssh_client:
+                    ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+                    ssh_client.connect(NAS_HOST, NAS_PORT, NAS_USERNAME, NAS_PASSWORD)
+                    nas_tender_folder = os.path.join(NAS_UPLOAD_FOLDER, tender_id, 'EMD Documents')
+
+                    try:
+                        sftp = ssh_client.open_sftp()
+                        try:
+                            sftp.chdir(nas_tender_folder)  # Change to the directory
+                            print(f"Folder already exists: {nas_tender_folder}")
+                        except IOError:  # Folder does not exist
+                            print(f"Folder does not exist. Creating: {nas_tender_folder}")
+                            sftp.mkdir(nas_tender_folder, mode=0o755)
+                            sftp.chdir(nas_tender_folder)  # Change to the newly created folder
+
+                        # Upload each file
+                        for file in files:
+                            if file:
+                                filename = secure_filename(file.filename)
+                                print(f"Uploading file: {filename}")
+                                
+                                with NamedTemporaryFile(delete=False) as tmp_file:
+                                    file.save(tmp_file.name)
+                                    sftp.put(tmp_file.name, filename)  # Upload file
+                                    print(f"File uploaded successfully: {filename}")
+
+                        sftp.close()
+
+                        # Update file location
+                        file_loc = os.path.join(NAS_UPLOAD_FOLDER_1, tender_id, "EMD Documents")
+                        print(f"File location set to: {file_loc}")
+
+                    except Exception as e:
+                        print(f"Error during folder handling or file upload: {e}")
+                        logger.error(f"Error during folder handling or file upload: {str(e)}")
+                # ==============================================
             bg_details = {
                 key.replace('bg_details[', '').rstrip(']'): value
                 for key, value in request.form.items() if key.startswith('bg_details[')
             }
-
             if action == 'approve':
-                # Approval Logic
                 current_status = emd_details[0][9]
                 if current_status == 'For Approval - Admin' and session['profile'] != 'SUPER ADMIN':
                     new_emd_status = 'For Approval - Super Admin'
@@ -1145,67 +1168,125 @@ def view_EMD_BG_details(tender_id, emd_id):
                     new_emd_status = 'For Accounts'
                 else:
                     flash("Approval not allowed at the current status.", "danger")
-
                 int_remarks = f"Approved by {session['username']} at {datetime.datetime.now()}"
-                query = f"""
-                        UPDATE tender.tender_emd 
+                query = f"""UPDATE tender.tender_emd 
                         SET emd_required = '{emd_required}', emd_form = '{emd_form}', emd_amount = '{emd_amount}', 
                             in_favour_of = '{in_favour_of}', remarks = '{remarks}', emd_exp_dt = '{emd_exp_dt}', 
-                            bg_details = '{json.dumps(bg_details)}', emd_status = '{new_emd_status}', int_remarks = '{int_remarks}'
-                        WHERE tender_id = '{tender_id}' AND id = {int(emd_id)}
-                    """
-
+                            bg_details = '{json.dumps(bg_details)}', emd_status = '{new_emd_status}', 
+                            int_remarks = '{int_remarks}', epbg_file_loc = '{file_loc}'
+                        WHERE tender_id = '{tender_id}' AND id = {int(emd_id)} ;"""
                 db.execute(query)
-
                 db.execute(f"update tender.tender_management set done='{new_tender_status}' where tender_id = '{tender_id}' ;")
-
                 flash("EMD/BG approved and Details updated successfully. ", "success")
-                return redirect(url_for('view_EMD_BG_details', tender_id=tender_id, emd_id=emd_id))
-
+                # return redirect(url_for('view_EMD_BG_details', tender_id=tender_id, emd_id=emd_id))
             elif action == 'reject':
-                # Rejection Logic
                 if session['profile'] == 'ADMIN':
                     new_emd_status = 'For Tender Team'
-                elif session['profile'] != 'SUPER ADMIN':
+                elif session['profile'] == 'SUPER ADMIN':
                     new_emd_status = 'For Approval - Admin'
                 else:
                     flash("Rejection not allowed at the current status.", "danger")
-
                 int_remarks = f"Rejected by {session['username']} at {datetime.datetime.now()}"
-                # query = f"""
-                #     UPDATE tender.tender_emd 
-                #     SET emd_status = '{new_emd_status}', int_remarks = '{remarks}' 
-                #     WHERE tender_id = '{tender_id}' AND id = {int(emd_id)}
-                # """
-                query = f"""
-                        UPDATE tender.tender_emd 
+                query = f"""UPDATE tender.tender_emd 
                         SET emd_required = '{emd_required}', emd_form = '{emd_form}', emd_amount = '{emd_amount}', 
                             in_favour_of = '{in_favour_of}', remarks = '{remarks}', emd_exp_dt = '{emd_exp_dt}', 
-                            bg_details = '{json.dumps(bg_details)}', emd_status = '{new_emd_status}', int_remarks = '{int_remarks}'
-                        WHERE tender_id = '{tender_id}' AND id = {int(emd_id)}
-                    """
+                            bg_details = '{json.dumps(bg_details)}', emd_status = '{new_emd_status}',
+                            int_remarks = '{int_remarks}', epbg_file_loc = '{file_loc}'
+                        WHERE tender_id = '{tender_id}' AND id = {int(emd_id)} ;"""
+                
                 db.execute(query)
-
                 db.execute(f"update tender.tender_management set done='{new_tender_status}' where tender_id = '{tender_id}' ;")
-
                 flash("EMD/BG rejected and Details updated successfully.", "danger")
-                return redirect(url_for('view_EMD_BG_details', tender_id=tender_id, emd_id=emd_id))
+                # return redirect(url_for('view_EMD_BG_details', tender_id=tender_id, emd_id=emd_id))
 
-            # else:
+            # Mail logic =======================================
+            sub = f'Change in EMD status for {tender_id}'
+            body = f"""Hello team, \n\nBelow are the EMD chnages,\nTender ID: {tender_id},\nEMD Status: {new_emd_status},
+                    \nUpdated By: {int_remarks}, \nURL: http://103.223.15.56:5011/view_EMD_BG_details/{tender_id}/{emd_id}
+                    \nCheck this emd details in 'EMD list' section.\n\nThanks,\ntender management System"""
+            to_add = ['ramit.shreenath@gmail.com']
+            to_cc = []
+            if new_emd_status == 'For Approval - Admin':
+                to_add.append('raman@shreenathgroup.in')
+                to_cc.append('gursimran@digital-dreams.in')
+            elif new_emd_status == 'For Tender Team':
+                to_add.append('gursimran@digital-dreams.in')
+                to_cc.append('raman@shreenathgroup.in')
+            elif new_emd_status == 'For Approval - Super Admin':
+                to_add.append('ashish@shreenathgroup.in')
+                to_cc.append('raman@shreenathgroup.in')
+            elif new_emd_status == 'For Accounts':
+                to_add.append('viyomta@digtal-dreams.in')
+                to_cc.append('ashish@shreenathgroup.in')
+            print(to_add)
 
-
-
-            #     db.execute(query)
-            #     flash("Details updated successfully.", "info")
+            mail.send_mail(to_add=to_add, to_cc=to_cc, sub=sub, body=body)
+            wp.send_msg_in_group(msg=body)
+            # return redirect(url_for('view_EMD_BG_details', tender_id=tender_id, emd_id=emd_id))
 
             return redirect(url_for('view_EMD_BG_details', tender_id=tender_id, emd_id=emd_id))
 
         else:
-            return render_template('view_emd_bg_details.html', details=emd_details, tender_status=tender_status)
-
+            if emd_details:
+                emd_form_list = emd_details[0][3].split(',')
+                try:
+                    bg_details = emd_details[0][8] if emd_details[0][8] else {}
+                except:
+                    bg_details = {
+                        "bank": "",
+                        "fdr_no": "",
+                        "bg_amount": "",
+                        "bg_ref_no": "",
+                        "bg_status": "under_approvals",
+                        "difference": "",
+                        "bg_issue_date": "",
+                        "bg_expiry_date": "",
+                        "bg_outstanding": "",
+                        "date_of_closure": "",
+                        "required_expiry_date": "",
+                        "beneficiary_name": ""
+                        }
+            return render_template('view_emd_bg_details.html', details=emd_details, bg_details=bg_details, tender_status=tender_status, emd_form_list=emd_form_list)
     except Exception as e:
         flash(f"An error occurred: {e}", "danger")
         return redirect(url_for('emd_list'))
+
+
+# def upload_emd_file_to_nas(tender_id,files):
+    
+#         current_session = requests.Session()
+#         current_session.auth = (NAS_USERNAME, NAS_PASSWORD)
+
+#         nas_file_paths = []
+#         with paramiko.SSHClient() as ssh_client:
+#             ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+#             ssh_client.connect(NAS_HOST, NAS_PORT, NAS_USERNAME, NAS_PASSWORD)
+
+#             nas_tender_folder = NAS_UPLOAD_FOLDER + tender_id + '/EMD Documents'
+
+#             try:
+#                 sftp = ssh_client.open_sftp()
+#                 sftp.mkdir(nas_tender_folder, mode=0o755)
+#                 sftp.close()
+#             except Exception as e:
+#                 pass
+#             for file in files:
+#                 if file:
+#                     filename = secure_filename(file.filename)
+
+#                     with NamedTemporaryFile(delete=False) as tmp_file:
+#                         file.save(tmp_file.name)
+
+#                         try:
+#                             sftp = ssh_client.open_sftp()
+#                             sftp.chdir(nas_tender_folder)
+#                             sftp.put(tmp_file.name, filename)
+#                             sftp.close()
+#                         except Exception as e:
+#                             logger.error(f"Failed to upload file to NAS: {str(e)}")
+
+#         folder_location = os.path.join(NAS_UPLOAD_FOLDER_1, tender_id, "EMD Documents")
+#         return folder_location
 
 
 @app.route('/pending_emd_list/update_emd_status/<tender_id>', methods=['GET', 'POST'])
@@ -1240,15 +1321,12 @@ def update_EMD_details_fin(tender_id):
                 sftp.close()
             except Exception as e:
                 pass
-
             files = request.files.getlist('document')
             for file in files:
                 if file:
                     filename = secure_filename(file.filename)
-
                     with NamedTemporaryFile(delete=False) as tmp_file:
                         file.save(tmp_file.name)
-
                         try:
                             sftp = ssh_client.open_sftp()
                             sftp.chdir(nas_tender_folder)
@@ -1259,7 +1337,8 @@ def update_EMD_details_fin(tender_id):
 
         folder_location = os.path.join(NAS_UPLOAD_FOLDER_1, tender_id, "EMD Documents")
 
-        query = f"""UPDATE tender.tender_emd SET ext_col_1 = '{status}', remarks = '{remarks}', emd_form = '{emd_form}', time_stamp = '{time_stamp}', epbg_file_loc = '{folder_location}'
+        query = f"""UPDATE tender.tender_emd SET ext_col_1 = '{status}', remarks = '{remarks}', 
+        emd_form = '{emd_form}', time_stamp = '{time_stamp}', epbg_file_loc = '{folder_location}'
         WHERE tender_id = '{str(tender_id)}'"""
         suc = db.execute(query)
         logger.info(query)
