@@ -1,0 +1,5 @@
+2025-01-15 10:11:37,261 - Line:97 - WARNING ::=>  * Debugger is active!
+2025-01-15 10:11:37,262 - Line:97 - INFO ::=>  * Debugger PIN: 622-529-200
+2025-01-15 10:15:11,763 - Line:97 - INFO ::=> 103.223.15.56 - - [15/Jan/2025 10:15:11] "GET /login HTTP/1.1" 200 -
+2025-01-15 10:19:58,086 - Line:97 - ERROR ::=> 91.238.181.22 - - [15/Jan/2025 10:19:58] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+2025-01-15 10:19:58,086 - Line:97 - INFO ::=> 91.238.181.22 - - [15/Jan/2025 10:19:58] "[31m[1m\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie: mstshash=Administr[0m" 400 -
