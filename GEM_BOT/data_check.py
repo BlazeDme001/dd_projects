@@ -85,10 +85,13 @@ def read_df():
     dfs = []
     # Iterate over each CSV file 
     for file in csv_files:
-        # Read the CSV file into a DataFrame
-        df = pd.read_csv(file)
-        # Append the DataFrame to the list
-        dfs.append(df)
+        try:
+            # Read the CSV file into a DataFrame
+            df = pd.read_csv(file)
+            # Append the DataFrame to the list
+            dfs.append(df)
+        except:
+            continue
     # Concatenate the list of DataFrames into a single DataFrame, considering duplicates for 'bid_no'
     merged_data = pd.concat(dfs, ignore_index=True, verify_integrity=True)
     merged_data['bid_no_1'] = merged_data['BID NO'].str.replace("/", "_")
