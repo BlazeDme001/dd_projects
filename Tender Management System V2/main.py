@@ -1021,6 +1021,10 @@ def update_emd_details(tender_id):
                 body = body.replace("link: http://103.223.15.56:5010/pending_emd_list", '')
             if tender_id != '1':
                 mail.send_mail(to_add, to_cc, sub, body, attach=attachments)
+                try:
+                    wp.send_msg_in_group(msg=body)
+                except:
+                    pass
 
         return redirect(url_for('view_tender_details', tender_id=tender_id))
 
