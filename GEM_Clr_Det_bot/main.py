@@ -83,7 +83,8 @@ def login():
             password = driver.find_element(By.XPATH, '//*[@id="password"]')
             password.click()
             password.clear()
-            password.send_keys("December2024@")
+            # password.send_keys("December2024@")
+            password.send_keys("Shreenath@2025")
             break
         except:
             time.sleep(5)

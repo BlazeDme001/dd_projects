@@ -49,7 +49,7 @@ def send_msg_in_group(group_id=None, msg=None):
         if not msg:
             msg = 'Testing msg'
         id = group_id.replace('@','%40')
-        url = f'https://whatsapp.kewalkishan.com/api/v1/message/create?username=ashish%40shreenathgroup.in&password=banbhori0031&recipientIds={id}&message={msg}'
+        url = f'http://whatsapp.zillion.io/api/v1/message/create?username=ashish%40shreenathgroup.in&password=banbhori0031&recipientIds={id}&message={msg}'
 
         response = requests.request("GET", url)
 

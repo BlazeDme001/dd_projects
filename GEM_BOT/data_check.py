@@ -65,16 +65,23 @@ def extract_links_from_pdf(pdf_path):
 
 
 def download_files(urls, download_path, nas_path):
+    new_path = []
     os.makedirs(download_path, exist_ok=True)
     for url in urls:
-        filename = os.path.join(download_folder, url.split('/')[-1])
-        print(filename)
-        response = requests.get(url, timeout=300)
-        with open(filename, 'wb') as file:
-            file.write(response.content)
-        new_file_path = os.path.join(nas_path, url.split('/')[-1])
-        shutil.move(filename, new_file_path)
-
+        # print(url)
+        try:
+            filename = os.path.join(download_folder, url.split('/')[-1])
+            print(filename)
+            response = requests.get(url, timeout=300, verify=False)
+            with open(filename, 'wb') as file:
+                file.write(response.content)
+            new_file_path = os.path.join(nas_path, url.split('/')[-1])
+            shutil.move(filename, new_file_path)
+            print(new_file_path)
+            new_path.append(new_file_path)
+        except:
+            continue
+    return new_path
 
 def read_df():
     # Define the path to the folder containing the CSV files
@@ -231,10 +238,12 @@ def main():
             wi.processing_check_wait(driver, cls='card', time=10)
             try:
                 bid_file = driver.find_element(By.XPATH, f'''//*[contains(text(),"{row['BID NO']}")]''')
+                # bid_file = driver.find_element(By.XPATH, f'''//*[contains(text(),"GEM/2025/B/5847516")]''')
                 bid_file.click()
                 bids_page_data = driver.find_elements(By.CLASS_NAME, "card")
                 # nas_path = os.path.join(os.getcwd(), 'NAS', str(row['bid_no_1']))
                 nas_path = os.path.join(r'\\Digitaldreams\tender auto', str(row['bid_no_1']))
+                # nas_path = os.path.join(r'\\Digitaldreams\tender auto', 'GEM_2025_B_5847516')
                 # nas_path = os.path.join(r'\\Digitaldreams\tender auto', 'er')
                 # nas_path = os.path.join(r'/abcd/tender_auto', 'testing_1')
                 check_folder = os.makedirs(nas_path, exist_ok=True)
@@ -269,7 +278,12 @@ def main():
                             new_file_path = os.path.join(nas_path, f_name)
                             shutil.move(latest_file, new_file_path)
                             pdf_links = [url['uri'] for url in urls if url['uri'].lower().endswith(('.pdf', '.xls', '.xlsx', '.docx', '.doc', '.csv'))]
-                            download_files(pdf_links, download_folder, nas_path)
+                            try:
+                                new_paths_to_NAS = download_files(pdf_links, download_folder, nas_path)
+                                # body = f'Hello Team,\nBelow are the file path when pdf files are donwload and move by bot.\n{new_paths_to_NAS}\n\nThanks,\nGem Bot'
+                                # mail.send_mail(to_add=['preetinder@digital-dreams.in'], to_cc=['ramit.shreenath@gmail.com'], sub=f'Files path for tender id {new_paths_to_NAS}', body=body)
+                            except Exception as err:
+                                print(f"Error in download pdfs, Error: {str(err)}")
 
                             os.rmdir(download_folder)
                             os.makedirs(os.path.join(os.getcwd(), 'downloads'))

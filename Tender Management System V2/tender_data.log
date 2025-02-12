@@ -1,2 +1,10 @@
-2025-01-17 10:31:05,525 - Line:97 - WARNING ::=>  * Debugger is active!
-2025-01-17 10:31:05,542 - Line:97 - INFO ::=>  * Debugger PIN: 622-529-200
+2025-02-12 11:01:36,139 - Line:97 - WARNING ::=>  * Debugger is active!
+2025-02-12 11:01:36,140 - Line:97 - INFO ::=>  * Debugger PIN: 782-314-787
+2025-02-12 11:06:15,021 - Line:97 - INFO ::=> 103.223.15.47 - - [12/Feb/2025 11:06:15] "POST /log_time_spent HTTP/1.1" 200 -
+2025-02-12 11:06:48,822 - Line:97 - INFO ::=> 103.223.15.47 - - [12/Feb/2025 11:06:48] "POST /log_time_spent HTTP/1.1" 200 -
+2025-02-12 11:07:38,408 - Line:97 - INFO ::=> 103.223.15.47 - - [12/Feb/2025 11:07:38] "POST /log_time_spent HTTP/1.1" 200 -
+2025-02-12 11:07:42,420 - Line:97 - INFO ::=> 103.223.15.47 - - [12/Feb/2025 11:07:42] "POST /log_time_spent HTTP/1.1" 200 -
+2025-02-12 11:09:04,833 - Line:97 - INFO ::=> 192.168.2.138 - - [12/Feb/2025 11:09:04] "POST /log_time_spent HTTP/1.1" 200 -
+2025-02-12 11:09:31,697 - Line:624 - INFO ::=> Current user is Roshni
+2025-02-12 11:09:31,771 - Line:97 - INFO ::=> 192.168.2.138 - - [12/Feb/2025 11:09:31] "GET /approve_tenders/view_tender_details/GEM_2025_B_5851184 HTTP/1.1" 200 -
+2025-02-12 11:09:31,791 - Line:97 - INFO ::=> 192.168.2.138 - - [12/Feb/2025 11:09:31] "POST /log_time_spent HTTP/1.1" 200 -
