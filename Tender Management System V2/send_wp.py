@@ -1,7 +1,7 @@
 import requests
 import json
 
-url = "http://whatsapp.kewalkishan.com/api/v1/message/create"
+url = "http://whatsapp.zillion.io/api/v1/message/create"
 
 headers = {
 'Username': 'ashish@shreenathgroup.in',

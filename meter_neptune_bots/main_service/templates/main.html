@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .top-bar {
+            max-width: 900px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            background: #96d4ec;
+            color: white;
+            border-radius: 8px;
+        }
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        .logout-btn:hover {
+            background: #c82333;
+        }
+        h2 {
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        table {
+            width: 95%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .submit-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .search-container {
+            margin-bottom: 10px;
+        }
+        .search-container input {
+            width: 80%;
+            padding: 8px;
+        }
+    </style>
+    <script>
+        function filterTable() {
+            let searchValue = document.getElementById("searchInput").value.toLowerCase();
+            let table = document.getElementById("serviceTable");
+            let rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let match = false;
+
+                for (let j = 0; j < 3; j++) { // Only search in Project, Sub-Project, and Service columns
+                    if (cells[j].innerText.toLowerCase().includes(searchValue)) {
+                        match = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = match ? "" : "none";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="top-bar">
+        <h2>Service Status Management</h2>
+        <form action="{{ url_for('logout') }}" method="GET">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search by Project, Sub-Project, or Service">
+        </div>
+
+        <form method="POST">
+            <table id="serviceTable">
+                <thead>
+                    <tr>
+                        <th>Serial</th>
+                        <th>Project</th>
+                        <th>Sub Project</th>
+                        <th>Service</th>
+                        <th>Insert Time</th>
+                        <th>Update Time</th>
+                        <th>Reminder Time</th> <!-- New Column -->
+                        <th>Minimum Balance</th> <!-- New Column -->
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for service in services %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ service[1] }}</td>
+                        <td>{{ service[2] }}</td>
+                        <td>{{ service[3] }}</td>
+                        <td>{{ service[5] }}</td>
+                        <td>{{ service[6] }}</td>
+                        <td>
+                            <input type="number" name="check_time_{{ service[0] }}" step="1" placeholder="{{ service[7] }}">
+                        </td>
+                        <td>
+                            <input type="number" name="min_bal_{{ service[0] }}" step="0.01" placeholder="{{ cur_min_bal }}">
+                        </td>
+                        <td>
+                            <input type="hidden" name="service_id" value="{{ service[0] }}">
+                            <select name="status_{{ service[0] }}">
+                                <option value="ON" {% if service[4] == "ON" %}selected{% endif %}>ON</option>
+                                <option value="OFF" {% if service[4] == "OFF" %}selected{% endif %}>OFF</option>
+                            </select>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                
+            </table>
+
+            <div class="submit-container">
+                <button type="submit">Update Status</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
