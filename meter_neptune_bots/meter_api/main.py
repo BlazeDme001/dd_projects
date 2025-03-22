@@ -52,7 +52,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        if username == 'Admin' and password == 'Admin' and status == 'ON':
+        if username == 'nirwana' and password == 'Nirwana54321%$#@!' and status == 'ON':
             session['user'] = username
             session['name'] = 'Admin'
             session['mobile'] = '6283287351'
@@ -77,6 +77,9 @@ def home():
                     updated_by, updated_date, mobile, email FROM meter_api.meter_user_details; """
     check_data = db.get_data_in_list_of_tuple(check_query)
 
+    ref_query = f""" select updated_time from meter_api.meter_user_details_refresh where id = 1 ; """
+    ref_data = db.get_data_in_list_of_tuple(ref_query)
+    session['last_refresh'] = ref_data[0][0] if ref_data else 'Not refreshed yet'
     last_refresh = session.get('last_refresh', 'Not refreshed yet')  # Get last refresh time
     return render_template('home.html', data=check_data, last_refresh=last_refresh)
 
@@ -85,11 +88,17 @@ def home():
 @login_required
 def update_contact(dev_no):
     if request.method == 'POST':
+        name = request.form.get('name')
         mobile = request.form.get('mobile')
         email = request.form.get('email')
 
+        if not mobile or mobile == 'None':
+            mobile = ''
+        if not email or email == 'None':
+            email = ''
+
         update_query = f""" UPDATE meter_api.meter_user_details SET mobile = '{mobile}', 
-        email = '{email}', updated_by = '{session['user']}', updated_date = NOW()
+        email = '{email}', ca_name = '{name}', updated_by = '{session['user']}', updated_date = NOW()
         WHERE DEVICE_SLNO = '{dev_no}'; """
         db.execute(update_query)
         flash("Contact details updated successfully!", "success")
@@ -163,7 +172,9 @@ def get_ems_livedata():
 
 def get_all_api_data():
     live_data = get_ems_livedata()
-    for data in live_data[:10]:
+    for data in live_data:
+        # if data['DEVICE_SLNO'] == '893074':
+        #     break
         check_query = f""" SELECT CA_NAME, CA_ADDRESS, DEVICE_SLNO,
             EB_OPENING_READING, DG_OPENING_READING, EB_PV_READING, DG_PV_READING,
             OPENING_BALANCE, PV_BAL, STATUS, req_bal, check_time, remarks,
@@ -177,7 +188,7 @@ def get_all_api_data():
             'inserted_by', 'inserted_date']
 
             insert_query = f""" insert into meter_api.meter_user_details 
-            ({', '.join(col_names)}) VALUES ('{data['CA_NAME']}','{data['CA_ADDRESS']}', '{data['DEVICE_SLNO']}',
+            ({', '.join(col_names)}) VALUES ('Customer','{data['CA_ADDRESS']}', '{data['DEVICE_SLNO']}',
             '{data['EB_OPENING_READING']}','{data['DG_OPENING_READING']}','{data['EB_PV_READING']}',
             '{data['DG_PV_READING']}','{data['OPENING_BALANCE']}','{data['PV_BAL']}','{data['STATUS']}',
             NOW(),'{session["user"]}', NOW()) ;"""
@@ -203,11 +214,13 @@ def get_all_api_data():
             if check_data[0][9] and check_data[0][9] != data['STATUS']:
                 update_list.append(f"STATUS = '{data['STATUS']}'")
             update_list.append(f"""updated_date = now(), updated_by = '{session["user"]}'""")
-            
-            update_query = f"""" update meter_api.meter_user_details set {', '.join(update_list)} 
-                            where DEVICE_SLNO = '{data['DEVICE_SLNO']}' ;"""
+            # update_data_list = ' , '.join(update_list)
+            update_query = f""" update meter_api.meter_user_details set {' , '.join(update_list)} where DEVICE_SLNO = '{data['DEVICE_SLNO']}' ;"""
 
             db.execute(update_query)
+
+    ref_query = f""" update meter_api.meter_user_details_refresh set updated_time = now() where id = 1 ; """
+    db.execute(ref_query)
 
 
 if __name__ == '__main__':

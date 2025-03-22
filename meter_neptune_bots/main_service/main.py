@@ -59,8 +59,8 @@ def home():
             service_id = service[0]
             new_status = request.form.get(f'status_{service_id}')
             check_time = request.form.get(f'check_time_{service_id}')
-            min_bal = request.form.get(f'check_time_{service_id}')
-
+            min_bal = request.form.get(f'min_bal_{service_id}')
+            print(f"{min_bal} -- {service_id}")
             update_fields = []
             
             # If status changed, add it to the update query
@@ -80,8 +80,8 @@ def home():
             if min_bal:
                 update_user_query = f""" update meter_api.meter_user_details set req_bal = '{min_bal}' where STATUS = 'Active' ;"""
                 db.execute(update_user_query)
-        return redirect(url_for('home'))
 
+        return redirect(url_for('home'))
     return render_template('main.html', services=check_data, cur_min_bal=cur_min_bal)
 
 

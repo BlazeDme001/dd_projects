@@ -15,7 +15,7 @@
             <form method="POST">
                 <div class="mb-3">
                     <label class="form-label">CA Name:</label>
-                    <input type="text" class="form-control" value="{{ data[0][0] }}" readonly>
+                    <input type="text" class="form-control" name="name" value="{{ data[0][0] }}" required>
                 </div>
                 
                 <div class="mb-3">
@@ -30,12 +30,12 @@
                 
                 <div class="mb-3">
                     <label class="form-label">Mobile:</label>
-                    <input type="text" class="form-control" name="mobile" value="{{ data[0][3] }}" required>
+                    <input type="text" class="form-control" name="mobile" value="{{ data[0][3] }}">
                 </div>
                 
                 <div class="mb-3">
                     <label class="form-label">Email:</label>
-                    <input type="email" class="form-control" name="email" value="{{ data[0][4] }}" required>
+                    <input type="text" class="form-control" name="email" value="{{ data[0][4] }}">
                 </div>
                 
                 <div class="text-center">

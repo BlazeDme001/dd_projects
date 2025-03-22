@@ -40,11 +40,9 @@
                         <th>Device Serial No</th>
                         <th>Mobile</th>
                         <th>Email</th>
-                        <th>EB Opening Reading</th>
-                        <th>DG Opening Reading</th>
                         <th>EB PV Reading</th>
                         <th>DG PV Reading</th>
-                        <th>Opening Balance</th>
+                        <th>Total Reading</th>
                         <th>PV Balance</th>
                         <th>Status</th>
                         <th>Requested Balance</th>
@@ -66,11 +64,9 @@
                         <td>{{ row[2] }}</td>
                         <td>{{ row[17] }}</td>
                         <td>{{ row[18] }}</td>
-                        <td>{{ row[3] }}</td>
-                        <td>{{ row[4] }}</td>
                         <td>{{ row[5] }}</td>
                         <td>{{ row[6] }}</td>
-                        <td>{{ row[7] }}</td>
+                        <td>{{ (row[5] | float + row[6] | float) | round(2) }}</td>
                         <td>{{ row[8] }}</td>
                         <td>{{ row[9] }}</td>
                         <td>{{ row[10] }}</td>
