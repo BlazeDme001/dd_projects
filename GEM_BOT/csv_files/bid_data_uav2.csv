@@ -1,20 +1,10 @@
 ,BID NO,Items,Quantity,Start Date,End Date,Department Name And Address,new_itm
-0,GEM/2025/B/5956007,Unmanned Aerial Vehicle & Payl...,20,2025-02-17 15:57,2025-03-24 13:00,Home Department Gujarat,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-1,GEM/2025/B/6037140,Unmanned Aerial Vehicle & Payl...,1,2025-03-07 22:24,2025-03-24 14:00,Forest Department Madhya Pradesh,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-3,GEM/2025/B/6077300,Unmanned Aerial Vehicle & Payl...,1,2025-03-21 14:53,2025-03-24 16:00,Ministry of Defence Department of Defence,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-4,GEM/2025/B/6077270,Unmanned Aerial Vehicle & Payl...,2,2025-03-21 14:46,2025-03-24 16:00,Ministry of Defence Department of Defence,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-5,GEM/2025/B/6057719,Unmanned Aerial Vehicle & Payl...,1,2025-03-14 19:52,2025-03-24 20:00,Ministry of Agriculture and Farmers Welfare Department of Agricultural Research and Education (DARE),Unmanned Aerial Vehicle & Payload Systems for Surveillance
-6,GEM/2024/B/5477893,Unmanned Aerial Vehicle & Payl...,2,2024-11-02 13:30,2025-03-25 09:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-7,GEM/2025/B/6044260,Unmanned Aerial Vehicle & Payl...,15,2025-03-12 20:56,2025-03-26 12:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-8,GEM/2025/B/6028143,SMALL CLASS UNMANNED AERIAL VE...,2,2025-03-06 12:19,2025-03-27 13:00,Ministry of Agriculture and Farmers Welfare Department of Agriculture Cooperation and Farmers Welfare,SMALL CLASS UNMANNED AERIAL VEHICLE
-9,GEM/2025/B/6060305,Unmanned Aerial Vehicle & Payl...,4,2025-03-17 16:23,2025-03-27 17:00,Forest Department Madhya Pradesh,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-10,GEM/2025/B/5819943,Unmanned Aerial Vehicle (UAV/U...,1,2025-03-10 19:46,2025-03-27 20:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle (UAV/UAS) as per MHA QR
-11,GEM/2025/B/6066136,Unmanned Aerial Vehicle & Payl...,1,2025-03-18 15:35,2025-03-28 16:00,Forest and Environment Department Odisha,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-12,GEM/2025/B/6071359,Unmanned Aerial Vehicle & Payl...,1,2025-03-20 10:54,2025-03-31 11:00,Home Department Jammu and Kashmir,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-13,GEM/2025/B/6063823,Unmanned Aerial Vehicle & Payl...,1,2025-03-17 22:23,2025-03-31 12:00,Home Department Madhya Pradesh,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-14,GEM/2025/B/6061866,Unmanned Aerial Vehicle & Payl...,1,2025-03-20 14:52,2025-03-31 15:00,Ministry of Railways Indian Railways,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-15,GEM/2025/B/5789520,Unmanned Aerial Vehicle (UAV/U...,1,2025-01-07 18:54,2025-03-31 17:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle (UAV/UAS) as per MHA QR
-16,GEM/2025/B/6024650,Unmanned Aerial Vehicle (UAV/U...,6,2025-03-05 13:47,2025-04-01 14:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle (UAV/UAS) as per MHA QR
-17,GEM/2025/B/6076785,Unmanned Aerial Vehicle & Payl...,1,2025-03-21 16:33,2025-04-02 13:00,Ministry of Railways Indian Railways,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-18,GEM/2025/B/6070049,Unmanned Aerial Vehicle & Payl...,4,2025-03-19 16:29,2025-04-08 16:00,Home Department Chhattisgarh,Unmanned Aerial Vehicle & Payload Systems for Surveillance
-19,GEM/2025/B/6047393,Unmanned Aerial Vehicle & Payl...,1,2025-03-12 09:07,2025-04-08 20:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle & Payload Systems for Surveillance
+0,GEM/2025/B/6063823,Unmanned Aerial Vehicle & Payl...,1,2025-03-17 22:23,2025-04-15 12:00,Home Department Madhya Pradesh,Unmanned Aerial Vehicle & Payload Systems for Surveillance
+1,GEM/2025/B/6086147,Unmanned Aerial Vehicle & Payl...,1,2025-03-25 14:47,2025-04-15 15:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle & Payload Systems for Surveillance
+2,GEM/2024/B/5484449,Unmanned Aerial Vehicle & Payl...,32,2024-11-05 17:46,2025-04-15 17:00,Ministry of Home Affairs Central Armed Police Forces,Unmanned Aerial Vehicle & Payload Systems for Surveillance
+3,GEM/2025/B/6044260,Unmanned Aerial Vehicle & Payl...,15,2025-03-12 20:56,2025-04-16 09:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle & Payload Systems for Surveillance
+4,GEM/2025/B/6137589,Unmanned Aerial Vehicle (UAV/U...,2,2025-04-13 12:05,2025-04-16 10:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle (UAV/UAS) as per MHA QR
+5,GEM/2025/B/6070049,Unmanned Aerial Vehicle & Payl...,4,2025-03-19 16:29,2025-04-16 16:00,Home Department Chhattisgarh,Unmanned Aerial Vehicle & Payload Systems for Surveillance
+6,GEM/2025/B/6102216,Unmanned Aerial Vehicle & Payl...,1,2025-04-09 13:50,2025-04-19 14:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle & Payload Systems for Surveillance
+8,GEM/2025/B/6010551,Unmanned Aerial Vehicle & Payl...,11,2025-04-03 14:10,2025-04-24 11:00,Ministry of Home Affairs Central Armed Police Forces,Unmanned Aerial Vehicle & Payload Systems for Surveillance
+9,GEM/2025/B/6112394,OBLIQUE SENSOR for Unmanned Ae...,9,2025-04-09 14:28,2025-04-25 13:00,Citizen Resources Information Department,"OBLIQUE SENSOR for Unmanned Aerial Vehicle/UAV/Drone,Drone/Unmanned Aerial Vehicle/UAV for Training"

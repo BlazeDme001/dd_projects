@@ -143,7 +143,8 @@ def tenders():
 
     query = """SELECT tender_id, customer, name_of_work, submission_date, folder_location, verification_1,
     inserted_time, to_whom FROM tender.tender_management WHERE (verification_1 in ('none','', 'pre_approved')
-    or verification_1 is NULL) and tender_id is not NULL"""
+    or verification_1 is NULL) and tender_id not in (select tender_id FROM tender.tender_management where 
+    (done = 'Not Submitted' and rej_rsn = 'Expired')) and tender_id is not NULL"""
 
     filters = []
     parameters = []
@@ -228,7 +229,7 @@ def update_verification(folder_path):
 
                 A new tender has been Approve with tender ID: {t_id[0][0]}
                 Approver: {user_id}
-                URL: http://103.223.15.56:5010/approve_tenders/?filter_tender_id={t_id[0][0]}
+                URL: http://103.223.15.47:5010/approve_tenders/?filter_tender_id={t_id[0][0]}
                 \n
                 Customer: {t_id[0][2]}
                 Name Of Work: {t_id[0][3]}
@@ -387,7 +388,7 @@ def insert():
                 Hello Team,
 
                 A new tender has been inserted with tender ID: {tender_id}
-                URL: http://103.223.15.56:5010/tenders/?filter_tender_id={tender_id}
+                URL: http://103.223.15.47:5010/tenders/?filter_tender_id={tender_id}
 
 
                 Thanks,
@@ -798,7 +799,7 @@ def update_tender_status_remarks(tender_id):
                 Submission Date: {str(submission_date)}
                 Updated By: {user_id}
 
-                URL: http://103.223.15.56:5010/approve_tenders/?filter_tender_id={tender_id}
+                URL: http://103.223.15.47:5010/approve_tenders/?filter_tender_id={tender_id}
 
                 Thanks,
                 Tender APP BOT
@@ -1007,7 +1008,7 @@ def update_emd_details(tender_id):
             EMD Updated by: {user_id}
             Required documents are shared as attachments.\n
 
-            link: http://103.223.15.56:5010/pending_emd_list
+            link: http://103.223.15.47:5010/pending_emd_list
             \n
 
             PFA\n
@@ -1018,7 +1019,7 @@ def update_emd_details(tender_id):
             Team Shreenath
             """
             if emd_required == 'exempted':
-                body = body.replace("link: http://103.223.15.56:5010/pending_emd_list", '')
+                body = body.replace("link: http://103.223.15.47:5010/pending_emd_list", '')
             if tender_id != '1':
                 mail.send_mail(to_add, to_cc, sub, body, attach=attachments)
                 try:
@@ -1206,7 +1207,7 @@ def view_EMD_BG_details(tender_id, emd_id):
             # Mail logic =======================================
             sub = f'Change in EMD status for {tender_id}'
             body = f"""Hello team, \n\nBelow are the EMD chnages,\nTender ID: {tender_id},\nEMD Status: {new_emd_status},
-                    \nUpdated By: {int_remarks}, \nURL: http://103.223.15.56:5011/view_EMD_BG_details/{tender_id}/{emd_id}
+                    \nUpdated By: {int_remarks}, \nURL: http://103.223.15.47:5011/view_EMD_BG_details/{tender_id}/{emd_id}
                     \nCheck this emd details in 'EMD list' section.\n\nThanks,\ntender management System"""
             to_add = ['ramit.shreenath@gmail.com']
             to_cc = []
@@ -1364,7 +1365,7 @@ def update_EMD_details_fin(tender_id):
                 \n
                 This is a notification mail for EMD Details Updted by Finance Team of tender ID: {tender_id}
                 \n
-                URL: http://103.223.15.56:5010/pending_emd_list/
+                URL: http://103.223.15.47:5010/pending_emd_list/
                 \n
                 Thanks,
                 Tender APP BOT
@@ -2243,7 +2244,7 @@ def reports_2():
     
 
 if __name__ == '__main__':
-    # app.run(host='103.223.15.56', port=5010, debug=True)
+    # app.run(host='103.223.15.47', port=5010, debug=True)
     # app.run(host='192.168.0.137', port=5010, debug=True)
     # app.run(host='192.168.1.190', port=5010, debug=True)
     app.run(host='0.0.0.0', port=5010, debug=True)

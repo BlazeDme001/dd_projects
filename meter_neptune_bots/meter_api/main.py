@@ -172,6 +172,19 @@ def get_ems_livedata():
 
 def get_all_api_data():
     live_data = get_ems_livedata()
+    try:
+        if len(live_data) > 250:
+            to_add = ['ashish@shreenathgroup.in']
+            cc_add = ['ramit.shreenath@gmail.com']
+            sub = 'Getting huge data in meter API'
+            body = f"""
+            Hello Team,\n
+            The API data is huge. The length is {len(live_data)}.\n\n
+            Thanks,\n
+            Send Meter BOT"""
+            mail.send_mail(to_add=to_add, to_cc=cc_add, sub=sub, body=body)
+    except:
+        pass
     for data in live_data:
         # if data['DEVICE_SLNO'] == '893074':
         #     break
