@@ -46,7 +46,7 @@ def should_run_today():
 
 
 def check_service():
-    url = "http://103.223.15.47:5023//api/services"
+    url = "http://103.223.15.47:5025//api/services"
     headers = {"Content-Type": "application/json"}
     data = {
         "username": "Nirwana_API",
@@ -103,12 +103,12 @@ def send_good_bal():
                     wp.send_wp_msg(mob=mob, msg=body)
             except:
                 pass
-                    
+
 
 def main():
     try:
         status = check_service()
-        if status == 'ON':
+        if status != 'OFF':
             try:
                 get_all_api_data()
             except:
@@ -266,7 +266,7 @@ def get_ems_livedata():
     "DATA": "",
     "username": "Admin",
     "password": "NIRWANA#4321#ADMIN",
-    "SITECODE": "160"
+    "SITECODE": 160
     })
     headers = {
     'Content-Type': 'application/json'

@@ -214,4 +214,4 @@ def receive_meter_user_data():
 
 if __name__ == '__main__':
     # app.run(host='0.0.0.0', port=5023, debug=True)
-    app.run(host='0.0.0.0', port=5023, debug=True)
+    app.run(host='0.0.0.0', port=5025, debug=True)

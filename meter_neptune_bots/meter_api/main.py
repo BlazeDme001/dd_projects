@@ -21,7 +21,7 @@ def login_required(f):
 
 
 def check_service():
-    url = "http://103.223.15.47:5023/api/services"
+    url = "http://103.223.15.47:5025/api/services"
     headers = {"Content-Type": "application/json"}
     data = {
         "username": "Nirwana_API",
@@ -153,7 +153,7 @@ def get_ems_livedata():
     "DATA": "",
     "username": "Admin",
     "password": "NIRWANA#4321#ADMIN",
-    "SITECODE": "160"
+    "SITECODE": 160
     })
     headers = {
     'Content-Type': 'application/json'

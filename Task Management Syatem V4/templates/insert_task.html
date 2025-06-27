@@ -84,8 +84,8 @@
                 <option value="daily">Daily</option>
                 <option value="weekly">Weekly</option>
                 <option value="monthly">Monthly</option>
-                <option value="quterly">Quterly</option>
-                <option value="helfyearly">Helf Yearly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="halfyearly">Half yearly</option>
                 <option value="yearly">Yearly</option>
             </select>
 
@@ -247,12 +247,12 @@
                 for (var i = 1; i <= 12; i++) {
                     frequencySelect.innerHTML += '<option value="' + i + '">' + i + '</option>';
                 }
-            } else if (selectedKraType === 'quterly') {
+            } else if (selectedKraType === 'quarterly') {
                 // For monthly, set frequency options from 1 to 12
                 for (var i = 1; i <= 4; i++) {
                     frequencySelect.innerHTML += '<option value="' + i + '">' + i + '</option>';
                 }
-            } else if (selectedKraType === 'helfyearly') {
+            } else if (selectedKraType === 'halfyearly') {
                 // For monthly, set frequency options from 1 to 12
                 for (var i = 1; i <= 6; i++) {
                     frequencySelect.innerHTML += '<option value="' + i + '">' + i + '</option>';
