@@ -21,7 +21,7 @@ def login_required(f):
 
 
 def check_service():
-    url = "http://103.223.15.47:5025/api/services"
+    url = "http://103.223.15.148:5025/api/services"
     headers = {"Content-Type": "application/json"}
     data = {
         "username": "Nirwana_API",
@@ -34,7 +34,7 @@ def check_service():
         response = requests.post(url, json=data, headers=headers, timeout=30)
     except:
         pass
-        status, check_time = 'OFF', '0'
+        status, check_time = 'ON', '0'
         return (status, check_time)
 
     if response.status_code == 200 and response.json()['services']:

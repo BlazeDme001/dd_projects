@@ -59,14 +59,14 @@ def check_service():
         response = requests.post(url, json=data, headers=headers, timeout=30)
     except:
         print('Driver stopped')
-        return 'OFF', '30'  # Default status OFF with a check time of 30 days
+        return 'ON', '30'  # Default status OFF with a check time of 30 days
 
     if response.status_code == 200 and response.json().get('services'):
         service_data = response.json()['services'][0]
-        status = service_data.get('status', 'OFF')
+        status = service_data.get('status', 'ON')
         return status
 
-    return 'OFF'
+    return 'ON'
 
 
 def send_good_bal():

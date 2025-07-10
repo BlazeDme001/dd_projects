@@ -75,9 +75,13 @@ def login():
         captcha.clear()
         captcha.send_keys(c_data)
         time.sleep(5)
+        try:
+            submit_btn = driver.find_element(By.XPATH, '//*[@id="arxLoginSubmit"]')
+            submit_btn.click()
+        except:
+            submit_btn = driver.find_element(By.XPATH, '//*[@id="loginFrm"]/div[4]/div[2]/button')
+            submit_btn.click()
 
-        submit_btn = driver.find_element(By.XPATH, '//*[@id="arxLoginSubmit"]')
-        submit_btn.click()
 
         try:
             password = driver.find_element(By.XPATH, '//*[@id="password"]')
@@ -93,9 +97,12 @@ def login():
         if c == 5:
             mail.send_mail(to_add=['ramit.shreenath@gmail.com'], to_cc=[], sub='Gem Portal is not working for login', body='')
             return None
-
-    loginButton = driver.find_element(By.XPATH, '//*[@id="arxLoginSubmit"]')
-    loginButton.click()
+    try:
+        loginButton = driver.find_element(By.XPATH, '//*[@id="arxLoginSubmit"]')
+        loginButton.click()
+    except:
+        loginButton = driver.find_element(By.XPATH, '//*[@id="loginFrm"]/div[4]/div[1]/button')
+        loginButton.click()
     return driver
 
 def view_bid_result(driver):
