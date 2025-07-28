@@ -160,8 +160,8 @@ def job():
     main()
 
 # Schedule: run every day at 06:00
-schedule.every().day.at("22:42").do(job)
-schedule.every().day.at("22:52").do(job)
+schedule.every().day.at("12:00").do(job)
+schedule.every().day.at("22:50").do(job)
 
 # Flask API for manual trigger
 app = Flask(__name__)
@@ -176,8 +176,39 @@ def run_scheduler():
         schedule.run_pending()
         time.sleep(1)
 
+
+@app.route('/get-accounts', methods=['GET'])
+def get_accounts():
+    try:
+        query = """
+            SELECT user_name, acc_name, acc_no, mobile, cur_plan, expiry, address, cluster, updated_date
+            FROM net_broadband.netplus
+        """
+        df = db.get_row_as_dframe(query)
+        
+        if df is None or df.empty:
+            return jsonify({
+                "status": "success",
+                "data": [],
+                "message": "No records found"
+            }), 200
+        
+        data = df.to_dict(orient='records')
+        return jsonify({
+            "status": "success",
+            "data": data
+        }), 200
+
+    except Exception as e:
+        logger.error(f"Error fetching data from database: {str(e)}")
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 500
+
+
 if __name__ == '__main__':
     # Start the scheduler in a separate thread
     threading.Thread(target=run_scheduler, daemon=True).start()
     # Start the Flask API server
-    app.run(port=5000)
+    app.run(host='0.0.0.0',port=5000, debug=True)

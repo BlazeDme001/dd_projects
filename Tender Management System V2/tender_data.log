@@ -194,3 +194,16 @@
 2025-07-28 10:11:39,346 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:11:39] "GET /approve_tenders/view_tender_details/view_files/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6489001/GEM_2025_B_6489001 HTTP/1.1" 200 -
 2025-07-28 10:11:40,570 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:11:40] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6489001\\GeM-Bidding-8130185.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6489001 HTTP/1.1" 200 -
 2025-07-28 10:12:15,061 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:12:15] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6489001\\1753282073.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6489001 HTTP/1.1" 200 -
+2025-07-28 10:12:28,876 - Line:1742 - INFO ::=> Current user is Preetinder
+2025-07-28 10:12:28,876 - Line:1765 - INFO ::=> UPDATE tender.tender_management SET emd = 'None', location = 'RAJOURI', pbm = '',
+        e_value = '250000', remarks = 'low qty and cost', user_id = 'Preetinder', verification_1 = 'rejected', 
+        rej_rsn = 'Low Value--Low QTY' WHERE tender_id = 'GEM_2025_B_6489001' 
+2025-07-28 10:12:28,995 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:12:28] "[32mPOST /update_tender/GEM_2025_B_6489001 HTTP/1.1[0m" 302 -
+2025-07-28 10:12:28,998 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 10:12:29,051 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:12:29] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 10:12:32,115 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 10:12:32,183 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:12:32] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=&filter_start_date=2025-08-04&filter_end_date=2025-08-04&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 10:12:33,972 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:12:33] "GET /update_tender/GEM_2025_B_6483996 HTTP/1.1" 200 -
+2025-07-28 10:12:35,446 - Line:876 - INFO ::=> Current user is Preetinder
+2025-07-28 10:12:35,452 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:12:35] "GET /approve_tenders/view_tender_details/view_files/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6483996/GEM_2025_B_6483996 HTTP/1.1" 200 -
+2025-07-28 10:12:36,644 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:12:36] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6483996\\GeM-Bidding-8124656.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6483996 HTTP/1.1" 200 -
