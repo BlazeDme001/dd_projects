@@ -1,0 +1,196 @@
+2025-07-28 09:25:07,962 - Line:97 - WARNING ::=>  * Debugger is active!
+2025-07-28 09:25:07,963 - Line:97 - INFO ::=>  * Debugger PIN: 113-477-786
+2025-07-28 09:27:08,565 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:27:08] "[32mGET /approve_tenders/ HTTP/1.1[0m" 302 -
+2025-07-28 09:27:08,602 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:27:08] "GET /login HTTP/1.1" 200 -
+2025-07-28 09:27:08,775 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:27:08] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-28 09:27:11,394 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:27:11] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-28 09:27:11,399 - Line:122 - INFO ::=> Current user is Preetinder
+2025-07-28 09:27:11,399 - Line:189 - INFO ::=> []
+2025-07-28 09:27:11,399 - Line:190 - INFO ::=> []
+2025-07-28 09:27:11,399 - Line:196 - INFO ::=> SELECT tender_id, customer, name_of_work, submission_date, folder_location, verification_1,
+    inserted_time, to_whom FROM tender.tender_management WHERE (verification_1 in ('none','', 'pre_approved')
+    or verification_1 is NULL) and tender_id not in (select tender_id FROM tender.tender_management where 
+    (done = 'Not Submitted' and rej_rsn = 'Expired')) and tender_id is not NULL order by submission_date asc 
+2025-07-28 09:27:11,516 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:27:11] "GET /tenders/ HTTP/1.1" 200 -
+2025-07-28 09:27:14,173 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:27:14,247 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:27:14] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 09:27:14,279 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:27:14] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:31:30,813 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:31:30,994 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:31:30] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=das&filter_start_date=&filter_end_date=&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 09:31:37,722 - Line:1641 - INFO ::=> Current user is Preetinder
+2025-07-28 09:31:37,724 - Line:1655 - INFO ::=> UPDATE tender.tender_management SET verification_1 = 'rejected', user_id = 'Preetinder' WHERE tender_id IN ('GEM_2025_B_6498700')
+2025-07-28 09:31:37,830 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:31:37] "[32mPOST /update_status HTTP/1.1[0m" 302 -
+2025-07-28 09:31:37,834 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:31:38,023 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:31:38] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=das&filter_start_date=&filter_end_date=&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 09:31:38,042 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:31:38,216 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:31:38] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=das&filter_start_date=&filter_end_date=&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 09:31:38,671 - Line:122 - INFO ::=> Current user is Preetinder
+2025-07-28 09:31:38,671 - Line:189 - INFO ::=> []
+2025-07-28 09:31:38,672 - Line:190 - INFO ::=> []
+2025-07-28 09:31:38,672 - Line:196 - INFO ::=> SELECT tender_id, customer, name_of_work, submission_date, folder_location, verification_1,
+    inserted_time, to_whom FROM tender.tender_management WHERE (verification_1 in ('none','', 'pre_approved')
+    or verification_1 is NULL) and tender_id not in (select tender_id FROM tender.tender_management where 
+    (done = 'Not Submitted' and rej_rsn = 'Expired')) and tender_id is not NULL order by submission_date asc 
+2025-07-28 09:31:38,786 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:31:38] "GET /tenders/ HTTP/1.1" 200 -
+2025-07-28 09:31:39,361 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:31:39,416 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:31:39] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 09:31:39,440 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:31:39] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:31:54,881 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:31:55,073 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:31:55] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=dashboard&filter_start_date=&filter_end_date=&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 09:31:56,781 - Line:122 - INFO ::=> Current user is Preetinder
+2025-07-28 09:31:56,781 - Line:189 - INFO ::=> []
+2025-07-28 09:31:56,782 - Line:190 - INFO ::=> []
+2025-07-28 09:31:56,782 - Line:196 - INFO ::=> SELECT tender_id, customer, name_of_work, submission_date, folder_location, verification_1,
+    inserted_time, to_whom FROM tender.tender_management WHERE (verification_1 in ('none','', 'pre_approved')
+    or verification_1 is NULL) and tender_id not in (select tender_id FROM tender.tender_management where 
+    (done = 'Not Submitted' and rej_rsn = 'Expired')) and tender_id is not NULL order by submission_date asc 
+2025-07-28 09:31:56,995 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:31:56] "GET /tenders/ HTTP/1.1" 200 -
+2025-07-28 09:31:57,487 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:31:57,539 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:31:57] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 09:31:57,569 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:31:57] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:33:45,619 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:33:45] "[32mGET /tenders/ HTTP/1.1[0m" 302 -
+2025-07-28 09:33:45,625 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:33:45] "GET /login HTTP/1.1" 200 -
+2025-07-28 09:33:45,683 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:33:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-28 09:33:47,745 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:33:47] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-28 09:33:47,746 - Line:122 - INFO ::=> Current user is Roshni
+2025-07-28 09:33:47,746 - Line:189 - INFO ::=> []
+2025-07-28 09:33:47,747 - Line:190 - INFO ::=> []
+2025-07-28 09:33:47,747 - Line:196 - INFO ::=> SELECT tender_id, customer, name_of_work, submission_date, folder_location, verification_1,
+    inserted_time, to_whom FROM tender.tender_management WHERE (verification_1 in ('none','', 'pre_approved')
+    or verification_1 is NULL) and tender_id not in (select tender_id FROM tender.tender_management where 
+    (done = 'Not Submitted' and rej_rsn = 'Expired')) and tender_id is not NULL order by submission_date asc 
+2025-07-28 09:33:47,846 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:33:47] "GET /tenders/ HTTP/1.1" 200 -
+2025-07-28 09:33:53,414 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:33:53] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:34:21,260 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:34:21] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:34:23,293 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:34:23] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:34:25,570 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:34:25] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:37:55,196 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:37:55] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:40:35,865 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:40:35] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:41:28,807 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:41:28] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:41:45,176 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:41:45,243 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:41:45] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=&filter_start_date=2025-08-04&filter_end_date=2025-08-04&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 09:41:48,575 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:41:48] "GET /update_tender/GEM_2025_B_6498187 HTTP/1.1" 200 -
+2025-07-28 09:41:50,287 - Line:876 - INFO ::=> Current user is Preetinder
+2025-07-28 09:41:50,369 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:41:50] "GET /approve_tenders/view_tender_details/view_files/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6498187/GEM_2025_B_6498187 HTTP/1.1" 200 -
+2025-07-28 09:41:51,424 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:41:51] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6498187\\GeM-Bidding-8140621.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6498187 HTTP/1.1" 200 -
+2025-07-28 09:41:55,378 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:41:55] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:42:45,659 - Line:1742 - INFO ::=> Current user is Preetinder
+2025-07-28 09:42:45,660 - Line:1765 - INFO ::=> UPDATE tender.tender_management SET emd = 'None', location = '742101,Office of the District Magistrate, Murshidabad New Administrative Building, Berhampore', pbm = '',
+        e_value = 'None', remarks = 'low qty', user_id = 'Preetinder', verification_1 = 'rejected', 
+        rej_rsn = 'Low QTY' WHERE tender_id = 'GEM_2025_B_6498187' 
+2025-07-28 09:42:45,806 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:42:45] "[32mPOST /update_tender/GEM_2025_B_6498187 HTTP/1.1[0m" 302 -
+2025-07-28 09:42:45,811 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:42:45,856 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:42:45] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 09:42:49,488 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:42:49,559 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:42:49] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=&filter_start_date=2025-08-04&filter_end_date=2025-08-04&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 09:42:53,858 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:42:53] "GET /update_tender/GEM_2025_B_6493269 HTTP/1.1" 200 -
+2025-07-28 09:42:55,418 - Line:876 - INFO ::=> Current user is Preetinder
+2025-07-28 09:42:55,463 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:42:55] "GET /approve_tenders/view_tender_details/view_files/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493269/GEM_2025_B_6493269 HTTP/1.1" 200 -
+2025-07-28 09:42:56,544 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:42:56] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493269\\GeM-Bidding-8135022.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493269 HTTP/1.1" 200 -
+2025-07-28 09:42:59,867 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:42:59] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:43:13,766 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:43:13] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493269\\cctv_camera_2025-07-24-18-36-18_8160965ba6ae7001ad9e26748149a5ab.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493269 HTTP/1.1" 200 -
+2025-07-28 09:44:55,227 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:44:55] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493269\\boq_item_sample_file_-2_2025-07-24-18-36-18_9e53a7838fa64713e0d225c3c200fda3.csv/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493269 HTTP/1.1" 200 -
+2025-07-28 09:45:11,946 - Line:1742 - INFO ::=> Current user is Preetinder
+2025-07-28 09:45:11,947 - Line:1765 - INFO ::=> UPDATE tender.tender_management SET emd = 'None', location = 'Sonitpur', pbm = '',
+        e_value = 'None', remarks = 'low qty', user_id = 'Preetinder', verification_1 = 'rejected', 
+        rej_rsn = 'Low QTY' WHERE tender_id = 'GEM_2025_B_6493269' 
+2025-07-28 09:45:12,076 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:45:12] "[32mPOST /update_tender/GEM_2025_B_6493269 HTTP/1.1[0m" 302 -
+2025-07-28 09:45:12,080 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:45:12,127 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:45:12] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 09:45:15,799 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:45:15,870 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:45:15] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=&filter_start_date=2025-08-04&filter_end_date=2025-08-04&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 09:45:17,892 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:45:17] "GET /update_tender/GEM_2025_B_6493277 HTTP/1.1" 200 -
+2025-07-28 09:45:19,706 - Line:876 - INFO ::=> Current user is Preetinder
+2025-07-28 09:45:19,752 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:45:19] "GET /approve_tenders/view_tender_details/view_files/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493277/GEM_2025_B_6493277 HTTP/1.1" 200 -
+2025-07-28 09:45:21,080 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:45:21] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493277\\GeM-Bidding-8135031.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493277 HTTP/1.1" 200 -
+2025-07-28 09:46:21,274 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:46:21] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493277\\boqdiscription_2025-07-24-18-38-40_fdc1a48fb6c844ba0b156ecd2c2b1510.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493277 HTTP/1.1" 200 -
+2025-07-28 09:46:31,399 - Line:1742 - INFO ::=> Current user is Preetinder
+2025-07-28 09:46:31,399 - Line:1765 - INFO ::=> UPDATE tender.tender_management SET emd = 'None', location = 'Jaisalmer', pbm = '',
+        e_value = '200000', remarks = 'low qty and cost', user_id = 'Preetinder', verification_1 = 'rejected', 
+        rej_rsn = 'Low Value--Low QTY' WHERE tender_id = 'GEM_2025_B_6493277' 
+2025-07-28 09:46:31,534 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:46:31] "[32mPOST /update_tender/GEM_2025_B_6493277 HTTP/1.1[0m" 302 -
+2025-07-28 09:46:31,537 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:46:31,581 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:46:31] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 09:46:34,972 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:46:35,263 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:46:35] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=&filter_start_date=2025-08-04&filter_end_date=2025-08-04&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 09:46:39,115 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:46:39] "GET /update_tender/GEM_2025_B_6474359 HTTP/1.1" 200 -
+2025-07-28 09:46:40,624 - Line:876 - INFO ::=> Current user is Preetinder
+2025-07-28 09:46:40,629 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:46:40] "GET /approve_tenders/view_tender_details/view_files/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6474359/GEM_2025_B_6474359 HTTP/1.1" 200 -
+2025-07-28 09:46:41,902 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:46:41] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6474359\\GeM-Bidding-8113673.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6474359 HTTP/1.1" 200 -
+2025-07-28 09:50:22,687 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:50:22] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:53:31,309 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:53:31] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:53:41,124 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 09:53:41] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 09:59:37,288 - Line:1742 - INFO ::=> Current user is Preetinder
+2025-07-28 09:59:37,288 - Line:1765 - INFO ::=> UPDATE tender.tender_management SET emd = 'None', location = 'Leh', pbm = '',
+        e_value = '500000', remarks = 'low qty and cost', user_id = 'Preetinder', verification_1 = 'rejected', 
+        rej_rsn = 'Low Value--Low QTY' WHERE tender_id = 'GEM_2025_B_6474359' 
+2025-07-28 09:59:37,424 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:59:37] "[32mPOST /update_tender/GEM_2025_B_6474359 HTTP/1.1[0m" 302 -
+2025-07-28 09:59:37,430 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:59:37,474 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:59:37] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 09:59:40,402 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 09:59:40,558 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:59:40] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=&filter_start_date=2025-08-04&filter_end_date=2025-08-04&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 09:59:42,393 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:59:42] "GET /update_tender/GEM_2025_B_6488765 HTTP/1.1" 200 -
+2025-07-28 09:59:43,662 - Line:876 - INFO ::=> Current user is Preetinder
+2025-07-28 09:59:43,721 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:59:43] "GET /approve_tenders/view_tender_details/view_files/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6488765/GEM_2025_B_6488765 HTTP/1.1" 200 -
+2025-07-28 09:59:44,946 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 09:59:44] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6488765\\GeM-Bidding-8129927.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6488765 HTTP/1.1" 200 -
+2025-07-28 10:00:02,418 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:00:02] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6488765\\rfp_of_networking_accessories_2025-07-23-18-58-34_d80944a7ccbad2e5ee18da1112f6fc28.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6488765 HTTP/1.1" 200 -
+2025-07-28 10:04:02,986 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 10:04:02] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 10:07:16,889 - Line:1742 - INFO ::=> Current user is Preetinder
+2025-07-28 10:07:16,889 - Line:1765 - INFO ::=> UPDATE tender.tender_management SET emd = 'None', location = 'BANGALORE', pbm = '',
+        e_value = 'None', remarks = 'The bidder should have an office in Bengaluru and should be able to provide technical onsite support.', user_id = 'Preetinder', verification_1 = 'rejected', 
+        rej_rsn = 'Eligibility issue ' WHERE tender_id = 'GEM_2025_B_6488765' 
+2025-07-28 10:07:17,121 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:07:17] "[32mPOST /update_tender/GEM_2025_B_6488765 HTTP/1.1[0m" 302 -
+2025-07-28 10:07:17,127 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 10:07:17,172 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:07:17] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 10:07:20,473 - Line:97 - INFO ::=> 192.168.2.250 - - [28/Jul/2025 10:07:20] "POST /log_time_spent HTTP/1.1" 200 -
+2025-07-28 10:07:20,740 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 10:07:20,815 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:07:20] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=&filter_start_date=2025-08-04&filter_end_date=2025-08-04&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 10:07:23,873 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:07:23] "GET /update_tender/GEM_2025_B_6478456 HTTP/1.1" 200 -
+2025-07-28 10:07:25,268 - Line:876 - INFO ::=> Current user is Preetinder
+2025-07-28 10:07:25,312 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:07:25] "GET /approve_tenders/view_tender_details/view_files/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6478456/GEM_2025_B_6478456 HTTP/1.1" 200 -
+2025-07-28 10:07:26,537 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:07:26] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6478456\\GeM-Bidding-8118468.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6478456 HTTP/1.1" 200 -
+2025-07-28 10:07:58,872 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:07:58] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6478456\\1753366933.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6478456 HTTP/1.1" 200 -
+2025-07-28 10:08:58,158 - Line:1742 - INFO ::=> Current user is Preetinder
+2025-07-28 10:08:58,158 - Line:1765 - INFO ::=> UPDATE tender.tender_management SET emd = '100000', location = '801108,Nagar Parishad Maner (Patna) Pin Code 801108', pbm = '',
+        e_value = '8000000', remarks = 'elg ok, OEM Req ', user_id = 'Preetinder', verification_1 = 'pre_approved', 
+        rej_rsn = '' WHERE tender_id = 'GEM_2025_B_6478456' 
+2025-07-28 10:08:58,283 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:08:58] "[32mPOST /update_tender/GEM_2025_B_6478456 HTTP/1.1[0m" 302 -
+2025-07-28 10:08:58,287 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 10:08:58,334 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:08:58] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 10:09:01,742 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 10:09:01,815 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:09:01] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=&filter_start_date=2025-08-04&filter_end_date=2025-08-04&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 10:09:03,469 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:09:03] "GET /update_tender/GEM_2025_B_6454363 HTTP/1.1" 200 -
+2025-07-28 10:09:05,025 - Line:876 - INFO ::=> Current user is Preetinder
+2025-07-28 10:09:05,070 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:09:05] "GET /approve_tenders/view_tender_details/view_files/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6454363/GEM_2025_B_6454363 HTTP/1.1" 200 -
+2025-07-28 10:09:06,208 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:09:06] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6454363\\GeM-Bidding-8091184.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6454363 HTTP/1.1" 200 -
+2025-07-28 10:09:47,997 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:09:47] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6454363\\poe_2025-07-15-14-43-48_0c857b4722983ebf8b12c2aa1eca28b7.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6454363 HTTP/1.1" 200 -
+2025-07-28 10:09:53,007 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:09:53] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6454363\\boq_item_sample_file_2025-07-15-14-43-48_7b96d4375df882023514666a2b8c69ed.csv/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6454363 HTTP/1.1" 200 -
+2025-07-28 10:10:14,100 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:10:14] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6454363\\SREEEE_e46b8a63-a6ab-486a-bf661752589262876_nikhilpargal.266n@gov.in.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6454363 HTTP/1.1" 200 -
+2025-07-28 10:10:25,404 - Line:1742 - INFO ::=> Current user is Preetinder
+2025-07-28 10:10:25,405 - Line:1765 - INFO ::=> UPDATE tender.tender_management SET emd = 'None', location = 'Jalpaiguri', pbm = '',
+        e_value = 'None', remarks = 'low qty', user_id = 'Preetinder', verification_1 = 'rejected', 
+        rej_rsn = 'Low QTY' WHERE tender_id = 'GEM_2025_B_6454363' 
+2025-07-28 10:10:25,659 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:10:25] "[32mPOST /update_tender/GEM_2025_B_6454363 HTTP/1.1[0m" 302 -
+2025-07-28 10:10:25,670 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 10:10:25,723 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:10:25] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 10:10:29,029 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 10:10:29,095 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:10:29] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=&filter_start_date=2025-08-04&filter_end_date=2025-08-04&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 10:10:31,256 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:10:31] "GET /update_tender/GEM_2025_B_6493669 HTTP/1.1" 200 -
+2025-07-28 10:10:32,781 - Line:876 - INFO ::=> Current user is Preetinder
+2025-07-28 10:10:32,797 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:10:32] "GET /approve_tenders/view_tender_details/view_files/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493669/GEM_2025_B_6493669 HTTP/1.1" 200 -
+2025-07-28 10:10:34,082 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:10:34] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493669\\GeM-Bidding-8135471.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493669 HTTP/1.1" 200 -
+2025-07-28 10:11:07,229 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:11:07] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493669\\3_2025-07-24-14-14-29_7200a54db97bf3c5b43e0c10a47d3d32.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6493669 HTTP/1.1" 200 -
+2025-07-28 10:11:32,624 - Line:1742 - INFO ::=> Current user is Preetinder
+2025-07-28 10:11:32,625 - Line:1765 - INFO ::=> UPDATE tender.tender_management SET emd = 'None', location = 'Meerut', pbm = '',
+        e_value = 'None', remarks = 'low qty and sample required ', user_id = 'Preetinder', verification_1 = 'rejected', 
+        rej_rsn = 'Low QTY' WHERE tender_id = 'GEM_2025_B_6493669' 
+2025-07-28 10:11:32,746 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:11:32] "[32mPOST /update_tender/GEM_2025_B_6493669 HTTP/1.1[0m" 302 -
+2025-07-28 10:11:32,753 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 10:11:32,797 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:11:32] "GET /for_update_tenders/ HTTP/1.1" 200 -
+2025-07-28 10:11:36,281 - Line:1670 - INFO ::=> Current user is Preetinder
+2025-07-28 10:11:36,349 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:11:36] "GET /for_update_tenders/?filter_tender_id=&filter_customer=&filter_name_of_work=&filter_start_date=2025-08-04&filter_end_date=2025-08-04&filter_days_old= HTTP/1.1" 200 -
+2025-07-28 10:11:37,751 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:11:37] "GET /update_tender/GEM_2025_B_6489001 HTTP/1.1" 200 -
+2025-07-28 10:11:39,304 - Line:876 - INFO ::=> Current user is Preetinder
+2025-07-28 10:11:39,346 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:11:39] "GET /approve_tenders/view_tender_details/view_files/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6489001/GEM_2025_B_6489001 HTTP/1.1" 200 -
+2025-07-28 10:11:40,570 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:11:40] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6489001\\GeM-Bidding-8130185.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6489001 HTTP/1.1" 200 -
+2025-07-28 10:12:15,061 - Line:97 - INFO ::=> 192.168.2.97 - - [28/Jul/2025 10:12:15] "GET /open_file/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6489001\\1753282073.pdf/\\\\Digitaldreams\\tender%20auto\\GEM_2025_B_6489001 HTTP/1.1" 200 -

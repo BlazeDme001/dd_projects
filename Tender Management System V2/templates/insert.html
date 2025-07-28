@@ -80,7 +80,7 @@
         <input type="text" id="customer" name="customer" required>
 
         <label for="location">Location:</label>
-        <input type="text" id="location" name "location" required>
+        <input type="text" id="location" name="location" required>
 
         <label for="name_of_work">Name of Work:</label>
         <input type="text" id="name_of_work" name="name_of_work" required>
@@ -121,26 +121,42 @@
         </form>
     {% endif %}
     <script>
+        const tData = {{ t_data | tojson }};
+        const tenderIdInput = document.getElementById("tender_id");
+        const notification = document.getElementById("notification");
+        const submitBtn = document.querySelector("input[type=submit]");
 
-        var tData = {{ t_data | tojson }};
-
-        var tenderIdInput = document.getElementById("tender_id");
-        var notification = document.getElementById("notification");
-        var submitBtn = document.querySelector("input[type=submit]");
-
+        // Highlight border when duplicate found
         function updateNotificationAndButton() {
-            var enteredTenderId = tenderIdInput.value;
+            const enteredTenderId = tenderIdInput.value.trim();
 
             if (tData.includes(enteredTenderId)) {
-                notification.textContent = "This Tender ID already exists.";
+                notification.textContent = "⚠️ This Tender ID already exists.";
+                tenderIdInput.classList.add("error-border");
                 submitBtn.disabled = true;
             } else {
                 notification.textContent = "";
+                tenderIdInput.classList.remove("error-border");
                 submitBtn.disabled = false;
             }
         }
 
         tenderIdInput.addEventListener("input", updateNotificationAndButton);
+
+        // Disable button on submit and re-enable after 5 seconds
+        function disableButton() {
+            submitBtn.disabled = true;
+            submitBtn.value = "Submitting...";
+
+            // Allow retry after 5 seconds if the page does not reload
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.value = "Submit";
+            }, 5000);
+
+            return true; // allow form submission
+        }
     </script>
+
 </body>
 </html>

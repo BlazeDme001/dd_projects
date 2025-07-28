@@ -2,7 +2,7 @@ from configparser import ConfigParser
 import yagmail
 
 user_name = 'dme@shreenathgroup.in'
-password = 'vofa ojog ekyx tagx'
+password = 'hzma hzrp mxdc xdld'
 
 def send_mail(to_add, to_cc, sub: str, body: str, attach=[]):
     try:

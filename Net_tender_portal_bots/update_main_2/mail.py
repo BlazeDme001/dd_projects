@@ -5,7 +5,7 @@ import yagmail
 
 
 user_name = 'dme@shreenathgroup.in'
-password = 'vofa ojog ekyx tagx'
+password = 'hzma hzrp mxdc xdld'
 
 # to_add = ['hr@shreenathgroup.in']
 # to_add = ['ramit.shreenath@gmail.com']

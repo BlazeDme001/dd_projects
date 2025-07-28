@@ -299,7 +299,9 @@ def insert():
             query = f"SELECT COUNT(*) FROM tender.tender_management WHERE tender_id = '{tender_id}' AND location = '{location}';"
             count = db.get_data_in_list_of_tuple(query)[0][0]
             if count > 0:
-                return "Data already exists in the database!"
+                # return "Data already exists in the database!"
+                return render_template('insert.html', error="This tender already exists.", t_data=t_data)
+
 
             current_session = requests.Session()
             current_session.auth = (NAS_USERNAME, NAS_PASSWORD)
@@ -2244,8 +2246,5 @@ def reports_2():
     
 
 if __name__ == '__main__':
-    # app.run(host='103.223.15.47', port=5010, debug=True)
-    # app.run(host='192.168.0.137', port=5010, debug=True)
-    # app.run(host='192.168.1.190', port=5010, debug=True)
     app.run(host='0.0.0.0', port=5010, debug=True)
 
