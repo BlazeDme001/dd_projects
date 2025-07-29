@@ -18,6 +18,8 @@ import schedule
 
 from flask import Flask, jsonify
 import threading
+from multiprocessing import Process
+
 
 logging.basicConfig(filename='net_brodband.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -27,6 +29,7 @@ chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('--start-maximized')
+chrome_options.add_argument('--disable-gpu')
 
 download_folder = os.path.join(os.getcwd(), 'downloads')
 
@@ -65,6 +68,7 @@ def search_for_accounts(driver):
     try:
         logger.info('Searching for accounts')
         acc_btn = driver.find_element(By.XPATH, '//*[@id="lbAccount"]')
+        time.sleep(60)
         driver.execute_script("arguments[0].click();", acc_btn)
         logger.info("Clicked to account button")
         time.sleep(5)
@@ -143,11 +147,14 @@ def get_table_data(driver):
 
 def main():
     try:
+        logger.info('Starting the webdriver')
         driver = webdriver.Chrome(options=chrome_options)
         login(driver)
+        logger.info('Logged in successfully')
         search_for_accounts(driver)
     except Exception as er:
         driver.quit()
+        logger.error(f"Error in main function: {str(er)}")
 
 
 from flask import Flask, jsonify
@@ -160,29 +167,24 @@ def job():
     main()
 
 # Schedule: run every day at 06:00
-schedule.every().day.at("12:00").do(job)
-schedule.every().day.at("22:50").do(job)
+schedule.every().day.at("06:30").do(job)
+# schedule.every().day.at("22:50").do(job)
 
 # Flask API for manual trigger
 app = Flask(__name__)
 
 @app.route('/run-job', methods=['POST'])
 def trigger_job():
-    threading.Thread(target=job).start()
+    Process(target=job).start()
     return jsonify({"status": "Job started"}), 202
-
-def run_scheduler():
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
 
 
 @app.route('/get-accounts', methods=['GET'])
 def get_accounts():
     try:
         query = """
-            SELECT user_name, acc_name, acc_no, mobile, cur_plan, expiry, address, cluster, updated_date
-            FROM net_broadband.netplus
+            SELECT user_name, acc_name, acc_no, mobile, cur_plan, expiry, address, cluster, TO_CHAR(updated_date, 'DD Mon YYYY') AS updated_date
+            FROM net_broadband.netplus;
         """
         df = db.get_row_as_dframe(query)
         
@@ -207,8 +209,18 @@ def get_accounts():
         }), 500
 
 
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({"status": "ok"}), 200
+
+
+def run_scheduler():
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
 if __name__ == '__main__':
     # Start the scheduler in a separate thread
     threading.Thread(target=run_scheduler, daemon=True).start()
     # Start the Flask API server
-    app.run(host='0.0.0.0',port=5000, debug=True)
+    app.run(host='0.0.0.0',port=5011, debug=False)
