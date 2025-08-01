@@ -27,6 +27,7 @@ logger = logging.getLogger('net_brodband')
 
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--incognito')
 chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('--start-maximized')
 chrome_options.add_argument('--disable-gpu')
@@ -69,7 +70,7 @@ def search_for_accounts(driver, user):
         logger.info('Searching for accounts')
         wi.processing_check_wait(driver, xpath='//*[@id="lbAccount"]', time=90)
         acc_btn = driver.find_element(By.XPATH, '//*[@id="lbAccount"]')
-        time.sleep(60)
+        # time.sleep(60)
         driver.execute_script("arguments[0].click();", acc_btn)
         logger.info("Clicked to account button")
         time.sleep(5)
@@ -150,14 +151,17 @@ def get_table_data(driver):
 def main():
     try:
         logger.info('Starting the webdriver')
-        driver = webdriver.Chrome(options=chrome_options)
         login_user_name = ['CHDGBO0292','CHDIPT0292']
-        login_password = ['Shree@2025','Shree@2025']
+        login_password = ['Shree@2025','Fast@123']
         for user, password in zip(login_user_name, login_password):
+            print(f'Logging in with user: {user}')
+            print(f'Password: {password}')
+            driver = webdriver.Chrome(options=chrome_options)
             logger.info(f'Logging in with user: {user}')
             login(driver, user, password)
             logger.info('Logged in successfully')
             search_for_accounts(driver, user)
+            driver.quit()
     except Exception as er:
         driver.quit()
         logger.error(f"Error in main function: {str(er)}")
