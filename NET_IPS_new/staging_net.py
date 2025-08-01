@@ -44,18 +44,18 @@ chrome_options.add_experimental_option('prefs', prefs)
 
 bot_name = 'NETPLUS BOT'
 
-def login(driver):
+def login(driver, user, password):
     try:
         driver.get("https://partner.netplus.co.in/Partner/Login.aspx")
         user_name = driver.find_element(By.XPATH,'//*[@id="txtUserName"]')
         user_name.clear()
         user_name.click()
-        user_name.send_keys('CHDGBO0292')
+        user_name.send_keys(user)
         
         password = driver.find_element(By.XPATH, '//*[@id="txtPassword"]')
         password.clear()
         password.click()
-        password.send_keys('Shree@2025')
+        password.send_keys(password)
         
         driver.find_element(By.XPATH, '//*[@id="save"]').click()
         logger.info('Login to the portal')
@@ -64,7 +64,7 @@ def login(driver):
         print(str(er))
     
 
-def search_for_accounts(driver):
+def search_for_accounts(driver, user):
     try:
         logger.info('Searching for accounts')
         wi.processing_check_wait(driver, xpath='//*[@id="lbAccount"]', time=90)
@@ -86,10 +86,10 @@ def search_for_accounts(driver):
                 break
         time.sleep(5)
         try:
-            acc_df.to_csv('abc.csv' , index=False)
+            acc_df.to_csv(f'abc_{user}.csv' , index=False)
         except:
             pass
-        insert_into_db(acc_df)
+        insert_into_db(acc_df, user)
         pass
     except Exception as er:
         # print(str(er))
@@ -106,12 +106,13 @@ def clean_and_rename_df(df):
     return df
 
 
-def insert_into_db(df):
+def insert_into_db(df, user):
     try:
         if not df.empty:
-            db.execute("DELETE FROM net_broadband.netplus;")
-            logger.info('Existing records deleted from net_broadband.netplus')
+            db.execute(f"DELETE FROM net_broadband.netplus where login_user_name = '{user}' ;")
+            logger.info('Existing records deleted from net_broadband.netplus for user: ' + user)
             df = clean_and_rename_df(df)
+            df['login_user_name'] = user
             df = df.drop_duplicates(subset=['acc_no'], keep='last')
             df = df.reset_index(drop=True)
             for index, row in df.iterrows():
@@ -150,9 +151,13 @@ def main():
     try:
         logger.info('Starting the webdriver')
         driver = webdriver.Chrome(options=chrome_options)
-        login(driver)
-        logger.info('Logged in successfully')
-        search_for_accounts(driver)
+        login_user_name = ['CHDGBO0292','CHDIPT0292']
+        login_password = ['Shree@2025','Shree@2025']
+        for user, password in zip(login_user_name, login_password):
+            logger.info(f'Logging in with user: {user}')
+            login(driver, user, password)
+            logger.info('Logged in successfully')
+            search_for_accounts(driver, user)
     except Exception as er:
         driver.quit()
         logger.error(f"Error in main function: {str(er)}")
@@ -184,7 +189,8 @@ def trigger_job():
 def get_accounts():
     try:
         query = """
-            SELECT user_name, acc_name, acc_no, mobile, cur_plan, expiry, address, cluster,
+            SELECT user_name, acc_name, acc_no, mobile, cur_plan,
+            expiry, address, cluster, login_user_name,
             TO_CHAR(updated_date, 'DD Mon YYYY') AS updated_date,
             TO_CHAR(updated_date, 'HH12:MI:SS AM') AS update_time
             FROM net_broadband.netplus;
