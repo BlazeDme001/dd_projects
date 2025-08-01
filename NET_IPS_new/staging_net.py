@@ -44,7 +44,7 @@ chrome_options.add_experimental_option('prefs', prefs)
 
 bot_name = 'NETPLUS BOT'
 
-def login(driver, user, password):
+def login(driver, user, pass_word):
     try:
         driver.get("https://partner.netplus.co.in/Partner/Login.aspx")
         user_name = driver.find_element(By.XPATH,'//*[@id="txtUserName"]')
@@ -55,7 +55,7 @@ def login(driver, user, password):
         password = driver.find_element(By.XPATH, '//*[@id="txtPassword"]')
         password.clear()
         password.click()
-        password.send_keys(password)
+        password.send_keys(pass_word)
         
         driver.find_element(By.XPATH, '//*[@id="save"]').click()
         logger.info('Login to the portal')
