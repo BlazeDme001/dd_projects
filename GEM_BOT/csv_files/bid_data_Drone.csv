@@ -1,95 +1,192 @@
 ,BID NO,Items,Quantity,Start Date,End Date,Department Name And Address,new_itm
-1,GEM/2025/B/6466173,DRONE B MECHANISM,1,2025-07-19 10:24,2025-07-29 14:00,Ministry of Defence Department of Military Affairs,DRONE B MECHANISM
-3,GEM/2025/B/6429979,Drone DJI Inspire,1,2025-07-08 17:02,2025-07-29 18:00,Ministry of Electronics and Information Technology Department of Electronics and Information Technology,Drone DJI Inspire
-4,GEM/2025/B/6430295,Drone Autel Evo II Pro V3 Rugg...,1,2025-07-08 17:34,2025-07-29 18:00,Ministry of Electronics and Information Technology Department of Electronics and Information Technology,Drone Autel Evo II Pro V3 Rugged Bundle
-5,GEM/2025/B/6430723,FPV DRONE,2,2025-07-08 18:58,2025-07-29 19:00,Ministry of Defence Department of Military Affairs,FPV DRONE
-6,GEM/2025/B/6444513,Iron Frame with jali Sise 11.5...,24,2025-07-12 08:36,2025-07-29 20:00,Ministry of Defence Department of Defence,"Iron Frame with jali Sise 11.5x 4.2 mtr for LV Veh Cope Cage for Drone Attack,Iron Cutter Blade,Nut"
-7,GEM/2025/B/6310855,Falco Lite Drone,1,2025-07-28 20:00,2025-07-29 20:00,Ministry of Defence Department of Military Affairs,Falco Lite Drone
-8,GEM/2025/B/6456457,"Drone Infra Red Camera,Drone L...",14,2025-07-15 21:29,2025-07-30 09:00,Ministry of Defence Department of Military Affairs,"Drone Infra Red Camera,Drone LIDAR Sensor,Drone GPS,Drone Power Distribution Board,Compass Module"
-9,GEM/2025/B/6456450,"Drone Transmitter,Drone Mother...",12,2025-07-15 21:22,2025-07-30 09:00,Ministry of Defence Department of Military Affairs,"Drone Transmitter,Drone Mother Board,Drone Battery Charger,Drone Landing Gear,Drone Servo Motor"
-10,GEM/2025/B/6290484,ESTABLISHMENT OF 'I' LEVEL DRO...,1,2025-07-28 22:00,2025-07-30 09:00,Ministry of Defence Department of Military Affairs,ESTABLISHMENT OF 'I' LEVEL DRONE MAINTENANCE HUB
-11,GEM/2025/B/6465681,FPV Drone 3.5 Inches,1,2025-07-17 20:25,2025-07-30 09:00,Ministry of Defence Department of Military Affairs,FPV Drone 3.5 Inches
-12,GEM/2025/B/6456457,"Drone Infra Red Camera,Drone L...",14,2025-07-15 21:29,2025-07-30 09:00,Ministry of Defence Department of Military Affairs,"Drone Infra Red Camera,Drone LIDAR Sensor,Drone GPS,Drone Power Distribution Board,Compass Module"
-13,GEM/2025/B/6456450,"Drone Transmitter,Drone Mother...",12,2025-07-15 21:22,2025-07-30 09:00,Ministry of Defence Department of Military Affairs,"Drone Transmitter,Drone Mother Board,Drone Battery Charger,Drone Landing Gear,Drone Servo Motor"
-14,GEM/2025/B/6456471,"Drone Laser Range Finder,Drone...",15,2025-07-15 21:38,2025-07-30 09:00,Ministry of Defence Department of Military Affairs,"Drone Laser Range Finder,Drone Motor,Motor Mount,Antenna,Vibration Dampers"
-16,GEM/2025/B/6379986,"serveillance drone,ergonomic b...",8,2025-07-16 09:56,2025-07-30 10:00,Ministry of Defence Department of Defence,"serveillance drone,ergonomic back packs,fields repair kit,lithium battery 2nos,spare propeller set "
-17,GEM/2025/B/6432005,Work Station for Drone Repair ...,11,2025-07-09 10:49,2025-07-30 11:00,Ministry of Defence Department of Military Affairs,"Work Station for Drone Repair Lab,Cabinet for Drone Repair Lab,LED Lights Orients for Drone Repair "
-18,GEM/2025/B/6431353,PROCUREMENT AND INSTALLATION O...,2,2025-07-09 09:41,2025-07-30 11:00,Ministry of Defence Department of Military Affairs,PROCUREMENT AND INSTALLATION OF ANTI DRONE JAMMING RIFLES
-19,GEM/2025/B/6462101,DRONI DRONE WITH DAY CAMERA,2,2025-07-17 11:21,2025-07-30 11:00,Ministry of Defence Department of Military Affairs,DRONI DRONE WITH DAY CAMERA
-20,GEM/2025/B/6382515,Drone,1,2025-06-25 13:56,2025-07-30 12:00,Ministry of Defence Department of Military Affairs,Drone
-22,GEM/2025/B/6433793,"FPV DRONE UNIT,GROUND CONTROL ...",12,2025-07-09 17:50,2025-07-30 16:00,Ministry of Defence Department of Military Affairs,"FPV DRONE UNIT,GROUND CONTROL STATION,BATTERY,CHARGERS,GOGGLES,TOOLS"
-23,GEM/2025/B/6456413,"Drone Gimble Camera,Drone Batt...",15,2025-07-15 20:56,2025-07-30 21:00,Ministry of Defence Department of Military Affairs,"Drone Gimble Camera,Drone Battery Li-Ion,Drone Carbon Fiber Tubes,Drone Carbon Fiber Sheet,Baromete"
-24,GEM/2025/B/6454020,"Drone Flight Controller,Drone ...",13,2025-07-15 20:45,2025-07-30 21:00,Ministry of Defence Department of Military Affairs,"Drone Flight Controller,Drone ESC,Drone Propellers,Drone 3D Printing Material,Drone Micro SD Card"
-25,GEM/2025/B/6471060,Quadcopter Drone,1,2025-07-20 20:55,2025-07-30 21:00,Ministry of Defence Department of Military Affairs,Quadcopter Drone
-26,GEM/2025/B/6430667,9450 Self Locking Propeller fo...,18,2025-07-08 18:47,2025-07-31 09:00,Ministry of Defence Department of Military Affairs,"9450 Self Locking Propeller for Drone 1CW 1CCW 01 Pair,S550 Hexacopter Frame for Drone,Radiolink Cr"
-27,GEM/2025/B/6489415,Surveillance Drone / Unmanned ...,1,2025-07-24 08:56,2025-07-31 09:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
-28,GEM/2025/B/6423298,10 inche FPV Drone Training Ki...,25,2025-07-15 20:33,2025-07-31 09:00,Ministry of Defence Department of Military Affairs,"10 inche FPV Drone Training Kit,Robotics Flying ird Drone Training Kit,Cross Flight Controller,Brus"
-29,GEM/2025/B/6445679,Quadcopter (Drone) Components ...,1,2025-07-13 12:55,2025-07-31 10:00,Ministry of Defence Department of Military Affairs,Quadcopter (Drone) Components and on Site Assembly
-30,GEM/2025/B/6320685,DIY S450 FC COMPLETE DRONE KIT...,7,2025-07-30 10:00,2025-07-31 10:00,Ministry of Defence Department of Military Affairs,"DIY S450 FC COMPLETE DRONE KIT (READY TO FLY SET),DIY F330 COMPLETE DRONE KIT (READY TO FLY SET),DI"
-32,GEM/2025/B/6415370,Anti Drone Gun,1,2025-07-21 10:19,2025-07-31 11:00,Ministry of Defence Department of Military Affairs,Anti Drone Gun
-33,GEM/2025/B/6430250,Surveillance Drone / Unmanned ...,1,2025-07-10 11:42,2025-07-31 11:00,Ministry of Defence Department of Military Affairs,"Surveillance Drone / Unmanned Aerial Vehicle (V2) (Defence Forces - Navy, Army and Air Force)"
-34,GEM/2025/B/6474732,"DRONE FRAME 7"",HD VR SET,HD MI...",12,2025-07-21 11:10,2025-07-31 12:00,Ministry of Defence Department of Military Affairs,DRONE FRAME 7
-35,GEM/2025/B/6437086,"GROUND CONTROL STATION,FILTER ...",5,2025-07-10 12:47,2025-07-31 12:00,Ministry of Defence Department of Military Affairs,"GROUND CONTROL STATION,FILTER LENS,FPV DRONE UNIT,ACCESSORIES,SPEED CONTROLLER"
-36,GEM/2025/B/6429671,"Drone frames PDB, Structure,Dr...",66,2025-07-10 12:58,2025-07-31 13:00,Ministry of Defence Department of Military Affairs,"Drone frames PDB, Structure,Drone flight controller,GPS module,Drone DC Motor,Drone Propeller,Drone"
-39,GEM/2025/B/6504890,Drone or Unmanned Aerial Vehic...,1,2025-07-28 16:12,2025-07-31 17:00,Ministry of Heavy Industries and Public Enterprises Department of Heavy Industry,"Drone or Unmanned Aerial Vehicle with Customized Payload (Defence Forces - Navy, Army and Air Force"
-40,GEM/2025/B/6399741,Surveillance Drone / Unmanned ...,1,2025-07-10 19:43,2025-07-31 18:00,Ministry of Defence Department of Military Affairs,"Surveillance Drone / Unmanned Aerial Vehicle (V2) (Defence Forces - Navy, Army and Air Force)"
-41,GEM/2025/B/6477117,DRONE SIMULATOR,1,2025-07-21 18:00,2025-07-31 18:00,Ministry of Defence Department of Defence,DRONE SIMULATOR
-42,GEM/2025/B/6462380,"Flight Controller,GPS,Drone Fr...",25,2025-07-17 12:11,2025-07-31 19:00,Ministry of Defence Department of Defence,"Flight Controller,GPS,Drone Frame with Landing Gear,Motor and Propeller,4 in 1 ESC,RC With inbuilt "
-43,GEM/2025/B/6478194,DRONE,1,2025-07-21 18:12,2025-07-31 19:00,Ministry of Defence Department of Defence,DRONE
-50,GEM/2025/B/6470661,NOR ORO Drone ULTRA TRAVEL COM...,28,2025-07-19 09:48,2025-08-01 10:00,Ministry of Defence Department of Military Affairs,"NOR ORO Drone ULTRA TRAVEL COMBO 2k HD Camera Triple battery 2 axis gimbal,Assembled FPV drone 5 km"
-51,GEM/2025/B/6475262,Drone,2,2025-07-21 09:08,2025-08-01 10:00,Ministry of Defence Department of Military Affairs,Drone
-52,GEM/2025/B/6453374,Advik Drone DV,1,2025-07-21 09:40,2025-08-01 10:00,Ministry of Defence Department of Military Affairs,Advik Drone DV
-53,GEM/2025/B/6479374,4K HDR Vision Drone,10,2025-07-21 21:37,2025-08-01 10:00,Ministry of Defence Department of Military Affairs,4K HDR Vision Drone
-54,GEM/2025/B/6396994,izi Sky Pro Fly More Combo Dro...,4,2025-07-02 14:20,2025-08-01 11:00,Ministry of Defence Department of Military Affairs,izi Sky Pro Fly More Combo Drone with Camera
-55,GEM/2025/B/6370366,RF Analyzer Drone for undertak...,5,2025-06-21 14:43,2025-08-01 11:00,Ministry of Defence Department of Defence Production,RF Analyzer Drone for undertaking ElectroMagnetic mapping and RF measurement onboard Navel Platform
-56,GEM/2025/B/6479356,"Radio Controller,Motion Contro...",5,2025-07-22 11:24,2025-08-01 12:00,Ministry of Defence Department of Military Affairs,"Radio Controller,Motion Controller,Analog Goggle,Digital Goggle,Working Model for Virtual Drone Fly"
-58,GEM/2025/B/6466868,Training and Surveillance Dron...,2,2025-07-18 10:32,2025-08-01 13:00,Ministry of Defence Department of Military Affairs,Training and Surveillance Drone with Day Camera
-59,GEM/2025/B/6480885,Propeller for sde spectre two ...,12,2025-07-22 12:05,2025-08-01 13:00,Ministry of Defence Department of Military Affairs,"Propeller for sde spectre two m drone uav eighty three,Motor for sde spectre two m drone uav eighty"
-60,GEM/2025/B/6466868,Training and Surveillance Dron...,2,2025-07-18 10:32,2025-08-01 13:00,Ministry of Defence Department of Military Affairs,Training and Surveillance Drone with Day Camera
-61,GEM/2025/B/6481691,DRONE,12,2025-07-22 13:49,2025-08-01 14:00,Ministry of Defence Department of Military Affairs,DRONE
-62,GEM/2025/B/6475653,Drone Simulator with Remote Co...,3,2025-07-21 13:15,2025-08-01 14:00,Ministry of Defence Department of Military Affairs,"Drone Simulator with Remote Controller and Licensed software,FPV Simulator with Remote Controller, "
-65,GEM/2025/B/6442466,"Drone as per specification,AMC...",7,2025-07-11 16:11,2025-08-01 17:00,Ministry of Housing & Urban Affairs (MoHUA) Urban Transport,"Drone as per specification,AMC First year,AMC Second year,AMC Third year,Insurance per year per dro"
-66,GEM/2025/B/6477784,DRONE OF ENZO X,1,2025-07-21 16:13,2025-08-01 17:00,Ministry of Defence Department of Military Affairs,DRONE OF ENZO X
-67,GEM/2025/B/6480681,"Drone Simulator,Work Station D...",5,2025-07-22 12:38,2025-08-01 18:00,Ministry of Defence Department of Military Affairs,"Drone Simulator,Work Station Drone,Joy Stick,Key Board,Mouse"
-68,GEM/2025/B/6481259,Carbon Fiber Propellers for Pa...,9,2025-07-22 13:10,2025-08-01 18:00,Ministry of Defence Department of Military Affairs,"Carbon Fiber Propellers for Payload Dropping Drone,Power Module for Drone 60K Kit,Landing Gear for "
-69,GEM/2025/B/6444008,"Drone Model DJI Mavic 4 pro,AM...",8,2025-07-11 17:38,2025-08-01 18:00,Ministry of Housing & Urban Affairs (MoHUA) Urban Transport,"Drone Model DJI Mavic 4 pro,AMC First year,AMC Second year,AMC Third year,Insurance per year per dr"
-70,GEM/2025/B/6483641,FPV DRONE,1,2025-07-22 18:23,2025-08-01 19:00,Ministry of Defence Department of Military Affairs,FPV DRONE
-71,GEM/2025/B/6330517,"Simulator,Quadcopter,Drone,Too...",21,2025-07-11 19:50,2025-08-01 20:00,Ministry of Defence Department of Military Affairs,"Simulator,Quadcopter,Drone,Tool Kit,Table,Chair"
-72,GEM/2025/B/6444538,Wall Mounting Racks for Spares...,5,2025-07-11 19:18,2025-08-01 20:00,Ministry of Defence Department of Military Affairs,"Wall Mounting Racks for Spares of Drone,Table for Drone Repair Lab,Computer Table of PC for Drone R"
-73,GEM/2025/B/6480955,DRONE,1,2025-07-22 13:14,2025-08-01 20:00,Ministry of Defence Department of Military Affairs,DRONE
-74,GEM/2025/B/6415975,"Monitor VDU,CPU,Remote Control...",35,2025-07-11 20:28,2025-08-01 21:00,Ministry of Defence Department of Military Affairs,"Monitor VDU,CPU,Remote Controller,UPS,Military Drone Simulator Software"
-75,GEM/2025/B/6451901,DRONE,30,2025-07-21 20:14,2025-08-01 21:00,Ministry of Defence Department of Military Affairs,DRONE
-76,GEM/2025/B/6479318,"Mod of Cope Cage,Mod of Caster...",33,2025-07-21 21:02,2025-08-01 21:00,Ministry of Defence Department of Military Affairs,"Mod of Cope Cage,Mod of Caster Wheel for Gun,Mod of Drone Box and Bty Ch Sys,4K FPV HD Camera folda"
-77,GEM/2025/B/6386093,Surveillance Drone / Unmanned ...,4,2025-07-23 13:06,2025-08-01 21:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
-78,GEM/2025/B/6466246,2 Mp Colour Audio Drone Camera...,56,2025-07-18 16:53,2025-08-02 09:00,Ministry of Defence Department of Military Affairs,"2 Mp Colour Audio Drone Camera,BNC DC Set,Instolation Charge,Wire 3 Copper,PVC Rack"
-80,GEM/2025/B/6453963,Rotorcraft Drone,1,2025-07-16 10:35,2025-08-02 11:00,Ministry of Defence Department of Military Affairs,Rotorcraft Drone
-81,GEM/2025/B/6439828,"Battery,Drone Case,FPV Goggle,...",25,2025-07-12 10:56,2025-08-02 11:00,Ministry of Defence Department of Military Affairs,"Battery,Drone Case,FPV Goggle,Charger,Flight Control"
-83,GEM/2025/B/6474555,FPV Drone,2,2025-07-20 11:57,2025-08-02 12:00,Ministry of Defence Department of Military Affairs,FPV Drone
-84,GEM/2025/B/6446038,Customised Drone,1,2025-07-12 14:50,2025-08-02 13:00,Ministry of Defence Department of Military Affairs,Customised Drone
-87,GEM/2025/B/6484802,FOLDABLE AIRFRMAE FOR DRONE,1,2025-07-23 13:21,2025-08-02 14:00,Ministry of Defence Department of Military Affairs,FOLDABLE AIRFRMAE FOR DRONE
-90,GEM/2025/B/6484230,Office Chair for TSS R and I a...,12,2025-07-22 23:09,2025-08-02 15:00,Ministry of Defence Department of Military Affairs,"Office Chair for TSS R and I and Drone Lab,Cabinet wall mounted for files and ledgers for R and I s"
-91,GEM/2025/B/6405404,Set of Components of First Per...,20,2025-07-12 16:56,2025-08-02 17:00,Ministry of Defence Department of Military Affairs,Set of Components of First Person View (FPV) Drone 7 Inch
-94,GEM/2025/B/6488143,"Drone Components,Drone Compone...",40,2025-07-23 17:22,2025-08-02 18:00,Ministry of Defence Department of Military Affairs,"Drone Components,Drone Components,Drone Components,Drone Components,Drone Components,Drone Componen"
-95,GEM/2025/B/6449890,Drone with Acessories,2,2025-07-23 18:17,2025-08-02 19:00,Ministry of Defence Department of Military Affairs,Drone with Acessories
-96,GEM/2025/B/6400000,Provision of Drone Training Co...,2,2025-07-23 18:40,2025-08-02 19:00,Ministry of Defence Department of Military Affairs,Provision of Drone Training Course
-97,GEM/2025/B/6418079,10 Inch FPV Drone,1,2025-07-23 20:07,2025-08-02 21:00,Ministry of Defence Department of Military Affairs,10 Inch FPV Drone
-98,GEM/2025/B/6345622,Hell Fire (Kamikaze/ Payload D...,1,2025-07-23 20:03,2025-08-02 21:00,Ministry of Defence Department of Military Affairs,Hell Fire (Kamikaze/ Payload Dropping FPV Drone)
-99,GEM/2025/B/6460990,Drone technical training of tr...,20,2025-07-16 20:19,2025-08-02 21:00,Ministry of Defence Department of Military Affairs,Drone technical training of troops with course material for 21 days
-100,GEM/2025/B/6489061,KAMIKAZI DRONE,4,2025-07-24 08:51,2025-08-04 09:00,Ministry of Defence Department of Military Affairs,KAMIKAZI DRONE
-101,GEM/2025/B/6493968,Modification of Counter Drone ...,1,2025-07-25 09:14,2025-08-04 10:00,Ministry of Defence Department of Defence,Modification of Counter Drone System
-102,GEM/2025/B/6492052,Manpower Outsourcing Services ...,10,2025-07-25 10:32,2025-08-04 10:00,Ministry of Science and Technology Department of Science and Technology (DST),Manpower Outsourcing Services - Fixed Remuneration - Drone Pilot; Drone pilot; Graduate
-103,GEM/2025/B/6471443,VR Base Simulator Drone,1,2025-07-24 09:18,2025-08-04 10:00,Ministry of Defence Department of Military Affairs,VR Base Simulator Drone
-104,GEM/2025/B/6471385,First Person View Drone,1,2025-07-24 09:49,2025-08-04 10:00,Ministry of Defence Department of Military Affairs,First Person View Drone
-105,GEM/2025/B/6479829,Custom Bid for Services - 2001...,1,2025-07-22 09:57,2025-08-04 10:00,Ministry of Power NA,Custom Bid for Services - 200143725 Monthly Coal Stock Verification by DRONE for 2025-27 at NTPC Ko
-106,GEM/2025/B/6489605,Operational Drone with Accesso...,1,2025-07-24 10:14,2025-08-04 10:00,Ministry of Defence Department of Military Affairs,Operational Drone with Accessories
-107,GEM/2025/B/6493841,Drone flight Simulator with Re...,1,2025-07-25 00:48,2025-08-04 11:00,Ministry of Defence Department of Military Affairs,Drone flight Simulator with Remote
-108,GEM/2025/B/6474441,"frame for tethered drone,Motor...",12,2025-07-20 10:58,2025-08-04 11:00,Ministry of Defence Department of Military Affairs,"frame for tethered drone,Motor for tethered drone,propeller for tethered drone,FC Stack for tethere"
-109,GEM/2025/B/6474429,"Receiver for tethered drone,VT...",5,2025-07-20 10:49,2025-08-04 11:00,Ministry of Defence Department of Military Affairs,"Receiver for tethered drone,VTX for Tethered Drone,Fiber Optic Tray for tethered drone,Camera for t"
-110,GEM/2025/B/6493841,Drone flight Simulator with Re...,1,2025-07-25 00:48,2025-08-04 11:00,Ministry of Defence Department of Military Affairs,Drone flight Simulator with Remote
-111,GEM/2025/B/6485307,"VR Goggle for drone FPV,Drilli...",27,2025-07-23 11:59,2025-08-04 12:00,Ministry of Defence Department of Military Affairs,"VR Goggle for drone FPV,Drilling Machine,Thermometer,5mm Acrylic Board 120cm x 25cm,5mm Acrylic Boa"
-113,GEM/2025/B/6495159,DRONE SIMULATOR,1,2025-07-25 11:59,2025-08-04 12:00,Ministry of Defence Department of Military Affairs,DRONE SIMULATOR
-114,GEM/2025/B/6493845,Drone Obstacle Course,1,2025-07-25 01:03,2025-08-04 12:00,Ministry of Defence Department of Military Affairs,Drone Obstacle Course
-115,GEM/2025/B/6456366,Drone Simulator For Training,1,2025-07-17 11:42,2025-08-04 12:00,Ministry of Defence Department of Military Affairs,Drone Simulator For Training
-117,GEM/2025/B/6495252,Surveillance Drone Battery,2,2025-07-25 12:48,2025-08-04 13:00,Ministry of Defence Department of Military Affairs,Surveillance Drone Battery
-118,GEM/2025/B/6493849,Drone Simulator Workshop,1,2025-07-25 01:11,2025-08-04 13:00,Ministry of Defence Department of Military Affairs,Drone Simulator Workshop
-119,GEM/2025/B/6488178,GIS related Survey Services - ...,1,2025-07-25 13:04,2025-08-04 13:00,Ministry of Consumer Affairs Food and Public Distribution Department of Food and Public Distribution,"GIS related Survey Services - Sq. Meter; Commercial Land; 1:10,000; Drone Survey; DWG, PDF"
+0,GEM/2025/B/6396994,izi Sky Pro Fly More Combo Dro...,4,2025-07-02 14:20,2025-08-01 11:00,Ministry of Defence Department of Military Affairs,izi Sky Pro Fly More Combo Drone with Camera
+1,GEM/2025/B/6370366,RF Analyzer Drone for undertak...,5,2025-06-21 14:43,2025-08-01 11:00,Ministry of Defence Department of Defence Production,RF Analyzer Drone for undertaking ElectroMagnetic mapping and RF measurement onboard Navel Platform
+3,GEM/2025/B/6480885,Propeller for sde spectre two ...,12,2025-07-22 12:05,2025-08-01 13:00,Ministry of Defence Department of Military Affairs,"Propeller for sde spectre two m drone uav eighty three,Motor for sde spectre two m drone uav eighty"
+4,GEM/2025/B/6437377,"Drone station,FPV Drone Simula...",17,2025-07-22 12:21,2025-08-01 13:00,Ministry of Defence Department of Military Affairs,"Drone station,FPV Drone SimulatorWith VR Goorles and Headset,Trg Drone,Technical Board,Computer Cha"
+5,GEM/2025/B/6466868,Training and Surveillance Dron...,2,2025-07-18 10:32,2025-08-01 13:00,Ministry of Defence Department of Military Affairs,Training and Surveillance Drone with Day Camera
+6,GEM/2025/B/6481691,DRONE,12,2025-07-22 13:49,2025-08-01 14:00,Ministry of Defence Department of Military Affairs,DRONE
+7,GEM/2025/B/6475653,Drone Simulator with Remote Co...,3,2025-07-21 13:15,2025-08-01 14:00,Ministry of Defence Department of Military Affairs,"Drone Simulator with Remote Controller and Licensed software,FPV Simulator with Remote Controller, "
+11,GEM/2025/B/6442466,"Drone as per specification,AMC...",7,2025-07-11 16:11,2025-08-01 17:00,Ministry of Housing & Urban Affairs (MoHUA) Urban Transport,"Drone as per specification,AMC First year,AMC Second year,AMC Third year,Insurance per year per dro"
+12,GEM/2025/B/6477784,DRONE OF ENZO X,1,2025-07-21 16:13,2025-08-01 17:00,Ministry of Defence Department of Military Affairs,DRONE OF ENZO X
+13,GEM/2025/B/6444008,"Drone Model DJI Mavic 4 pro,AM...",8,2025-07-11 17:38,2025-08-01 18:00,Ministry of Housing & Urban Affairs (MoHUA) Urban Transport,"Drone Model DJI Mavic 4 pro,AMC First year,AMC Second year,AMC Third year,Insurance per year per dr"
+14,GEM/2025/B/6481259,Carbon Fiber Propellers for Pa...,9,2025-07-22 13:10,2025-08-01 18:00,Ministry of Defence Department of Military Affairs,"Carbon Fiber Propellers for Payload Dropping Drone,Power Module for Drone 60K Kit,Landing Gear for "
+15,GEM/2025/B/6480681,"Drone Simulator,Work Station D...",5,2025-07-22 12:38,2025-08-01 18:00,Ministry of Defence Department of Military Affairs,"Drone Simulator,Work Station Drone,Joy Stick,Key Board,Mouse"
+16,GEM/2025/B/6483641,FPV DRONE,1,2025-07-22 18:23,2025-08-01 19:00,Ministry of Defence Department of Military Affairs,FPV DRONE
+17,GEM/2025/B/6330517,"Simulator,Quadcopter,Drone,Too...",21,2025-07-11 19:50,2025-08-01 20:00,Ministry of Defence Department of Military Affairs,"Simulator,Quadcopter,Drone,Tool Kit,Table,Chair"
+18,GEM/2025/B/6444538,Wall Mounting Racks for Spares...,5,2025-07-11 19:18,2025-08-01 20:00,Ministry of Defence Department of Military Affairs,"Wall Mounting Racks for Spares of Drone,Table for Drone Repair Lab,Computer Table of PC for Drone R"
+19,GEM/2025/B/6480955,DRONE,1,2025-07-22 13:14,2025-08-01 20:00,Ministry of Defence Department of Military Affairs,DRONE
+20,GEM/2025/B/6415975,"Monitor VDU,CPU,Remote Control...",35,2025-07-11 20:28,2025-08-01 21:00,Ministry of Defence Department of Military Affairs,"Monitor VDU,CPU,Remote Controller,UPS,Military Drone Simulator Software"
+21,GEM/2025/B/6386093,Surveillance Drone / Unmanned ...,4,2025-07-23 13:06,2025-08-01 21:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+22,GEM/2025/B/6479318,"Mod of Cope Cage,Mod of Caster...",33,2025-07-21 21:02,2025-08-01 21:00,Ministry of Defence Department of Military Affairs,"Mod of Cope Cage,Mod of Caster Wheel for Gun,Mod of Drone Box and Bty Ch Sys,4K FPV HD Camera folda"
+23,GEM/2025/B/6451901,DRONE,30,2025-07-21 20:14,2025-08-01 21:00,Ministry of Defence Department of Military Affairs,DRONE
+24,GEM/2025/B/6423298,10 inche FPV Drone Training Ki...,25,2025-07-15 20:33,2025-08-01 21:00,Ministry of Defence Department of Military Affairs,"10 inche FPV Drone Training Kit,Robotics Flying ird Drone Training Kit,Cross Flight Controller,Brus"
+25,GEM/2025/B/6470761,Quadcopter drone,1,2025-07-19 08:44,2025-08-02 09:00,Ministry of Defence Department of Military Affairs,Quadcopter drone
+26,GEM/2025/B/6466246,2 Mp Colour Audio Drone Camera...,56,2025-07-18 16:53,2025-08-02 09:00,Ministry of Defence Department of Military Affairs,"2 Mp Colour Audio Drone Camera,BNC DC Set,Instolation Charge,Wire 3 Copper,PVC Rack"
+28,GEM/2025/B/6408687,Drone Flying Training Module,1,2025-08-01 10:00,2025-08-02 10:00,Ministry of Defence Department of Defence,Drone Flying Training Module
+29,GEM/2025/B/6439828,"Battery,Drone Case,FPV Goggle,...",25,2025-07-12 10:56,2025-08-02 11:00,Ministry of Defence Department of Military Affairs,"Battery,Drone Case,FPV Goggle,Charger,Flight Control"
+31,GEM/2025/B/6453963,Rotorcraft Drone,1,2025-07-16 10:35,2025-08-02 11:00,Ministry of Defence Department of Military Affairs,Rotorcraft Drone
+32,GEM/2025/B/6474555,FPV Drone,2,2025-07-20 11:57,2025-08-02 12:00,Ministry of Defence Department of Military Affairs,FPV Drone
+35,GEM/2025/B/6446038,Customised Drone,1,2025-07-12 14:50,2025-08-02 13:00,Ministry of Defence Department of Military Affairs,Customised Drone
+36,GEM/2025/B/6484802,FOLDABLE AIRFRMAE FOR DRONE,1,2025-07-23 13:21,2025-08-02 14:00,Ministry of Defence Department of Military Affairs,FOLDABLE AIRFRMAE FOR DRONE
+40,GEM/2025/B/6484230,Office Chair for TSS R and I a...,12,2025-07-22 23:09,2025-08-02 15:00,Ministry of Defence Department of Military Affairs,"Office Chair for TSS R and I and Drone Lab,Cabinet wall mounted for files and ledgers for R and I s"
+41,GEM/2025/B/6455864,Drone with Logistic Payload Ca...,1,2025-07-15 18:38,2025-08-02 16:00,Ministry of Defence Department of Military Affairs,Drone with Logistic Payload Capability with Two Batteries
+42,GEM/2025/B/6455717,Training and Surveillance Dron...,2,2025-07-15 18:09,2025-08-02 16:00,Ministry of Defence Department of Military Affairs,Training and Surveillance Drone with Day Camera
+43,GEM/2025/B/6405404,Set of Components of First Per...,20,2025-07-12 16:56,2025-08-02 17:00,Ministry of Defence Department of Military Affairs,Set of Components of First Person View (FPV) Drone 7 Inch
+45,GEM/2025/B/6488143,"Drone Components,Drone Compone...",40,2025-07-23 17:22,2025-08-02 18:00,Ministry of Defence Department of Military Affairs,"Drone Components,Drone Components,Drone Components,Drone Components,Drone Components,Drone Componen"
+47,GEM/2025/B/6449890,Drone with Acessories,2,2025-07-23 18:17,2025-08-02 19:00,Ministry of Defence Department of Military Affairs,Drone with Acessories
+48,GEM/2025/B/6400000,Provision of Drone Training Co...,2,2025-07-23 18:40,2025-08-02 19:00,Ministry of Defence Department of Military Affairs,Provision of Drone Training Course
+49,GEM/2025/B/6418079,10 Inch FPV Drone,1,2025-07-23 20:07,2025-08-02 21:00,Ministry of Defence Department of Military Affairs,10 Inch FPV Drone
+50,GEM/2025/B/6418079,10 Inch FPV Drone,1,2025-07-23 20:07,2025-08-02 21:00,Ministry of Defence Department of Military Affairs,10 Inch FPV Drone
+51,GEM/2025/B/6345622,Hell Fire (Kamikaze/ Payload D...,1,2025-07-23 20:03,2025-08-02 21:00,Ministry of Defence Department of Military Affairs,Hell Fire (Kamikaze/ Payload Dropping FPV Drone)
+52,GEM/2025/B/6489061,KAMIKAZI DRONE,4,2025-07-24 08:51,2025-08-04 09:00,Ministry of Defence Department of Military Affairs,KAMIKAZI DRONE
+53,GEM/2025/B/6466173,DRONE B MECHANISM,1,2025-07-19 10:24,2025-08-04 09:00,Ministry of Defence Department of Military Affairs,DRONE B MECHANISM
+54,GEM/2025/B/6466657,"Drone,Register 300 Pages,Drawi...",88,2025-07-18 09:41,2025-08-04 10:00,Ministry of Defence Department of Military Affairs,"Drone,Register 300 Pages,Drawing sheet,Legal Paper,Printing of tech pamphlets"
+55,GEM/2025/B/6493968,Modification of Counter Drone ...,1,2025-07-25 09:14,2025-08-04 10:00,Ministry of Defence Department of Defence,Modification of Counter Drone System
+56,GEM/2025/B/6489605,Operational Drone with Accesso...,1,2025-07-24 10:14,2025-08-04 10:00,Ministry of Defence Department of Military Affairs,Operational Drone with Accessories
+57,GEM/2025/B/6479829,Custom Bid for Services - 2001...,1,2025-07-22 09:57,2025-08-04 10:00,Ministry of Power NA,Custom Bid for Services - 200143725 Monthly Coal Stock Verification by DRONE for 2025-27 at NTPC Ko
+58,GEM/2025/B/6471443,VR Base Simulator Drone,1,2025-07-24 09:18,2025-08-04 10:00,Ministry of Defence Department of Military Affairs,VR Base Simulator Drone
+59,GEM/2025/B/6471385,First Person View Drone,1,2025-07-24 09:49,2025-08-04 10:00,Ministry of Defence Department of Military Affairs,First Person View Drone
+61,GEM/2025/B/6493841,Drone flight Simulator with Re...,1,2025-07-25 00:48,2025-08-04 11:00,Ministry of Defence Department of Military Affairs,Drone flight Simulator with Remote
+62,GEM/2025/B/6474441,"frame for tethered drone,Motor...",12,2025-07-20 10:58,2025-08-04 11:00,Ministry of Defence Department of Military Affairs,"frame for tethered drone,Motor for tethered drone,propeller for tethered drone,FC Stack for tethere"
+63,GEM/2025/B/6474429,"Receiver for tethered drone,VT...",5,2025-07-20 10:49,2025-08-04 11:00,Ministry of Defence Department of Military Affairs,"Receiver for tethered drone,VTX for Tethered Drone,Fiber Optic Tray for tethered drone,Camera for t"
+64,GEM/2025/B/6474406,"GPS module for Tethered Drone,...",11,2025-07-20 10:38,2025-08-04 11:00,Ministry of Defence Department of Military Affairs,"GPS module for Tethered Drone,Transmitter For Tethered Drone,Release mechanism for tethered drone,E"
+65,GEM/2025/B/6485307,"VR Goggle for drone FPV,Drilli...",27,2025-07-23 11:59,2025-08-04 12:00,Ministry of Defence Department of Military Affairs,"VR Goggle for drone FPV,Drilling Machine,Thermometer,5mm Acrylic Board 120cm x 25cm,5mm Acrylic Boa"
+66,GEM/2025/B/6495159,DRONE SIMULATOR,1,2025-07-25 11:59,2025-08-04 12:00,Ministry of Defence Department of Military Affairs,DRONE SIMULATOR
+68,GEM/2025/B/6493845,Drone Obstacle Course,1,2025-07-25 01:03,2025-08-04 12:00,Ministry of Defence Department of Military Affairs,Drone Obstacle Course
+69,GEM/2025/B/6456366,Drone Simulator For Training,1,2025-07-17 11:42,2025-08-04 12:00,Ministry of Defence Department of Military Affairs,Drone Simulator For Training
+70,GEM/2025/B/6479356,"Radio Controller,Motion Contro...",5,2025-07-22 11:24,2025-08-04 12:00,Ministry of Defence Department of Military Affairs,"Radio Controller,Motion Controller,Analog Goggle,Digital Goggle,Working Model for Virtual Drone Fly"
+72,GEM/2025/B/6495252,Surveillance Drone Battery,2,2025-07-25 12:48,2025-08-04 13:00,Ministry of Defence Department of Military Affairs,Surveillance Drone Battery
+73,GEM/2025/B/6493849,Drone Simulator Workshop,1,2025-07-25 01:11,2025-08-04 13:00,Ministry of Defence Department of Military Affairs,Drone Simulator Workshop
+74,GEM/2025/B/6488178,GIS related Survey Services - ...,1,2025-07-25 13:04,2025-08-04 13:00,Ministry of Consumer Affairs Food and Public Distribution Department of Food and Public Distribution,"GIS related Survey Services - Sq. Meter; Commercial Land; 1:10,000; Drone Survey; DWG, PDF"
+76,GEM/2025/B/6495949,drone simulator with remote co...,1,2025-07-25 13:50,2025-08-04 14:00,Ministry of Defence Department of Military Affairs,drone simulator with remote controller and work station
+77,GEM/2025/B/6490159,S28 GPS DRONE WITH BRUSHLESS M...,8,2025-07-25 10:42,2025-08-04 14:00,Ministry of Defence Department of Military Affairs,S28 GPS DRONE WITH BRUSHLESS MOTOR
+80,GEM/2025/B/6490314,Surveillance Drone / Unmanned ...,1,2025-07-24 11:36,2025-08-04 15:00,Environment and Forests Department Tamil Nadu,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+81,GEM/2025/B/6496319,Drone Micro FPV (ABHAYAS-1),1,2025-07-25 14:39,2025-08-04 15:00,Ministry of Defence Department of Military Affairs,Drone Micro FPV (ABHAYAS-1)
+82,GEM/2025/B/6496260,"Drone Assembly,Drone Software,...",11,2025-07-25 14:06,2025-08-04 15:00,Ministry of Defence Department of Defence,"Drone Assembly,Drone Software,sand color comonet size 50x60 ft,Cordless phone for communication pur"
+84,GEM/2025/B/6487552,GIS related Survey Services - ...,1,2025-07-24 17:07,2025-08-04 17:00,Ministry of Consumer Affairs Food and Public Distribution Department of Food and Public Distribution,"GIS related Survey Services - Sq. Meter; Commercial Land; 1:10,000; Drone Survey; DWG, PDF"
+85,GEM/2025/B/6496099,Drone Simulator software with ...,1,2025-07-25 17:27,2025-08-04 18:00,Ministry of Defence Department of Military Affairs,Drone Simulator software with remote and VR
+86,GEM/2025/B/6494357,FPV Blaze Fiber Optic Drone,2,2025-07-25 10:19,2025-08-04 18:00,Ministry of Defence Department of Military Affairs,FPV Blaze Fiber Optic Drone
+87,GEM/2025/B/6470791,DGCA Certified Small Drone Tra...,2,2025-07-25 10:39,2025-08-04 18:00,Ministry of Defence Department of Military Affairs,DGCA Certified Small Drone Training
+88,GEM/2025/B/6430774,"KAMIKAZE DRONE,KAMIKAZE DRONE ...",60,2025-07-25 17:54,2025-08-04 18:00,Ministry of Defence Department of Military Affairs,"KAMIKAZE DRONE,KAMIKAZE DRONE (TRAINING)"
+89,GEM/2025/B/6493291,Camera & Sensors for Drone,1,2025-07-24 18:45,2025-08-04 19:00,Ministry of Defence Department of Military Affairs,Camera & Sensors for Drone
+91,GEM/2025/B/6392615,Indigenous Long Range FPV Dron...,1,2025-07-14 18:28,2025-08-04 19:00,Ministry of Defence Department of Military Affairs,Indigenous Long Range FPV Drone With All Accessories
+92,GEM/2025/B/6472703,"drone sim wks stn,drone flight...",2,2025-07-19 18:22,2025-08-04 19:00,Ministry of Defence Department of Military Affairs,"drone sim wks stn,drone flight simulator with remote controller"
+93,GEM/2025/B/6437978,FPV Drone,2,2025-07-25 19:09,2025-08-04 20:00,Ministry of Defence Department of Military Affairs,FPV Drone
+94,GEM/2025/B/6451826,"Training Drone Day,Training Dr...",86,2025-07-19 13:23,2025-08-04 20:00,Ministry of Defence Department of Military Affairs,"Training Drone Day,Training Drone Night,FPV Drone,Obstacle Cours Obstacle,Smart Board,Smart TVs 65 "
+96,GEM/2025/B/6400310,"RCIED Drone Heavy,Battery,Batt...",5,2025-07-23 21:19,2025-08-04 21:00,Ministry of Defence Department of Military Affairs,"RCIED Drone Heavy,Battery,Battery Charger,Ground Control Station,Casing"
+97,GEM/2025/B/6492818,FPV Drone Avata 2,1,2025-07-25 20:43,2025-08-04 21:00,Ministry of Defence Department of Military Affairs,FPV Drone Avata 2
+98,GEM/2025/B/6466010,Drone Accessories,1,2025-07-17 20:32,2025-08-04 21:00,Ministry of Defence Department of Military Affairs,Drone Accessories
+99,GEM/2025/B/6498678,DJI Neo Drone Camera Fly More ...,1,2025-07-25 21:32,2025-08-05 09:00,Ministry of Defence Department of Military Affairs,DJI Neo Drone Camera Fly More Combo
+100,GEM/2025/B/6498651,Unmanned Aerial Vehicle Drone,1,2025-07-25 21:23,2025-08-05 10:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle Drone
+102,GEM/2025/B/6498684,Drone Lab Kit with its Accesso...,1,2025-07-25 21:36,2025-08-05 11:00,Ministry of Defence Department of Military Affairs,Drone Lab Kit with its Accessories
+103,GEM/2025/B/6495695,Gimbal & Stabilization Mech fo...,1,2025-07-25 13:50,2025-08-05 11:00,Ministry of Defence Department of Military Affairs,Gimbal & Stabilization Mech for Drone
+105,GEM/2025/B/6494129,7 INCH ANALOG FPV DRONE,2,2025-07-25 09:38,2025-08-05 12:00,Ministry of Defence Department of Military Affairs,7 INCH ANALOG FPV DRONE
+107,GEM/2025/B/6500028,"Recce and Surveillance Drone,B...",5,2025-07-26 12:47,2025-08-05 13:00,Ministry of Defence Department of Military Affairs,"Recce and Surveillance Drone,Battery,Data Cable,Charging Cable,Carry Bag"
+109,GEM/2025/B/6495858,"FLY LIGHT FLY FAR DRONE,GAME P...",5,2025-07-25 13:06,2025-08-05 14:00,Ministry of Defence Department of Military Affairs,"FLY LIGHT FLY FAR DRONE,GAME PAD,VIVE TRUCKER THREE,VR BASE STATION TWO SENSOR STAND,RADIOMASTER BO"
+111,GEM/2025/B/6454884,Surveillance Drone / Unmanned ...,2,2025-07-18 17:08,2025-08-05 17:00,Ministry of Electronics and Information Technology Department of Electronics and Information Technology,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+112,GEM/2025/B/6501088,"Anti Drone Camera System,700 M...",7,2025-07-26 17:22,2025-08-05 18:00,Ministry of Defence Department of Military Affairs,"Anti Drone Camera System,700 Mtr Cat 6 Cable D Link Premium,2K-RAC for POE Switch Mount CP Plus,VGA"
+113,GEM/2025/B/6501144,Procurement of Drone,1,2025-07-26 18:13,2025-08-05 19:00,Ministry of Defence Department of Military Affairs,Procurement of Drone
+114,GEM/2025/B/6501458,Drone as a Service - As per th...,19,2025-07-26 21:38,2025-08-06 09:00,Ministry of Mines NA,Drone as a Service - As per the uploaded detailed document with the bid (SOW)
+115,GEM/2025/B/6456471,"Drone Laser Range Finder,Drone...",15,2025-07-15 21:38,2025-08-06 09:00,Ministry of Defence Department of Military Affairs,"Drone Laser Range Finder,Drone Motor,Motor Mount,Antenna,Vibration Dampers"
+116,GEM/2025/B/6484752,Readytosky 2212 920KV CCW Self...,68,2025-07-23 20:18,2025-08-06 10:00,Ministry of Defence Department of Military Affairs,"Readytosky 2212 920KV CCW Selft Locking Brushless Motor for Drone and RC Plane,Readytosky 2212 920K"
+117,GEM/2025/B/6484513,"Chunna,Paint All Type,Tarpin O...",107,2025-07-23 20:18,2025-08-06 10:00,Ministry of Defence Department of Military Affairs,"Chunna,Paint All Type,Tarpin Oil,Curtain Pipe,Paint Brush,OIC Drone Wooden Name Plate,Red Tape,Red "
+118,GEM/2025/B/6432005,Work Station for Drone Repair ...,11,2025-07-09 10:49,2025-08-06 11:00,Ministry of Defence Department of Military Affairs,"Work Station for Drone Repair Lab,Cabinet for Drone Repair Lab,LED Lights Orients for Drone Repair "
+119,GEM/2025/B/6501293,Vision & Obstacle Avoidance Se...,1,2025-07-26 19:23,2025-08-06 12:00,Ministry of Defence Department of Military Affairs,Vision & Obstacle Avoidance Sensors for Drone
+121,GEM/2025/B/6498728,Drone Controller with Hardware...,1,2025-07-25 22:20,2025-08-06 12:00,Ministry of Defence Department of Military Affairs,Drone Controller with Hardware Accessories
+124,GEM/2025/B/6378729,MD Drone Software for Drone Fo...,8,2025-07-16 14:31,2025-08-06 15:00,Ministry of Defence Department of Military Affairs,"MD Drone Software for Drone Forensic Lab,Intel Core i9 Desktop Workstation with Monitor,Portable an"
+125,GEM/2025/B/6458958,training drone basic,2,2025-07-16 14:37,2025-08-06 15:00,Ministry of Defence Department of Military Affairs,training drone basic
+126,GEM/2025/B/6509887,"Repair, Maintenance, and Insta...",1,2025-07-30 17:25,2025-08-06 18:00,Ministry of Power POWER GRID Corporation OF INDIA Limited,"Repair, Maintenance, and Installation of Plant/ Systems/Equipments (Version 2) - Drone UAV Patrolli"
+127,GEM/2025/B/6509640,"Repair, Maintenance, and Insta...",1,2025-07-30 17:48,2025-08-06 18:00,Ministry of Power POWER GRID Corporation OF INDIA Limited,"Repair, Maintenance, and Installation of Plant/ Systems/Equipments (Version 2) - Drone UAV Patrolli"
+128,GEM/2025/B/6509544,"Repair, Maintenance, and Insta...",1,2025-07-30 17:38,2025-08-06 18:00,Ministry of Power POWER GRID Corporation OF INDIA Limited,"Repair, Maintenance, and Installation of Plant/ Systems/Equipments (Version 2) - Drone UAV Patrolli"
+129,GEM/2025/B/6502156,Small Drone for trainees for b...,5,2025-07-27 18:37,2025-08-06 19:00,Ministry of Defence Department of Military Affairs,"Small Drone for trainees for basic tarining 4K,Small Drone for trainees for basic tarining with pro"
+130,GEM/2025/B/6454020,"Drone Flight Controller,Drone ...",13,2025-07-15 20:45,2025-08-06 21:00,Ministry of Defence Department of Military Affairs,"Drone Flight Controller,Drone ESC,Drone Propellers,Drone 3D Printing Material,Drone Micro SD Card"
+131,GEM/2025/B/6474081,Portable Drone Simulator Contr...,6,2025-07-19 20:03,2025-08-06 21:00,Ministry of Defence Department of Military Affairs,"Portable Drone Simulator Controller,Commander Display Unit for BMP,Portable Drone Simulator Softwar"
+132,GEM/2025/B/6326082,"Drone flg sml,VR drone sml,Dro...",86,2025-07-17 14:41,2025-08-07 09:00,Ministry of Defence Department of Military Affairs,"Drone flg sml,VR drone sml,Drone sensor integration and testing eqpt,GPS testing eqpt along with pr"
+133,GEM/2025/B/6449396,Drone or Unmanned Aerial Vehic...,56,2025-07-17 09:58,2025-08-07 10:00,Ministry of Defence Department of Military Affairs,"Drone or Unmanned Aerial Vehicle with Customized Payload (Defence Forces - Navy, Army and Air Force"
+134,GEM/2025/B/6502607,Mini Drone,15,2025-07-28 09:39,2025-08-07 10:00,Ministry of Defence Department of Military Affairs,Mini Drone
+136,GEM/2025/B/6458902,Digital Drone Flight Simulator...,16,2025-07-17 11:04,2025-08-07 11:00,Ministry of Defence Department of Military Affairs,"Digital Drone Flight Simulator Modules,Drone Trg Arena,Obstacle Circuit,Installation, Integration, "
+137,GEM/2025/B/6457199,Drone or Unmanned Aerial Vehic...,5,2025-07-17 10:29,2025-08-07 11:00,Ministry of Defence Department of Military Affairs,"Drone or Unmanned Aerial Vehicle with Customized Payload (Defence Forces - Navy, Army and Air Force"
+138,GEM/2025/B/6457192,Surveillance Drone / Unmanned ...,4,2025-07-17 10:40,2025-08-07 11:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+139,GEM/2025/B/6449435,Surveillance Drone / Unmanned ...,2,2025-07-17 10:55,2025-08-07 11:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+140,GEM/2025/B/6457192,Surveillance Drone / Unmanned ...,4,2025-07-17 10:40,2025-08-07 11:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+141,GEM/2025/B/6449435,Surveillance Drone / Unmanned ...,2,2025-07-17 10:55,2025-08-07 11:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+142,GEM/2025/B/6449364,Drone or Unmanned Aerial Vehic...,2,2025-07-17 10:58,2025-08-07 11:00,Ministry of Defence Department of Military Affairs,"Drone or Unmanned Aerial Vehicle with Customized Payload (Defence Forces - Navy, Army and Air Force"
+145,GEM/2025/B/6502609,S500 Carbon Fiber Quandcopter ...,12,2025-07-28 10:47,2025-08-07 12:00,Ministry of Defence Department of Military Affairs,"S500 Carbon Fiber Quandcopter Drone Frame Kit,Pixhawk 2.4.8 Drone Flight Controller PX4 32 Bit Auto"
+146,GEM/2025/B/6461896,FPV Drone,1,2025-07-17 10:40,2025-08-07 12:00,Ministry of Defence Department of Military Affairs,FPV Drone
+147,GEM/2025/B/6355710,COMPACT SDR SURVEILLANCE DRONE,1,2025-07-09 12:48,2025-08-07 13:00,Ministry of Defence Department of Military Affairs,COMPACT SDR SURVEILLANCE DRONE
+148,GEM/2025/B/6463149,Drone or Unmanned Aerial Vehic...,2,2025-07-17 13:35,2025-08-07 13:00,Home Department Odisha,"Drone or Unmanned Aerial Vehicle with Customized Payload (Defence Forces - Navy, Army and Air Force"
+149,GEM/2025/B/6429671,"Drone frames PDB, Structure,Dr...",66,2025-07-10 12:58,2025-08-07 13:00,Ministry of Defence Department of Military Affairs,"Drone frames PDB, Structure,Drone flight controller,GPS module,Drone DC Motor,Drone Propeller,Drone"
+150,GEM/2025/B/6251608,Surveillance Drone with access...,3,2025-07-17 13:32,2025-08-07 14:00,Ministry of Defence Department of Military Affairs,Surveillance Drone with accessories
+151,GEM/2025/B/6504395,Manpower Outsourcing Services ...,10,2025-07-28 16:44,2025-08-07 15:00,Ministry of Science and Technology Department of Science and Technology (DST),Manpower Outsourcing Services - Fixed Remuneration - Drone Pilot; Drone pilot; Graduate
+152,GEM/2025/B/6503509,drone flight simulator with re...,1,2025-07-28 14:30,2025-08-07 15:00,Ministry of Defence Department of Military Affairs,drone flight simulator with remote controller
+153,GEM/2025/B/6391868,Multi Roter Drone/UAV,15,2025-07-03 16:01,2025-08-07 17:00,Ministry of Science and Technology Department of Science and Technology (DST),Multi Roter Drone/UAV
+154,GEM/2025/B/6391723,Fixed Wing Drone/UAV,20,2025-07-03 16:02,2025-08-07 17:00,Ministry of Science and Technology Department of Science and Technology (DST),Fixed Wing Drone/UAV
+155,GEM/2025/B/6455233,Custom Bid for Services - Dron...,1,2025-07-17 17:04,2025-08-07 18:00,Ministry of Mines NA,Custom Bid for Services - Drone Based Detailed Magnetic Survey
+156,GEM/2025/B/6477117,DRONE SIMULATOR,1,2025-07-21 18:00,2025-08-07 18:00,Ministry of Defence Department of Defence,DRONE SIMULATOR
+157,GEM/2025/B/6506066,Construction of Anti Drone Cop...,14,2025-07-28 18:46,2025-08-07 19:00,Ministry of Defence Department of Military Affairs,"Construction of Anti Drone Cope Cage size 10 ft x 4 ft,Modification of Antenna for Auto Logger,Head"
+158,GEM/2025/B/6478194,DRONE,1,2025-07-21 18:12,2025-08-07 19:00,Ministry of Defence Department of Defence,DRONE
+159,GEM/2025/B/6454244,Prabal 3.0 Directional Drone J...,1,2025-07-28 19:43,2025-08-07 20:00,Ministry of Defence Department of Military Affairs,Prabal 3.0 Directional Drone Jammer
+160,GEM/2025/B/6506182,"FPV Goggles with DVR,TBS Sourc...",29,2025-07-28 19:07,2025-08-07 20:00,Ministry of Defence Department of Military Affairs,"FPV Goggles with DVR,TBS Source One V5 5inch,T Motor Brushless Drone Motor 2550KV,Speedy Bee F4 V4 "
+161,GEM/2025/B/6505974,"SDR for Drone detection,Omnidi...",10,2025-07-28 19:09,2025-08-07 20:00,Ministry of Defence Department of Military Affairs,"SDR for Drone detection,Omnidirection Antenna,Logarithmic Antenna,SMA Connector,Female to Female Co"
+162,GEM/2025/B/6505319,Drone as a Service - As per th...,1,2025-07-29 10:36,2025-08-08 11:00,Ministry of Mines NA,Drone as a Service - As per the uploaded detailed document with the bid (SOW)
+163,GEM/2025/B/6368242,VR Drone SML,1,2025-07-29 12:48,2025-08-08 13:00,Ministry of Defence Department of Military Affairs,VR Drone SML
+164,GEM/2025/B/6417302,Drone with DGCA registered UIN,1,2025-07-04 17:29,2025-08-08 14:00,Ministry of Electronics and Information Technology Department of Electronics and Information Technology,Drone with DGCA registered UIN
+165,GEM/2025/B/6461116,FPV Drone,11,2025-07-29 13:06,2025-08-08 14:00,Ministry of Defence Department of Military Affairs,FPV Drone
+166,GEM/2025/B/6484025,Content Creation Team to inclu...,5,2025-07-29 13:54,2025-08-08 14:00,Ministry of Defence Department of Military Affairs,Content Creation Team to include videographers and photographers and Drone Operators and Editors an
+167,GEM/2025/B/6433846,CE010370006: Small Category Dr...,1,2025-07-09 15:23,2025-08-08 16:00,Ministry of Coal Materials Management,"CE010370006: Small Category Drone with Lidar Payload with All Accessories. , QTY: 1 No."
+169,GEM/2025/B/6504105,Surveillance Drone / Unmanned ...,11,2025-07-29 18:30,2025-08-08 19:00,Home Department Jammu and Kashmir,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+170,GEM/2025/B/6504105,Surveillance Drone / Unmanned ...,11,2025-07-29 18:30,2025-08-08 19:00,Home Department Jammu and Kashmir,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+171,GEM/2025/B/6510910,Drone flight simulator with re...,2,2025-07-29 19:48,2025-08-08 20:00,Ministry of Defence Department of Military Affairs,"Drone flight simulator with remote controller,Drone SML Look Station"
+172,GEM/2025/B/6511155,Power BI Pro Software for One ...,9,2025-07-29 20:30,2025-08-08 21:00,Ministry of Defence Department of Military Affairs,"Power BI Pro Software for One Year,Drone simulator Real Flight 9 software for One Year,Filmora AI V"
+173,GEM/2025/B/6506906,DRONE SERVIE TOOLS,1,2025-07-29 10:14,2025-08-09 09:00,Ministry of Defence Department of Military Affairs,DRONE SERVIE TOOLS
+175,GEM/2025/B/6511493,Iron Frame with jali Sise 11.5...,24,2025-07-30 08:40,2025-08-09 09:00,Ministry of Defence Department of Defence,"Iron Frame with jali Sise 11.5x 4.2 mtr for LV Veh Cope Cage for Drone Attack,Iron Cutter Blade,Nut"
+176,GEM/2025/B/6511470,Iron Frame with jali Sise 12 x...,26,2025-07-30 08:30,2025-08-09 09:00,Ministry of Defence Department of Defence,"Iron Frame with jali Sise 12 x4 mtr for LV Veh Cope Cage for Drone Attack,Iron Cutter Blade,Nut and"
+177,GEM/2025/B/6511794,Iron Frame with Jali Cope Cage...,2,2025-07-30 09:51,2025-08-09 10:00,Ministry of Defence Department of Defence,Iron Frame with Jali Cope Cage LV Drone Attack
+178,GEM/2025/B/6511781,NANO DRONE 720P- HD CAMERA,1,2025-07-30 09:55,2025-08-09 10:00,Ministry of Defence Department of Military Affairs,NANO DRONE 720P- HD CAMERA
+179,GEM/2025/B/6503467,"Training Drone,Adaptor for Dro...",5,2025-07-29 11:20,2025-08-09 11:00,Ministry of Defence Department of Military Affairs,"Training Drone,Adaptor for Drone,Connecting cables,Cover for carrying,FPV Goggle"
+180,GEM/2025/B/6512038,Assembly for Training on Minor...,2,2025-07-30 10:25,2025-08-09 11:00,Ministry of Defence Department of Military Affairs,Assembly for Training on Minor Repair of Drone
+181,GEM/2025/B/6511957,LV Iron Frame with Jali Cope C...,2,2025-07-30 10:13,2025-08-09 11:00,Ministry of Defence Department of Defence,LV Iron Frame with Jali Cope Cag SIZE 11 x 4 mtr for Drone Attack
+182,GEM/2025/B/6466227,dji MINI 4K drone,1,2025-07-30 10:11,2025-08-09 11:00,Ministry of Defence Department of Military Affairs,dji MINI 4K drone
+185,GEM/2025/B/6513257,"FOLDABLE QUAD COPTER FRAME,ESC...",12,2025-07-30 12:58,2025-08-09 13:00,Ministry of Defence Department of Defence,"FOLDABLE QUAD COPTER FRAME,ESC WITH ONESHOT ORIGINAL,POWER MODULE,FLIGHT CONTROLLER,DRONE SIMULATOR"
+187,GEM/2025/B/6512985,Plantation Service - Seedball ...,1,2025-07-30 12:58,2025-08-09 13:00,Ministry of Coal COAL INDIA LIMITED,Plantation Service - Seedball spraying through drone
+188,GEM/2025/B/6512739,KAMIKAZE FPV DRONE,1,2025-07-30 12:18,2025-08-09 13:00,Ministry of Defence Department of Military Affairs,KAMIKAZE FPV DRONE
+189,GEM/2025/B/6513697,"DRONE SIMULATOR,XT 60 CONNECTO...",47,2025-07-30 13:55,2025-08-09 14:00,Ministry of Defence Department of Defence,"DRONE SIMULATOR,XT 60 CONNECTOR,ESC WITH ONESHOT ORIGINAL,COUNTER ROTATING CARBON FIBER PROPELLERS,"
+190,GEM/2025/B/6513654,"DRONE SIMULATOR,620KV MULTICOL...",15,2025-07-30 13:50,2025-08-09 14:00,Ministry of Defence Department of Defence,"DRONE SIMULATOR,620KV MULTICOLOR BRUSHLESS MOTOR,COUNTER ROTATING CARBON FIBER PROPELLERS,GPS WITH "
+192,GEM/2025/B/6368866,Quadcopter (Unmanned Aerial Ve...,1,2025-07-19 18:02,2025-08-09 18:00,Ministry of Defence Department of Military Affairs,Quadcopter (Unmanned Aerial Vehicle) Drone Camera
+193,GEM/2025/B/6499254,drone jammer system,1,2025-07-30 18:00,2025-08-09 18:00,Ministry of Defence Department of Military Affairs,drone jammer system
+194,GEM/2025/B/6490885,"Military Drone Simulator,FPV G...",5,2025-07-30 16:59,2025-08-09 18:00,Ministry of Defence Department of Military Affairs,"Military Drone Simulator,FPV Goggles,Remote Controller,Desktop setup with 1650 NVIDIA Graphic Card "
+195,GEM/2025/B/6502302,ESTABLISHMENT OF DRONE REPAIR ...,1,2025-07-30 17:31,2025-08-09 19:00,Ministry of Defence Department of Military Affairs,ESTABLISHMENT OF DRONE REPAIR AND MAINTAINENCE HUB
+196,GEM/2025/B/6513651,"30A ESC (OPTO) 2-6S Lipo,Fligh...",57,2025-07-30 19:24,2025-08-09 20:00,Ministry of Defence Department of Military Affairs,"30A ESC (OPTO) 2-6S Lipo,Flight Controller Board for RC Multi Rotor Drone,Brushless MotorFor Drone-"
+197,GEM/2025/B/6444678,Payload Quadcopter Drone,1,2025-07-30 11:09,2025-08-09 20:00,Ministry of Defence Department of Military Affairs,Payload Quadcopter Drone
+198,GEM/2025/B/6474114,"Drone battery pack triangle,42...",22,2025-07-19 20:30,2025-08-09 21:00,Ministry of Defence Department of Military Affairs,"Drone battery pack triangle,4200 mah battery,male connector with 14 AWG Silicon wire,Quadcopter Dro"
+201,GEM/2025/B/6342229,Drone with day camera and DOOA...,1,2025-07-30 20:13,2025-08-11 09:00,Ministry of Defence Department of Military Affairs,Drone with day camera and DOOAF software
+203,GEM/2025/B/6520815,HAND HELD JAMMER RIFLE COUNTER...,3,2025-08-01 09:35,2025-08-11 10:00,Ministry of Defence Department of Military Affairs,HAND HELD JAMMER RIFLE COUNTER DRONE SYSTEM INCLUDING TWO YEAR AMC
+204,GEM/2025/B/6516427,FPV Kamikaze Drone with Two Sp...,2,2025-07-31 09:52,2025-08-11 10:00,Ministry of Defence Department of Military Affairs,FPV Kamikaze Drone with Two Spare Batteries
+205,GEM/2025/B/6516284,Dual Camera Premium Bag Versio...,10,2025-07-31 09:39,2025-08-11 10:00,Ministry of Defence Department of Military Affairs,Dual Camera Premium Bag Version Position Locking Drone
+207,GEM/2025/B/6470341,"FPV Drone Kits,Kamikaze Drone ...",89,2025-08-01 09:38,2025-08-11 11:00,Ministry of Defence Department of Military Affairs,"FPV Drone Kits,Kamikaze Drone kits,Surveillance Drone Kits,Batteries,FPV Goggles,Radio Controllers,"
+209,GEM/2025/B/6517354,"FPV Drone 5 inch FPV,Radio Mas...",35,2025-08-01 08:37,2025-08-11 12:00,Ministry of Defence Department of Military Affairs,"FPV Drone 5 inch FPV,Radio Master,Goggle FPV,Charger,Trigger"
+210,GEM/2025/B/6515844,Cope Cages (anti-drone meshes),2,2025-07-31 11:51,2025-08-11 12:00,Ministry of Defence Department of Military Affairs,Cope Cages (anti-drone meshes)
+211,GEM/2025/B/6506346,drone trg opticals,24,2025-07-30 11:47,2025-08-11 12:00,Ministry of Defence Department of Military Affairs,drone trg opticals
+213,GEM/2025/B/6460688,GIS related Survey Services - ...,1392,2025-07-21 15:33,2025-08-11 16:00,Revenue Department Uttar Pradesh,GIS related Survey Services - Sq. Kilometer; Agricultural; 1:1000; Drone Survey; SHP
+214,GEM/2025/B/6311361,Establishment of Comprehensive...,1,2025-07-28 16:07,2025-08-11 16:00,Ministry of Defence Department of Military Affairs,Establishment of Comprehensive Drone Training Lab
+216,GEM/2025/B/6520231,Drone,1,2025-07-31 18:56,2025-08-11 19:00,Ministry of Defence Department of Military Affairs,Drone
+217,GEM/2025/B/6515767,Training Drone Lightweigh,2,2025-07-31 20:09,2025-08-11 21:00,Ministry of Defence Department of Military Affairs,Training Drone Lightweigh
+218,GEM/2025/B/6431030,Custom Bid for Services - Cond...,1,2025-07-22 18:57,2025-08-12 10:00,Ministry of Defence Department of Defence,Custom Bid for Services - Conduct of 05 days Drone Training Category Cat1 VLOS for Indian Coast Gua
+219,GEM/2025/B/6446405,3 dof Drone stability jig with...,10,2025-07-22 17:45,2025-08-12 12:00,Ministry of Defence Department of Military Affairs,"3 dof Drone stability jig with test bench for drones,2 Dof wind stability jig with test bench,Bldc "
+220,GEM/2025/B/6497712,PURCHASE OF DRONE,1,2025-07-28 11:53,2025-08-12 12:00,Home Department Andhra Pradesh,PURCHASE OF DRONE
+221,GEM/2025/B/6407638,Drone as a Service - As per th...,1,2025-07-03 15:33,2025-08-13 10:00,Ministry of Defence Department of Defence Research & Development,Drone as a Service - As per the uploaded detailed document with the bid (SOW)
+222,GEM/2025/B/6486306,8inch enclosed analog FPV Dron...,5,2025-07-23 21:05,2025-08-13 11:00,Ministry of Defence Department of Military Affairs,"8inch enclosed analog FPV Drone setup with single battery,Radiomaster boxer with 915mhz module,skyz"
+223,GEM/2025/B/6485720,"Drone Controller,Software for ...",11,2025-07-23 12:03,2025-08-13 12:00,Ministry of Defence Department of Military Affairs,"Drone Controller,Software for Simulator,Accessories,Headset,Cable"
+224,GEM/2025/B/6508027,Nano Drone with Electro Optica...,70,2025-07-29 21:10,2025-08-13 13:00,Ministry of Defence Department of Military Affairs,"Nano Drone with Electro Optical Camera,Nano Drone with IR Camera,Battery,Battery Charger,Ground Con"
+226,GEM/2025/B/6335001,ARTIFICIAL INTELLIGENCE POWERE...,2,2025-07-23 17:45,2025-08-13 18:00,Ministry of Defence Department of Military Affairs,ARTIFICIAL INTELLIGENCE POWERED ISR & TARGETING DRONE
+227,GEM/2025/B/6464683,"Supply, Installation, Testing,...",4,2025-07-23 17:42,2025-08-13 21:00,Home Department Gujarat,"Supply, Installation, Testing, Commissioning, and O&M of ManPortable Drone Detection & Jamming Syst"
+228,GEM/2025/B/6489771,TETHERED DRONE REF SYS W/SWAPP...,1,2025-07-24 15:45,2025-08-14 11:00,Ministry of Defence Department of Defence Production,TETHERED DRONE REF SYS W/SWAPPABLE SUBSY
+229,GEM/2025/B/6471069,Drone Trg Lab at Dehradun Mil ...,1,2025-07-24 14:40,2025-08-14 15:00,Ministry of Defence Department of Military Affairs,Drone Trg Lab at Dehradun Mil Stn
+230,GEM/2025/B/6445318,DRONE FABRICATION AND REPAIR L...,1,2025-07-25 23:00,2025-08-16 11:00,Ministry of Defence Department of Military Affairs,DRONE FABRICATION AND REPAIR LAB AT DRUGMULLA MILITARY STATION
+231,GEM/2025/B/6366259,Surveillance Drone / Unmanned ...,10,2025-07-26 13:00,2025-08-16 14:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+236,GEM/2025/B/6430999,DGCA Approved Multirotor Train...,698,2025-07-27 20:41,2025-08-18 21:00,Ministry of Defence Department of Military Affairs,"DGCA Approved Multirotor Training Drone,Batteries for Multirotor,Repair and maint tool kit,Drone In"
+237,GEM/2025/B/6279442,"DIGITAL MICROSCOPE FOR PCBs,SO...",6,2025-07-05 09:13,2025-08-19 09:00,Ministry of Defence Department of Military Affairs,"DIGITAL MICROSCOPE FOR PCBs,SOLDERING PREHEATING PLATE,REFLOW OVEN,THRUST STAND FOR DRONE,ULTRASONI"
+238,GEM/2025/B/6508892,Customised Drone,1,2025-07-29 14:52,2025-08-19 15:00,Ministry of Defence Department of Military Affairs,Customised Drone
+239,GEM/2025/B/6514660,Surveillance Drone / Unmanned ...,4,2025-07-30 17:45,2025-08-19 16:00,Home Department Chhattisgarh,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+240,GEM/2025/B/6514318,Custom Bid for Services - Job ...,1,2025-07-30 15:59,2025-08-20 16:00,Ministry of Defence Department of Defence Research & Development,Custom Bid for Services - Job work for CFD and EM simulation of Chaff Dispersed from Drone Platform
+241,GEM/2025/B/6513168,"Live recorded Webcas,Telepromp...",306,2025-07-30 17:09,2025-08-20 17:00,Ministry of Petroleum and Natural Gas Bharat Petroleum Corporation Ltd,"Live recorded Webcas,Teleprompter1,HD Camera,Drone Based Camera Feed,VC Support,TV with Stand,TV wi"

@@ -55,7 +55,7 @@ def login(driver):
         password = driver.find_element(By.XPATH, '//*[@id="txtPassword"]')
         password.clear()
         password.click()
-        password.send_keys('Shreenath@2024')
+        password.send_keys('Shree@2025')
         
         driver.find_element(By.XPATH, '//*[@id="save"]').click()
         logger.info('Login to the portal')
@@ -67,6 +67,7 @@ def login(driver):
 def search_for_accounts(driver):
     try:
         logger.info('Searching for accounts')
+        wi.processing_check_wait(driver, xpath='//*[@id="lbAccount"]', time=90)
         acc_btn = driver.find_element(By.XPATH, '//*[@id="lbAccount"]')
         time.sleep(60)
         driver.execute_script("arguments[0].click();", acc_btn)
@@ -183,7 +184,9 @@ def trigger_job():
 def get_accounts():
     try:
         query = """
-            SELECT user_name, acc_name, acc_no, mobile, cur_plan, expiry, address, cluster, TO_CHAR(updated_date, 'DD Mon YYYY') AS updated_date
+            SELECT user_name, acc_name, acc_no, mobile, cur_plan, expiry, address, cluster,
+            TO_CHAR(updated_date, 'DD Mon YYYY') AS updated_date,
+            TO_CHAR(updated_date, 'HH12:MI:SS AM') AS update_time
             FROM net_broadband.netplus;
         """
         df = db.get_row_as_dframe(query)
