@@ -97,13 +97,21 @@ def search_for_accounts(driver, user):
         logger.error(f"Error in search for accounts: {str(er)}")
 
 
-def clean_and_rename_df(df):
+def clean_and_rename_df(df, user):
     # Remove columns with empty header
     df = df.loc[:, df.columns.str.strip() != '']
     # Rename columns
-    df.columns = [
-        "user_name", "acc_name", "acc_no", "mobile", "cur_plan", "expiry", "address", "cluster"
-    ]
+    if user == 'CHDGBO0292':
+        df.columns = [
+            "user_name", "acc_name", "acc_no", "mobile", "cur_plan",
+            "expiry", "address", "cluster"
+        ]
+    elif user == 'CHDIPT0292':
+        df.columns = [
+            "user_name", "acc_name", "mobile", "cur_plan", "pre_auth_ip",
+            "status", "expiry", "reg_date", "last_reneal"
+        ]
+        df["acc_no"] = df["user_name"]
     return df
 
 
@@ -112,7 +120,7 @@ def insert_into_db(df, user):
         if not df.empty:
             db.execute(f"DELETE FROM net_broadband.netplus where login_user_name = '{user}' ;")
             logger.info('Existing records deleted from net_broadband.netplus for user: ' + user)
-            df = clean_and_rename_df(df)
+            df = clean_and_rename_df(df, user)
             df['login_user_name'] = user
             df = df.drop_duplicates(subset=['acc_no'], keep='last')
             df = df.reset_index(drop=True)
@@ -193,8 +201,8 @@ def trigger_job():
 def get_accounts():
     try:
         query = """
-            SELECT user_name, acc_name, acc_no, mobile, cur_plan,
-            expiry, address, cluster, login_user_name,
+            SELECT user_name, acc_name, acc_no, mobile, cur_plan, expiry, address,
+            cluster, pre_auth_ip, status, reg_date, last_reneal, login_user_name,
             TO_CHAR(updated_date, 'DD Mon YYYY') AS updated_date,
             TO_CHAR(updated_date, 'HH12:MI:SS AM') AS update_time
             FROM net_broadband.netplus;
