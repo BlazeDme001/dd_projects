@@ -107,7 +107,7 @@ def get_services():
     service = data.get("service")
 
     # Authenticate user
-    if username == 'Nirwana_API' and password == 'Qn@62':
+    if (username == 'Nirwana_API' and password == 'Qn@62') or (username == 'Promark' and password == 'Pm#24'):
         user = True
 
     if not user:

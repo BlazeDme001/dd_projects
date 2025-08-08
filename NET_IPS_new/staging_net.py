@@ -99,12 +99,14 @@ def search_for_accounts(driver, user):
 
 def clean_and_rename_df(df, user):
     # Remove columns with empty header
+    # df.columns = df.loc[:, df.columns.str.strip() != '']
     df = df.loc[:, df.columns.str.strip() != '']
+
     # Rename columns
     if user == 'CHDGBO0292':
         df.columns = [
-            "user_name", "acc_name", "acc_no", "mobile", "cur_plan",
-            "expiry", "address", "cluster"
+            "user_name", "acc_name", "acc_no", "mobile", "cur_plan", "pre_auth_ip",
+            "status", "expiry", "reg_date", "last_reneal", "address", "cluster"
         ]
     elif user == 'CHDIPT0292':
         df.columns = [
