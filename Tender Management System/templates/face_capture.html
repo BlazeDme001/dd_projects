@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Capture</title>
+    <style>
+        #camera-stream {
+            border: 2px solid #333;
+            border-radius: 10px;
+            width: 640px;
+            height: 480px;
+        }
+        .controls {
+            margin-top: 15px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-save { background: #4CAF50; color: white; }
+        .btn-retake { background: #f39c12; color: white; }
+        .btn-back { background: #e74c3c; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Face Capture</h1>
+
+    <!-- Live Video Feed -->
+    <img src="{{ url_for('face_capture_bp.video_feed') }}" id="camera-stream">
+
+    <div class="controls">
+        <button class="btn-save" onclick="saveFace()">Save</button>
+        <button class="btn-retake" onclick="location.reload()">Retake</button>
+        <button class="btn-back" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        function saveFace() {
+            const video = document.getElementById("camera-stream");
+            const canvas = document.createElement("canvas");
+            canvas.width = video.width;
+            canvas.height = video.height;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Send POST request with session-based username (handled server-side)
+            fetch("/face-capture", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    // username will be fetched on the server from session
+                    image: canvas.toDataURL("image/png")
+                })
+            })
+            .then(res => res.json())
+            .then(data => alert(data.message));
+        }
+
+        function goBack() {
+            window.location.href = "/tenders"; // redirect using session
+        }
+    </script>
+</body>
+</html>

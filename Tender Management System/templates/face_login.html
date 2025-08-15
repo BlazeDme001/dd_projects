@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face Login</title>
+    <style>
+        video {
+            width: 400px;
+            height: 300px;
+            border: 2px solid #333;
+            display: block;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Login with Face</h2>
+    <video id="video" autoplay></video>
+    <div>
+        <button id="loginFaceBtn">Login</button>
+        <button id="backBtn">Back</button>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+
+        // Start camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => video.srcObject = stream)
+        .catch(err => alert("Cannot access camera: " + err));
+
+        // Face login button
+        document.getElementById("loginFaceBtn").onclick = () => {
+            if (!video.srcObject) {
+                alert("Camera not initialized");
+                return;
+            }
+
+            const canvas = document.createElement("canvas");
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext("2d").drawImage(video, 0, 0);
+
+            fetch("/face-login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ image: canvas.toDataURL("image/png") })
+            })
+            .then(r => r.json())
+            .then(res => {
+                if (res.success) {
+                    // Stop the camera
+                    video.srcObject.getTracks().forEach(track => track.stop());
+
+                    // Auto-submit username & password to /login
+                    const form = document.createElement("form");
+                    form.method = "POST";
+                    form.action = "/login";
+
+                    const usernameInput = document.createElement("input");
+                    usernameInput.type = "hidden";
+                    usernameInput.name = "username";
+                    usernameInput.value = res.username;
+
+                    const passwordInput = document.createElement("input");
+                    passwordInput.type = "hidden";
+                    passwordInput.name = "password";
+                    passwordInput.value = res.password;
+
+                    form.appendChild(usernameInput);
+                    form.appendChild(passwordInput);
+                    document.body.appendChild(form);
+                    form.submit();
+                } else {
+                    alert(res.message);
+                }
+            })
+            .catch(err => alert("Error: " + err));
+        };
+
+        // Back button
+        document.getElementById("backBtn").onclick = () => {
+            if (video.srcObject) {
+                video.srcObject.getTracks().forEach(track => track.stop());
+            }
+            window.location.href = "/login";
+        };
+    </script>
+</body>
+</html>
