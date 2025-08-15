@@ -1,18 +1,19 @@
 ,BID NO,Items,Quantity,Start Date,End Date,Department Name And Address,new_itm
-0,GEM/2025/B/6444421,Surveillance Drone / Unmanned ...,20,2025-07-15 11:27,2025-08-08 20:00,Home Department Gujarat,Surveillance Drone / Unmanned Aerial Vehicle (V2)
-1,GEM/2025/B/6525475,Surveillance Drone / Unmanned ...,1,2025-08-01 21:01,2025-08-08 21:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
-2,GEM/2025/B/6368866,Quadcopter (Unmanned Aerial Ve...,1,2025-07-19 18:02,2025-08-09 18:00,Ministry of Defence Department of Military Affairs,Quadcopter (Unmanned Aerial Vehicle) Drone Camera
-3,GEM/2025/B/6375442,Surveillance Drone / Unmanned ...,1,2025-08-06 20:37,2025-08-11 21:00,Ministry of Defence Department of Military Affairs,"Surveillance Drone / Unmanned Aerial Vehicle (V2) (Defence Forces - Navy, Army and Air Force)"
-4,GEM/2025/B/6273771,Unmanned Aerial Vehicle and Pa...,1,2025-07-16 12:46,2025-08-12 13:00,Ministry of Defence Department of Military Affairs,Unmanned Aerial Vehicle and Payload Systems for Agricultural Spray (V2)
-5,GEM/2025/B/6454446,Unmanned Aerial Vehicle and Pa...,1,2025-07-18 17:05,2025-08-12 16:00,Ministry of Electronics and Information Technology Department of Electronics and Information Technology,Unmanned Aerial Vehicle and Payload Systems for Agricultural Spray (V2)
-6,GEM/2025/B/6454884,Surveillance Drone / Unmanned ...,2,2025-07-18 17:08,2025-08-12 17:00,Ministry of Electronics and Information Technology Department of Electronics and Information Technology,Surveillance Drone / Unmanned Aerial Vehicle (V2)
-7,GEM/2025/B/6386093,Surveillance Drone / Unmanned ...,4,2025-07-23 13:06,2025-08-13 09:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
-9,GEM/2025/B/6463149,Drone or Unmanned Aerial Vehic...,2,2025-07-17 13:35,2025-08-13 14:00,Home Department Odisha,"Drone or Unmanned Aerial Vehicle with Customized Payload (Defence Forces - Navy, Army and Air Force"
-10,GEM/2025/B/6417993,NANO Unmanned Aerial Vehicle (...,15,2025-07-23 19:34,2025-08-14 17:00,Ministry of Home Affairs Central Armed Police Forces,NANO Unmanned Aerial Vehicle (UAV)
-12,GEM/2025/B/6366259,Surveillance Drone / Unmanned ...,10,2025-07-26 13:00,2025-08-16 14:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
-13,GEM/2025/B/6538171,Surveillance Drone / Unmanned ...,1,2025-08-05 17:05,2025-08-16 17:00,Forest and Environment Department Odisha,Surveillance Drone / Unmanned Aerial Vehicle (V2)
-16,GEM/2025/B/6514660,Surveillance Drone / Unmanned ...,4,2025-07-30 17:45,2025-08-19 16:00,Home Department Chhattisgarh,Surveillance Drone / Unmanned Aerial Vehicle (V2)
-18,GEM/2025/B/6530643,Surveillance Drone / Unmanned ...,2,2025-08-04 11:48,2025-08-25 12:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+1,GEM/2025/B/6366259,Surveillance Drone / Unmanned ...,10,2025-07-26 13:00,2025-08-16 14:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+2,GEM/2025/B/6538171,Surveillance Drone / Unmanned ...,1,2025-08-05 17:05,2025-08-16 17:00,Forest and Environment Department Odisha,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+4,GEM/2025/B/6525475,Surveillance Drone / Unmanned ...,1,2025-08-01 21:01,2025-08-16 21:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+6,GEM/2025/B/6575192,Surveillance Drone / Unmanned ...,1,2025-08-14 21:22,2025-08-18 11:00,Ministry of Defence Department of Military Affairs,"Surveillance Drone / Unmanned Aerial Vehicle (V2) (Defence Forces - Navy, Army and Air Force)"
+7,GEM/2025/B/6463149,Drone or Unmanned Aerial Vehic...,2,2025-07-17 13:35,2025-08-18 16:00,Home Department Odisha,"Drone or Unmanned Aerial Vehicle with Customized Payload (Defence Forces - Navy, Army and Air Force"
+8,GEM/2025/B/6375442,Surveillance Drone / Unmanned ...,1,2025-08-06 20:37,2025-08-18 18:00,Ministry of Defence Department of Military Affairs,"Surveillance Drone / Unmanned Aerial Vehicle (V2) (Defence Forces - Navy, Army and Air Force)"
+9,GEM/2025/B/6547609,Surveillance Drone / Unmanned ...,2,2025-08-08 21:59,2025-08-19 09:00,Home Department Jammu and Kashmir,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+11,GEM/2025/B/6451593,Surveillance Drone / Unmanned ...,2,2025-08-09 17:44,2025-08-19 10:00,Ministry of Defence Department of Military Affairs,"Surveillance Drone / Unmanned Aerial Vehicle (V2) (Defence Forces - Navy, Army and Air Force)"
+12,GEM/2025/B/6514660,Surveillance Drone / Unmanned ...,4,2025-07-30 17:45,2025-08-19 16:00,Home Department Chhattisgarh,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+13,GEM/2025/B/6489221,Surveillance Drone / Unmanned ...,2,2025-08-09 06:06,2025-08-20 21:00,Home Department Jammu and Kashmir,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+14,GEM/2025/B/6543509,PAYLOAD UNMANNED AERIAL VEHICL...,1,2025-08-11 08:38,2025-08-21 09:00,Ministry of Defence Department of Military Affairs,PAYLOAD UNMANNED AERIAL VEHICLE WITH GREN DROPPING CAPB
+16,GEM/2025/B/6562501,Unmanned Aerial Vehicle / Dron...,1,2025-08-12 14:55,2025-08-22 15:00,Agriculture Development and Farmers Welfare Department Keral,Unmanned Aerial Vehicle / Drones for Agricultural Purposes (V3)
+17,GEM/2025/B/6530643,Surveillance Drone / Unmanned ...,2,2025-08-04 11:48,2025-08-25 12:00,Ministry of Defence Department of Military Affairs,Surveillance Drone / Unmanned Aerial Vehicle (V2)
+18,GEM/2025/B/6556625,Drone or Unmanned Aerial Vehic...,2,2025-08-15 10:13,2025-08-25 12:00,Ministry of Defence Department of Military Affairs,"Drone or Unmanned Aerial Vehicle with Customized Payload (Defence Forces - Navy, Army and Air Force"
 19,GEM/2025/B/6456880,Drone or Unmanned Aerial Vehic...,7,2025-08-05 18:37,2025-08-25 14:00,Ministry of Defence Department of Military Affairs,"Drone or Unmanned Aerial Vehicle with Customized Payload (Defence Forces - Navy, Army and Air Force"
 20,GEM/2025/B/6504105,Surveillance Drone / Unmanned ...,11,2025-07-29 18:30,2025-08-25 19:00,Home Department Jammu and Kashmir,Surveillance Drone / Unmanned Aerial Vehicle (V2)
 21,GEM/2025/B/6512045,Drone or Unmanned Aerial Vehic...,8,2025-08-06 18:18,2025-08-27 19:00,Ministry of Defence Department of Military Affairs,"Drone or Unmanned Aerial Vehicle with Customized Payload (Defence Forces - Navy, Army and Air Force"
+23,GEM/2025/B/6553083,Surveillance Drone / Unmanned ...,3,2025-08-14 18:05,2025-09-04 16:00,Home Department Odisha,Surveillance Drone / Unmanned Aerial Vehicle (V2)
